@@ -40,10 +40,6 @@ public class RingDetectionDetector {
                     binarizedImageArray[y][x] = 1;
                     im.setRGB(x,y, 0xff0000ff);   //fill blue
                 }
-                else {
-                    im.setRGB(x,y,0x00000000);
-                }
-                
             }
         }
 
