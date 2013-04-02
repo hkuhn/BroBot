@@ -1,6 +1,6 @@
 package Away.Vision.RingDetection;
 
-import java.awt.image.BufferedImage;
+import java.awt.image.*;
 
 
 public class RingDetectionDetector {
@@ -38,7 +38,7 @@ public class RingDetectionDetector {
                 int avg = (r + g + b) / 3;
                 if (avg >= t) {
                     binarizedImageArray[y][x] = 1;
-                    //im.setRGB(x,y, 0xffffffff);   //fill white
+                    im.setRGB(x,y, 0xff0000ff);   //fill white
                 }
                 
             }
@@ -53,6 +53,7 @@ public class RingDetectionDetector {
         this.im = im;
 		this.width = im.getWidth();
 		this.height = im.getHeight();
+		this.t = thresh;
 		this.binarizedImageArray = new int[height][width];
 		
 		// run thresholding, signal matches on binarized image
@@ -62,7 +63,9 @@ public class RingDetectionDetector {
     
     // ACCESS METHODS
     public BufferedImage getBinarizedImage() {
-        final WriteableRaster wr = new WriteableRaster();
+		// return full color image
+		return im;
+		// return binarized array
     }
     
 

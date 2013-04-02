@@ -124,6 +124,10 @@ public class RingDetectionController {
         //System.out.println("Threshold Change from Slider: " + this.frame.getSlider().getValue());
         this.whiteThreshold = this.frame.getSlider().getValue();
 		this.frame.getThresholdLabel().setText(String.valueOf(this.whiteThreshold));
+
+		if (this.selectedImageSource == null) {
+			startImage();
+		}
     }
     
 	protected void chooseCameraSourceAction() {
@@ -163,8 +167,8 @@ public class RingDetectionController {
     
     protected void startImage() {
 		if ( this.imageThread != null ) {
-			System.err.println("Warning, camera already running");
-			return;
+			this.imageThread.interrupt();
+			this.imageThread = null;
 		}
         
 		this.imageThread = new Thread(new Runnable() {
@@ -241,10 +245,13 @@ public class RingDetectionController {
     // Image Processing
     protected BufferedImage processImage(BufferedImage im) {
         // run ring detection
+		//System.out.println(this.whiteThreshold);
         RingDetectionDetector rdd = new RingDetectionDetector();
 		rdd.runDetection(im, this.whiteThreshold);
+	
+		BufferedImage out = rdd.getBinarizedImage();
         
-        return im;
+        return out;
     }
     
     
