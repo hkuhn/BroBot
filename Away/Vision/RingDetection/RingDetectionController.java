@@ -1,9 +1,10 @@
-package Vision.RingDetection;
+package Away.Vision.RingDetection;
 
 import java.io.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.event.ActionEvent;
@@ -31,11 +32,11 @@ public class RingDetectionController {
     
     
     // args
-    private ImageSource		    selectedImageSource;
+    private ImageSource		    	selectedImageSource;
     private RingDetectionFrame      frame;
-    private String		    selectedCameraURL;
-    private Thread		    imageThread;
-    private BufferedImage 	    selectedImage;
+    private String		    		selectedCameraURL;
+    private Thread		    		imageThread;
+    private BufferedImage 	    	selectedImage;
     
     // slider white threshold (dynamic)
     private int whiteThreshold;
@@ -120,8 +121,9 @@ public class RingDetectionController {
     
     protected void updateThreshold() {
         // update threshold value
-        System.out.println("Threshold Change from Slider: " + this.frame.getSlider().getValue());
+        //System.out.println("Threshold Change from Slider: " + this.frame.getSlider().getValue());
         this.whiteThreshold = this.frame.getSlider().getValue();
+		this.frame.getThresholdLabel().setText(String.valueOf(this.whiteThreshold));
     }
     
 	protected void chooseCameraSourceAction() {
@@ -239,7 +241,8 @@ public class RingDetectionController {
     // Image Processing
     protected BufferedImage processImage(BufferedImage im) {
         // run ring detection
-        RingDetectionDetector rdd = new RingDetectionDetector(im, whiteThreshold);
+        RingDetectionDetector rdd = new RingDetectionDetector();
+		rdd.runDetection(im, this.whiteThreshold);
         
         return im;
     }

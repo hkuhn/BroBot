@@ -1,4 +1,4 @@
-package Vision.RingDetection;
+package Away.Vision.RingDetection;
 
 
 import javax.swing.*;

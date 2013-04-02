@@ -1,4 +1,4 @@
-package Vision.RingDetection;
+package Away.Vision.RingDetection;
 
 
 import javax.swing.*;
@@ -13,6 +13,8 @@ public class RingDetectionFrame extends JFrame {
     private JButton         chooseImageButton;
     private JImage          centerImage;
     private JSlider         whiteThresholdSlider;
+	private JLabel			sliderLabel;
+	private JLabel			whiteThresholdLabel;
     
     
     // CONSTRUCTOR METHOD
@@ -30,6 +32,9 @@ public class RingDetectionFrame extends JFrame {
         chooseCameraSourceButton = new JButton("Camera Source");
         chooseImageButton = new JButton("Choose Image");
         whiteThresholdSlider = new JSlider(0,255,255);  //range = 0-255
+		whiteThresholdLabel = new JLabel("255");
+
+		sliderLabel = new JLabel("White Threshold: ");
         
         // build GUI
         buildGUI();
@@ -48,7 +53,9 @@ public class RingDetectionFrame extends JFrame {
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new FlowLayout());
         this.add(southPanel, BorderLayout.SOUTH);
+		southPanel.add(sliderLabel);
         southPanel.add(whiteThresholdSlider);
+		southPanel.add(whiteThresholdLabel);
         
     }
     
@@ -69,6 +76,10 @@ public class RingDetectionFrame extends JFrame {
     public JSlider getSlider() {
         return whiteThresholdSlider;
     }
+
+	public JLabel getThresholdLabel() {
+		return whiteThresholdLabel;
+	}
     
     
 }
