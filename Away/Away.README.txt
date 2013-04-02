@@ -1,0 +1,17 @@
+This package contains all files related to the bot's functionality with
+his opponent's cups.  A description of this implementation is below:
+
+DESCRIPTION:
+The bot should be able to pick up a pong ball from a line, and determine
+the correct trajectory to throw the ball to sink the pong ball into an
+opponent's cup.
+
+This system should be able to detect the opponent's cups using stereo
+vision and image rectification to solve for the center of a cup's ring. 
+The arm will be trained with machine learning to solve for the best way
+to shoot the ball toward a given coordinate.
+
+REQUIREMENTS:
+1.  3D Stereo Vision Calibration
+2.  Robotic Kinematics w/ Machine Learning
+

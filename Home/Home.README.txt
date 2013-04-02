@@ -1,0 +1,40 @@
+This package contains all files related to the bot's functionality with
+his own cups.  A description of this implementation is below:
+
+DESCRIPTION:
+The bot is configured such that there is a set of cups set up in a pong
+formation in front of the robotic arm.  There is an overhead calibrated
+camera that has the cups and a "dump" in its field of view.
+
+This system should be able to detect the cups' rings, and if there is a
+pong ball inside one.  If there is a ball inside one of the cup's rings,
+the robotic arm should pull the cup from the playing field and place it
+in the dump.
+
+REQUIREMENTS:
+1. Simple overhead Camera Calibration techniques
+2. Object Detection (pong ball)
+3. Ring Detection (cup)
+4. Robotic Inverse Kinematics
+
+OUTLINE:
+Camera Calibration -
+	o  Solve for affine transformation between camera coordinates and
+	world coordinates.
+	o  Affine transformation will be used to retrieve real world
+	coordinates of a cup with a ball inside of it
+	o  Real world coordinates are then fed to the Robotic Inverse
+	Kinematics system to retrieve cup, and place it in the dump
+
+Object Detection -
+	o  
+
+Ring Detection -
+	o 
+
+Robotic Inverse Kinematics -
+	o Given a real world coordinate, the robotic arm should be able to
+	grab a cup's ring at that coordinate, pick it up vertically so as to
+	not disturb the cups around it, and transfer it safely to the dump
+	o  Home Position = full arm erect
+	o  
