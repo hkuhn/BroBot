@@ -50,11 +50,13 @@ public class RingDetectionDetector {
     // RUN DETECTION METHOD
     public void runDetection(BufferedImage im, int thresh) {
         // retrieve image properties & initialize
-        this.im = im;
 		this.width = im.getWidth();
 		this.height = im.getHeight();
 		this.t = thresh;
 		this.binarizedImageArray = new int[height][width];
+
+		this.im = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); 
+        this.im = im;
 		
 		// run thresholding, signal matches on binarized image
 		binarizeImage();
