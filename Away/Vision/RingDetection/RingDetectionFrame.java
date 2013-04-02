@@ -12,6 +12,7 @@ public class RingDetectionFrame extends JFrame {
     private JButton         chooseCameraSourceButton;
     private JButton         chooseImageButton;
     private JImage          centerImage;
+    private JSlider         whiteThresholdSlider;
     
     
     // CONSTRUCTOR METHOD
@@ -25,8 +26,10 @@ public class RingDetectionFrame extends JFrame {
         
         // add camera source button
         // add image source button
+        // add slider
         chooseCameraSourceButton = new JButton("Camera Source");
         chooseImageButton = new JButton("Choose Image");
+        whiteThresholdSlider = new JSlider(0,255,255);  //range = 0-255
         
         // build GUI
         buildGUI();
@@ -42,6 +45,11 @@ public class RingDetectionFrame extends JFrame {
         northPanel.add(chooseCameraSourceButton);
         northPanel.add(chooseImageButton);
         
+        JPanel southPanel = new JPanel();
+        southPanel.setLayout(new FlowLayout());
+        this.add(southPanel, BorderLayout.SOUTH);
+        southPanel.add(whiteThresholdSlider);
+        
     }
     
     // PUBLIC CLASS METHODS
@@ -56,6 +64,10 @@ public class RingDetectionFrame extends JFrame {
     
     public synchronized JButton getChooseImageButton() {
         return chooseImageButton;
+    }
+    
+    public JSlider getSlider() {
+        return whiteThresholdSlider;
     }
     
     

@@ -37,9 +37,14 @@ public class RingDetectionController {
     private Thread		    imageThread;
     private BufferedImage 	    selectedImage;
     
+    // slider white threshold (dynamic)
+    private int whiteThreshold;
+    
     
     // CONSTRUCTOR
     public RingDetectionController(RingDetectionFrame frame) {
+        
+        this.whiteThreshold = 255;
         
         this.frame = frame;
         frame.setSize(1024, 768);
@@ -81,6 +86,13 @@ public class RingDetectionController {
 			}
 		});
         
+        // toggle jslider action
+        frame.getSlider().addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                RingDetectionController.this.updateThreshold();
+            }
+        });
+        
         
     }
     
@@ -105,6 +117,12 @@ public class RingDetectionController {
         // toggle click action
         
 	}
+    
+    protected void updateThreshold() {
+        // update threshold value
+        System.out.println("Threshold Change from Slider: " + this.frame.getSlider().getValue());
+        this.whiteThreshold = this.frame.getSlider().getValue();
+    }
     
 	protected void chooseCameraSourceAction() {
 		// retrieve camera URLS
@@ -221,6 +239,7 @@ public class RingDetectionController {
     // Image Processing
     protected BufferedImage processImage(BufferedImage im) {
         // run ring detection
+        RingDetectionDetector rdd = new RingDetectionDetector(im, whiteThreshold);
         
         return im;
     }
