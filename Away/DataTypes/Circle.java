@@ -11,7 +11,7 @@ public class Circle {
     
     // CONSTRUCTOR METHODS
     public Circle() {
-        this.c = new Point(Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY);
+        this.c = new Point(0,0);
         this.r = Double.POSITIVE_INFINITY;
         this.score = Double.POSITIVE_INFINITY;
     }
@@ -30,6 +30,10 @@ public class Circle {
         this.r = r;
     }
     
+    public void setScore(double s) {
+        this.score = s;
+    }
+    
     // ACCESSOR METHODS
     public double getRadius() {
         return r;
@@ -37,6 +41,10 @@ public class Circle {
     
     public Point getCenter() {
         return c;
+    }
+    
+    public double getScore() {
+        return score;
     }
 
 
