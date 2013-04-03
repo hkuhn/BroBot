@@ -22,6 +22,7 @@ public class RingDetectionDetector {
 	private int width;
 	private int height;
 	private int[][] binarizedImageArray;	// C-ORDERED MATRIX (ROW MAJOR)
+    private ArrayList<Circle> circles_list; // list of circles
 
 	private int t;		// white threshold (avg. of RGB values > t for a match)
     
@@ -82,7 +83,7 @@ public class RingDetectionDetector {
         //      - remove these points from data array and continue
         //  5. Repeat after we find n circles
         
-        ArrayList<Circle> circles_list = new ArrayList<Circle>();
+        this.circles_list = new ArrayList<Circle>();
         int trials = 0;
         
         while (trials < q) {
