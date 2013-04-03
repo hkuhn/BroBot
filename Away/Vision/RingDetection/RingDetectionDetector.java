@@ -1,8 +1,10 @@
 package Away.Vision.RingDetection;
 
 import Away.Vision.util.*;
+import Away.DataTypes.*;
 
 import java.awt.image.*;
+import java.awt.Point;
 
 
 public class RingDetectionDetector {
@@ -20,6 +22,9 @@ public class RingDetectionDetector {
 	private int[][] binarizedImageArray;	// C-ORDERED MATRIX (ROW MAJOR)
 
 	private int t;		// white threshold (avg. of RGB values > t for a match)
+    
+    
+    // RANSAC Parameters
 
 
     
@@ -54,8 +59,46 @@ public class RingDetectionDetector {
 	}
 
 	private void RANSAC_CIRCLES(int[][] edgesMatrix) {
+        // RUN RANSAC ON INPUT DATA
 		
 	}
+    
+    // RANSAC HELPER METHODS
+    private Circle fitCircle(Point p1, Point p2, Point p3) {
+        // given three points, fit a circle
+        // return the radius and center coordinate point
+        // int array result = [Point c, int radius] (floored)
+        // Point c Calculations:
+        //      ~ Done by equating distance from all three points to xr and yr
+        //      ~ Algebraic expression
+        //
+        // Radius Calculations:
+        //      ~ Done by calculating distance from any input point to center point
+        // 
+        
+        // CENTER POINT CALCULATIONS
+        Point p1 = new Point(2,1);
+        Point p2 = new Point(0,5);
+        Point p3 = new Point(-1,2);
+        
+        double A = p1.getX() - p3.getX();
+        double B = p1.getX() - p2.getX();
+        double C = A*(p2.getX()*p2.getX() + p2.getY()*p2.getY()) + B*(p1.getX()*p1.getX() + p1.getY()*p1.getY()) - A*(p1.getX()*p1.getX() + p1.getY()*p1.getY()) - B*(p3.getX()*p3.getX() + p3.getY()*p3.getY());
+        double D = 2*(A*(p2.getY()-p1.getY()) - B*(p3.getY() - p1.getY()));
+        
+        int yr = (int)Math.floor(C / D);
+        
+        int xr = (int)Math.floor(((p1.getX()*p1.getX() + p1.getY()*p1.getY()) - (p2.getX()*p2.getX() + p2.getY()*p2.getY()) + 2*yr*(p2.getY() - p1.getY())) / (2*(p1.getX() - p2.getX())));
+        
+        Point center = new Point(xr, yr);
+        
+        // RADIUS CALCULATIONS
+        double r = Math.sqrt((p1.getX() - center.getX())*(p1.getX() - center.getX()) + (p1.getY() - center.getY())*(p1.getY() - center.getY()));
+        
+        // return
+        Circle out = new Circle(center, r);
+        return out;
+    }
     
     
     // RUN DETECTION METHOD
