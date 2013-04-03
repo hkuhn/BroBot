@@ -1,5 +1,7 @@
 package Away.Vision.RingDetection;
 
+import Away.Vision.util.*;
+
 import java.awt.image.*;
 
 
@@ -8,16 +10,13 @@ public class RingDetectionDetector {
 
     // args
     private BufferedImage im;
+	private BufferedImage edges;
 	private int width;
 	private int height;
 	private int[][] binarizedImageArray;	// C-ORDERED MATRIX (ROW MAJOR)
 
 	private int t;		// white threshold (avg. of RGB values > t for a match)
-    
-    // RANSAC Parameters
-    private static final int n = 40;    // min. number of data required to fit model
-    private static final int k = 100;   // number of iterations performed by RANSAC
-    private static final int r_min = 30;    //min. radius allowed to be considered a circle
+
 
     
     // CONSTRUCTOR METHOD
@@ -65,14 +64,19 @@ public class RingDetectionDetector {
 		// run thresholding, signal matches on binarized image
 		binarizeImage();
         
-        // run RANSAC on binarized image
+        // run edge detection on binarized image
+		CannyEdgeDetector detector = new CannyEdgeDetector();
+		detector.setLowThreshold(0.5f);
+		detector.setHighThreshold(1f);		
+		detector.setSourceImage(this.getBinarizedImage());
+		detector.process();
+		this.edges = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		this.edges = detector.getEdgesImage();
         
     }
     
     // ACCESS METHODS
     public BufferedImage getBinarizedImage() {
-		// return full color image
-		//return im;
 		// return binarized array
         BufferedImage out = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_BINARY);
         WritableRaster raster = (WritableRaster) out.getRaster();
@@ -86,6 +90,12 @@ public class RingDetectionDetector {
         return out;
         
     }
+
+	public BufferedImage getThinnedImage() {
+		return this.edges;
+
+	}
+
     
 
 }

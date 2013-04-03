@@ -167,7 +167,7 @@ public class RingDetectionController {
     protected void startImage() {
 		
 		if ( this.imageThread != null ) {
-			System.err.println("Warning, camera already running");
+			//System.err.println("Warning, camera already running");
 			//return;
 		}
 		
@@ -175,17 +175,13 @@ public class RingDetectionController {
 		this.imageThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					SwingUtilities.invokeAndWait(new Runnable() {
-						@Override
-						public void run() {
-							BufferedImage out = RingDetectionController.this.processImage(selectedImage);
-                        	RingDetectionController.this.getFrame().getCenterImage().setImage(out);
-						}
-					});
-				} catch (Exception e) {
-					System.out.println("Interrupted Exception Error");
-				}
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						BufferedImage out = RingDetectionController.this.processImage(selectedImage);
+                        RingDetectionController.this.getFrame().getCenterImage().setImage(out);
+					}
+				});
 			}
 		});
 		this.imageThread.start();
@@ -254,7 +250,7 @@ public class RingDetectionController {
         RingDetectionDetector rdd = new RingDetectionDetector();
 		rdd.runDetection(im, this.whiteThreshold);
 	
-		BufferedImage out = rdd.getBinarizedImage();
+		BufferedImage out = rdd.getThinnedImage();
         
         return out;
     }

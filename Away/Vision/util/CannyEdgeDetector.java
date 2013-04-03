@@ -528,7 +528,12 @@ public class CannyEdgeDetector {
                 int r = pixels[offset++] & 0xff;
                 data[i] = luminance(r, g, b);
             }
-        } else {
+        } else if (type == BufferedImage.TYPE_BYTE_BINARY) {
+			byte[] pixels = (byte[]) sourceImage.getData().getDataElements(0, 0, width, height, null);
+			for (int i = 0; i < picsize; i++) {
+				data[i] = (pixels[i]*255 & 0xff);
+			}
+		} else {
 			throw new IllegalArgumentException("Unsupported image type: " + type);
 		}
 	}
