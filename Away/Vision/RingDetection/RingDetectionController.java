@@ -1,5 +1,7 @@
 package Away.Vision.RingDetection;
 
+import Away.Vision.util;
+
 import java.io.*;
 
 import javax.imageio.ImageIO;
