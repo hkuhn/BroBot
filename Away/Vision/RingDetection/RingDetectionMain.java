@@ -1,6 +1,5 @@
 package Away.Vision.RingDetection;
 
-import Away.Vision.util;
 
 import javax.swing.*;
 import java.util.ArrayList;

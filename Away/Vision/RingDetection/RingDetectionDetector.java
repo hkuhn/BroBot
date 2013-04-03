@@ -1,7 +1,5 @@
 package Away.Vision.RingDetection;
 
-import Away.Vision.util;
-
 import java.awt.image.*;
 
 
@@ -10,12 +8,9 @@ public class RingDetectionDetector {
 
     // args
     private BufferedImage im;
-    private BufferedImage binarized_image;
-    private BufferedImage thinned_image;
 	private int width;
 	private int height;
 	private int[][] binarizedImageArray;	// C-ORDERED MATRIX (ROW MAJOR)
-    private int[][] skeletonizedImageArray; // C-ORDERED MATRIX (ROW MAJOR)
 
 	private int t;		// white threshold (avg. of RGB values > t for a match)
     
@@ -63,14 +58,23 @@ public class RingDetectionDetector {
 		this.height = im.getHeight();
 		this.t = thresh;
 		this.binarizedImageArray = new int[height][width];
-        this.skeletonizedImageArray = new int[height][width];
 
 		this.im = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); 
         this.im = im;
 		
 		// run thresholding, signal matches on binarized image
 		binarizeImage();
-        this.binarized_image = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_BINARY);
+        
+        // run RANSAC on binarized image
+        
+    }
+    
+    // ACCESS METHODS
+    public BufferedImage getBinarizedImage() {
+		// return full color image
+		//return im;
+		// return binarized array
+        BufferedImage out = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_BINARY);
         WritableRaster raster = (WritableRaster) out.getRaster();
         int[] data = new int[width*height];
         for (int y = 0; y < height; y++) {
@@ -78,36 +82,9 @@ public class RingDetectionDetector {
                 data[x + y*width] = binarizedImageArray[y][x];
             }
         }
-        raster.setPixels(0, 0, width, height, data);
+        raster.setPixels(0, 0, width, height, data);        
+        return out;
         
-        // run canny edge detection on binarized image
-        CannyEdgeDetector ced = new CannyEdgeDetector();
-        ced.setLowThreshold(0.5f);
-        ced.setHighThreshold(1f);
-        ced.setSourceImage(frame);
-        ced.process();
-        this.thinned_image = ced.getEdgesImage();
-        
-        
-        
-    }
-    
-    // ACCESS METHODS
-    public BufferedImage getImage() {
-        // return full color image
-        // CHECK FOR SETPIXEL IN BINARIZATION (most likely commented out)
-        return this.im;
-    }
-    
-    public BufferedImage getBinarizedImage() {
-		// return binarized image     
-        return binarized_image;
-        
-    }
-    
-    public BufferedImage getThinnedImage() {
-        // return edge-detected image
-        return thinned_image;
     }
     
 
