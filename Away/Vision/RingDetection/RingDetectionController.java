@@ -45,7 +45,7 @@ public class RingDetectionController {
     // CONSTRUCTOR
     public RingDetectionController(RingDetectionFrame frame) {
         
-        this.whiteThreshold = 255;
+        this.whiteThreshold = 217;
         
         this.frame = frame;
         frame.setSize(1024, 768);

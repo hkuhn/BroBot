@@ -31,8 +31,8 @@ public class RingDetectionFrame extends JFrame {
         // add slider
         chooseCameraSourceButton = new JButton("Camera Source");
         chooseImageButton = new JButton("Choose Image");
-        whiteThresholdSlider = new JSlider(0,255,255);  //range = 0-255
-		whiteThresholdLabel = new JLabel("255");
+        whiteThresholdSlider = new JSlider(0,255,217);  //range = 0-255
+		whiteThresholdLabel = new JLabel("217");
 
 		sliderLabel = new JLabel("White Threshold: ");
         

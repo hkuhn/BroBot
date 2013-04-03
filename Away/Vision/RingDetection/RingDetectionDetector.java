@@ -52,6 +52,10 @@ public class RingDetectionDetector {
         }
 
 	}
+
+	private void RANSAC_CIRCLES(int[][] edgesMatrix) {
+		
+	}
     
     
     // RUN DETECTION METHOD
@@ -76,6 +80,24 @@ public class RingDetectionDetector {
 		detector.process();
 		this.edges = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		this.edges = detector.getEdgesImage();
+
+		// store data points in matrix
+		int[][] edgesMatrix = new int[height][width];
+		int[] edge_data = ((DataBufferInt) this.edges.getRaster().getDataBuffer()).getData();
+		int edge_count = 0;
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				// edge pixel has value either 1 or 255
+				if (((edge_data[x + y*width] >> 16) & 0xff) > 0) {
+					edgesMatrix[y][x] = 1;
+					edge_count++;
+				}
+			}
+		}
+		System.out.println("Edge Count: " + edge_count);
+
+		// run RANSAC Circle Detection on data points
+		RANSAC_CIRCLES(edgesMatrix);
         
     }
     
