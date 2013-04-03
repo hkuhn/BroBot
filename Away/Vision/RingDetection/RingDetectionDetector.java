@@ -13,6 +13,11 @@ public class RingDetectionDetector {
 	private int[][] binarizedImageArray;	// C-ORDERED MATRIX (ROW MAJOR)
 
 	private int t;		// white threshold (avg. of RGB values > t for a match)
+    
+    // RANSAC Parameters
+    private static final int n = 40;    // min. number of data required to fit model
+    private static final int k = 100;   // number of iterations performed by RANSAC
+    private static final int r_min = 30;    //min. radius allowed to be considered a circle
 
     
     // CONSTRUCTOR METHOD
@@ -60,13 +65,26 @@ public class RingDetectionDetector {
 		// run thresholding, signal matches on binarized image
 		binarizeImage();
         
+        // run RANSAC on binarized image
+        
     }
     
     // ACCESS METHODS
     public BufferedImage getBinarizedImage() {
 		// return full color image
-		return im;
+		//return im;
 		// return binarized array
+        BufferedImage out = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_BINARY);
+        WritableRaster raster = (WritableRaster) out.getRaster();
+        int[] data = new int[width*height];
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                data[x + y*width] = binarizedImagearray[y][x];
+            }
+        }
+        raster.setPixels(0, 0, width, height, pixels);        
+        return out;
+        
     }
     
 
