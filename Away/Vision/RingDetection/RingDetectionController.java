@@ -39,7 +39,7 @@ public class RingDetectionController {
     private BufferedImage 	    	selectedImage;
     
     // slider white threshold (dynamic)
-    private int whiteThreshold;
+    private volatile int whiteThreshold;
     
     
     // CONSTRUCTOR
@@ -125,9 +125,8 @@ public class RingDetectionController {
         this.whiteThreshold = this.frame.getSlider().getValue();
 		this.frame.getThresholdLabel().setText(String.valueOf(this.whiteThreshold));
 
-		if (this.selectedImageSource == null) {
-			startImage();
-		}
+		startImage();
+
     }
     
 	protected void chooseCameraSourceAction() {
@@ -166,21 +165,27 @@ public class RingDetectionController {
 	}
     
     protected void startImage() {
+		
 		if ( this.imageThread != null ) {
-			this.imageThread.interrupt();
-			this.imageThread = null;
+			System.err.println("Warning, camera already running");
+			//return;
 		}
+		
         
 		this.imageThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						BufferedImage out = RingDetectionController.this.processImage(selectedImage);
-                        RingDetectionController.this.getFrame().getCenterImage().setImage(out);
-					}
-				});
+				try {
+					SwingUtilities.invokeAndWait(new Runnable() {
+						@Override
+						public void run() {
+							BufferedImage out = RingDetectionController.this.processImage(selectedImage);
+                        	RingDetectionController.this.getFrame().getCenterImage().setImage(out);
+						}
+					});
+				} catch (Exception e) {
+					System.out.println("Interrupted Exception Error");
+				}
 			}
 		});
 		this.imageThread.start();

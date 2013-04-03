@@ -43,7 +43,7 @@ public class RingDetectionDetector {
                 int avg = (r + g + b) / 3;
                 if (avg >= t) {
                     binarizedImageArray[y][x] = 1;
-                    im.setRGB(x,y, 0xff0000ff);   //fill blue
+                    //im.setRGB(x,y, 0xff0000ff);   //fill blue
                 }
             }
         }
@@ -79,10 +79,10 @@ public class RingDetectionDetector {
         int[] data = new int[width*height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                data[x + y*width] = binarizedImagearray[y][x];
+                data[x + y*width] = binarizedImageArray[y][x];
             }
         }
-        raster.setPixels(0, 0, width, height, pixels);        
+        raster.setPixels(0, 0, width, height, data);        
         return out;
         
     }
