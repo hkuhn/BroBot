@@ -5,6 +5,7 @@ import Away.DataTypes.*;
 
 import java.awt.image.*;
 import java.awt.Point;
+import java.util.Random;
 
 
 public class RingDetectionDetector {
@@ -25,6 +26,14 @@ public class RingDetectionDetector {
     
     
     // RANSAC Parameters
+    private static final int MIN_SIZE = 53; // min. number of data points to define a circle
+    private static final int q = 10;        // number of total circles to be found
+    private static final int n = 3;         // randomly selected n points
+    private static final double inf = Double.POSITIVE_INFINITY;
+    private static final int ERROR_THRESH = 1;  // base error threshold in pixels for pixel offset
+                                                // actual error dependent on radius size
+    private static final int DELTA_T = 5;       // search every DELTA_T degrees for a match
+    
 
 
     
@@ -59,7 +68,71 @@ public class RingDetectionDetector {
 	}
 
 	private void RANSAC_CIRCLES(int[][] edgesMatrix) {
-        // RUN RANSAC ON INPUT DATA
+        // RANSAC ALGORITHM
+        //  1. pick three random points from data array
+        //  2. fit a circle for these three points
+        //  3. run through all points in the array and test fit to line
+        //      - if there is a high fit, add to hypothesis inliers
+        //      - if there is a high count of inliers, add circle to best circle array
+        //  4. Repeat until we find the best circle after many iterations and save the best circle
+        //      - remove these points from data array and continue
+        //  5. Repeat after we find n circles
+        
+        int trials = 0;
+        
+        while (trials < q) {
+            // init & reset
+            Circle best_model = new Circle();
+            ArrayList<Point> best_consensusSet = new ArrayList<Point>();
+            
+            // begin traversal
+            Random randomizer = new Random();
+            int iterations = 0;
+            while (iterations < k) {
+                // coords
+                int p1x = randomizer.nextInt(width); int p1y = randomizer.nextInt(height);
+                int p2x = randomizer.nextInt(width); int p2y = randomizer.nextInt(height);
+                int p3x = randomizer.nextInt(width); int p3y = randomizer.nextInt(height);
+                // points
+                Point p1 = new Point(p1x, p1y);
+                Point p2 = new Point(p2x, p2y);
+                Point p3 = new Point(p3x, p3y);
+                // test for dissimilar points
+                while (p1 == p2 || p2 == p3 || p1 == p3) {
+                    // coords
+                    p1x = randomizer.nextInt(width); int p1y = randomizer.nextInt(height);
+                    p2x = randomizer.nextInt(width); int p2y = randomizer.nextInt(height);
+                    p3x = randomizer.nextInt(width); int p3y = randomizer.nextInt(height);
+                    // points
+                    p1 = new Point(p1x, p1y);
+                    p2 = new Point(p2x, p2y);
+                    p3 = new Point(p3x, p3y);
+                }
+                // values
+                int p1v = edgesMatrix[p1y][p1x];
+                int p2v = edgesMatrix[p2y][p2x];
+                int p3v = edgesMatrix[p3y][p3x];                
+                // retrieve model
+                Circle model = fitCircle(p1, p2, p3);
+                
+                // find consensus points
+                ArrayList<Point> consensusSet = new ArrayList<Point>();
+                consensusSet.add(p1); consensusSet.add(p2); consensusSet.add(p3);
+                for (int y = 0; y < height; y++) {
+                    for (int x = 0; x < width; x++) {
+                        // test if pixel is an edge
+                        if (edgesMatrix[y][x] != 1) continue;
+                        // test if pixel is within range of radius
+                        double error = getCirclePointError(model, x, y);
+                        
+                        /* CONTINUE HERE */
+                    }
+                }
+                
+            }
+
+        }
+        
 		
 	}
     
@@ -98,6 +171,14 @@ public class RingDetectionDetector {
         // return
         Circle out = new Circle(center, r);
         return out;
+    }
+    
+    private double getCirclePointError(Circle model, int x, int y) {
+        // Assess validity of test point x and y on circle model
+        
+        
+        /* WRITE FUNCTION HERE */
+        
     }
     
     
