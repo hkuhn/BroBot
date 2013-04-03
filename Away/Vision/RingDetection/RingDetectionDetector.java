@@ -7,6 +7,10 @@ import java.awt.image.*;
 
 public class RingDetectionDetector {
 
+	// const
+	// EDGE DETECTION
+	private final static float low_thresh = 15.0f;
+	private final static float high_thresh = 20.0f;
 
     // args
     private BufferedImage im;
@@ -66,8 +70,8 @@ public class RingDetectionDetector {
         
         // run edge detection on binarized image
 		CannyEdgeDetector detector = new CannyEdgeDetector();
-		detector.setLowThreshold(0.5f);
-		detector.setHighThreshold(1f);		
+		detector.setLowThreshold(low_thresh);
+		detector.setHighThreshold(high_thresh);		
 		detector.setSourceImage(this.getBinarizedImage());
 		detector.process();
 		this.edges = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
