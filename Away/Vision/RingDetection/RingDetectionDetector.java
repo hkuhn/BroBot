@@ -28,14 +28,14 @@ public class RingDetectionDetector {
     
     
     // RANSAC Parameters
-    private static final int k = 3000;       // number of iterations in search of a circle
-    private static final int q = 6;        // number of total circles to be found
+    private static final int k = 1000;       // number of iterations in search of a circle
+    private static final int q = 3;        // number of total circles to be found
     private static final int n = 3;         // randomly selected n points
     private static final double inf = Double.POSITIVE_INFINITY;
-    private static final int MIN_RADIUS = 100;   // min pixel radius
+    private static final int MIN_RADIUS = 200;   // min pixel radius
 	private static final int MAX_RADIUS = 700;	// max pixel radius
-    private static final int MIN_SIZE = 300; // min. number of data points to define a circle (circum of min radius)
-    private static final double ERROR_CONST = 0.004;
+    private static final int MIN_SIZE = 400; // min. number of data points to define a circle (circum of min radius)
+    private static final double ERROR_CONST = 0.022;
     private static final int ERROR_THRESH = 2;  // base error threshold in pixels for pixel offset
     // actual error dependent on radius size
     // thresh = ERROR_CONST*radius*error_thresh
@@ -99,9 +99,12 @@ public class RingDetectionDetector {
             int iterations = 0;
             while (iterations < k) {
                 // coords
-                int p1x = randomizer.nextInt(width); int p1y = randomizer.nextInt(height);
-                int p2x = randomizer.nextInt(width); int p2y = randomizer.nextInt(height);
-                int p3x = randomizer.nextInt(width); int p3y = randomizer.nextInt(height);
+                int p1x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS));
+				int p1y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
+                int p2x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS)); 
+				int p2y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
+                int p3x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS));
+				int p3y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
                 // points
                 Point p1 = new Point(p1x, p1y);
                 Point p2 = new Point(p2x, p2y);
@@ -109,9 +112,12 @@ public class RingDetectionDetector {
                 // test for dissimilar points
                 while (p1 == p2 || p2 == p3 || p1 == p3) {
                     // coords
-                    p1x = randomizer.nextInt(width); p1y = randomizer.nextInt(height);
-                    p2x = randomizer.nextInt(width); p2y = randomizer.nextInt(height);
-                    p3x = randomizer.nextInt(width); p3y = randomizer.nextInt(height);
+                	p1x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS));
+					p1y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
+                	p2x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS)); 
+					p2y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
+                	p3x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS));
+					p3y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
                     // points
                     p1.setLocation(p1x, p1y);
                     p2.setLocation(p2x, p2y);
@@ -126,6 +132,21 @@ public class RingDetectionDetector {
                 
                 // test radius
                 if (model.getRadius() < MIN_RADIUS || model.getRadius() > MAX_RADIUS || model.getCenter().getX() - model.getRadius() - OFFSET < 0 || model.getCenter().getY() - model.getRadius() - OFFSET < 0 || model.getCenter().getX() + model.getRadius() + OFFSET > width || model.getCenter().getY() + model.getRadius() + OFFSET > height) continue;
+
+				// test center
+				boolean flag = false;
+				for (int y = (int)(model.getCenter().getY() - 5*OFFSET); y < (int)(model.getCenter().getY() + 5*OFFSET); y++) {
+					for (int x = (int)(model.getCenter().getX() - 5*OFFSET); x < (int)(model.getCenter().getX() + 5*OFFSET); x++) {
+						if (edgesMatrix[y][x] == 1) {
+							flag = true;
+							x = (int)(model.getCenter().getX() + 5*OFFSET);
+							y = (int)(model.getCenter().getY() + 5*OFFSET);
+						}
+					}
+				}
+
+				if (flag) continue;
+						
                 
                 // find consensus points
                 double squared_error = 0;
@@ -147,10 +168,10 @@ public class RingDetectionDetector {
                     }
                 }
                 // set score
-                model.setScore(squared_error);
+                model.setScore(squared_error / consensusSet.size());
                 
                 // validate consensus set
-                if (consensusSet.size() > MIN_SIZE + 0.001*model.getRadius()) {
+                if (consensusSet.size() > MIN_SIZE + 0.004*model.getRadius()) {
                     
                     if (model.getScore() < best_model.getScore()) {
                         // current model is better than previous model
@@ -178,6 +199,7 @@ public class RingDetectionDetector {
                 System.out.println("Added Circle to List: ");
                 System.out.println("Radius: " + in.getRadius());
                 System.out.println("Center: " + in.getCenter());
+				System.out.println("Score: " + in.getScore());
                 
                 // remove points from set
                 for (int i = 0; i < best_consensusSet.size(); i++) {
