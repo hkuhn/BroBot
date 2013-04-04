@@ -29,12 +29,13 @@ public class RingDetectionDetector {
     
     // RANSAC Parameters
     private static final int k = 200;       // number of iterations in search of a circle
-    private static final int MIN_SIZE = 53; // min. number of data points to define a circle
-    private static final int q = 10;        // number of total circles to be found
+    private static final int q = 1;        // number of total circles to be found
     private static final int n = 3;         // randomly selected n points
     private static final double inf = Double.POSITIVE_INFINITY;
-    private static final int MIN_RADIUS = 20;   // min pixel radius
-    private static final double ERROR_CONST = 0.04;
+    private static final int MIN_RADIUS = 50;   // min pixel radius
+	private static final int MAX_RADIUS = 500;	// max pixel radius
+    private static final int MIN_SIZE = 63; // min. number of data points to define a circle (circum of min radius)
+    private static final double ERROR_CONST = 0.004;
     private static final int ERROR_THRESH = 1;  // base error threshold in pixels for pixel offset
                                                 // actual error dependent on radius size
                                                 // thresh = ERROR_CONST*radius*error_thresh
@@ -122,7 +123,7 @@ public class RingDetectionDetector {
                 Circle model = fitCircle(p1, p2, p3);
                 
                 // test radius
-                if (model.getRadius() < MIN_RADIUS) continue;
+                if (model.getRadius() < MIN_RADIUS || model.getRadius() > MAX_RADIUS || model.getCenter().getX() < 0 || model.getCenter().getY() < 0) continue;
                 
                 // find consensus points
                 double squared_error = 0;
@@ -134,12 +135,12 @@ public class RingDetectionDetector {
                         if (edgesMatrix[y][x] != 1) continue;
                         // test if pixel is within range of radius
                         double error = getCirclePointError(model, x, y);
+                        squared_error = squared_error + error*error;
                         
                         if (error < (ERROR_CONST*model.getRadius()*ERROR_THRESH)) {
                             // test passes, add to consensus set
                             Point in = new Point(x,y);
                             consensusSet.add(in);
-                            squared_error = squared_error + error*error;
                         }
                     }
                 }
@@ -147,7 +148,7 @@ public class RingDetectionDetector {
                 model.setScore(squared_error);
                 
                 // validate consensus set
-                if (consensusSet.size() > MIN_SIZE) {
+                if (consensusSet.size() > MIN_SIZE + 0.001*model.getRadius()) {
                     
                     if (model.getScore() < best_model.getScore()) {
                         // current model is better than previous model
@@ -167,7 +168,7 @@ public class RingDetectionDetector {
             // traversal is complete over all iterations
             // retrieve best model and remove points from set
             // add circle properties to circle list
-            if (best_consensusSet.size() != 0) {
+            if (best_consensusSet.size() != 3) {
                 // add circle to list
                 Circle in = new Circle(best_model.getCenter(), best_model.getRadius());
                 in.setScore(best_model.getScore());
@@ -298,6 +299,21 @@ public class RingDetectionDetector {
     }
 
 	public BufferedImage getThinnedImage() {
+		for (int i = 0; i < circles_list.size(); i++) {
+			Circle cur_circle = circles_list.get(i);
+			Point p = cur_circle.getCenter();
+			if (p.getX() > 0 && p.getX() < width && p.getY() > 0 && p.getY() < height) {
+				this.edges.setRGB((int)p.getX(), (int)p.getY(), 0xff0000ff);
+				this.edges.setRGB((int)p.getX()-1, (int)p.getY(), 0xff0000ff);
+				this.edges.setRGB((int)p.getX(), (int)p.getY()-1, 0xff0000ff);
+				this.edges.setRGB((int)p.getX()+1, (int)p.getY(), 0xff0000ff);
+				this.edges.setRGB((int)p.getX(), (int)p.getY()+1, 0xff0000ff);
+				this.edges.setRGB((int)p.getX()-1, (int)p.getY()-1, 0xff0000ff);
+				this.edges.setRGB((int)p.getX()+1, (int)p.getY()+1, 0xff0000ff);
+				this.edges.setRGB((int)p.getX()-1, (int)p.getY()+1, 0xff0000ff);
+				this.edges.setRGB((int)p.getX()+1, (int)p.getY()-1, 0xff0000ff);
+			}
+		}
 		return this.edges;
 
 	}
