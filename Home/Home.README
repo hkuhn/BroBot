@@ -30,7 +30,7 @@ Object Detection -
 	o  
 
 Ring Detection -
-	o 
+	o see doc/RingDetection/
 
 Robotic Inverse Kinematics -
 	o Given a real world coordinate, the robotic arm should be able to
