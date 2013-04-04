@@ -10,12 +10,12 @@ import java.util.ArrayList;
 
 
 public class RingDetectionDetector {
-
+    
 	// const
 	// EDGE DETECTION
 	private final static float low_thresh = 15.0f;
 	private final static float high_thresh = 20.0f;
-
+    
     // args
     private BufferedImage im;
 	private BufferedImage edges;
@@ -23,7 +23,7 @@ public class RingDetectionDetector {
 	private int height;
 	private int[][] binarizedImageArray;	// C-ORDERED MATRIX (ROW MAJOR)
     private ArrayList<Circle> circles_list; // list of circles
-
+    
 	private int t;		// white threshold (avg. of RGB values > t for a match)
     
     
@@ -37,13 +37,13 @@ public class RingDetectionDetector {
     private static final int MIN_SIZE = 300; // min. number of data points to define a circle (circum of min radius)
     private static final double ERROR_CONST = 0.004;
     private static final int ERROR_THRESH = 2;  // base error threshold in pixels for pixel offset
-                                                // actual error dependent on radius size
-                                                // thresh = ERROR_CONST*radius*error_thresh
-
+    // actual error dependent on radius size
+    // thresh = ERROR_CONST*radius*error_thresh
+    
 	private static final int OFFSET = 10;	//offset for searching for white pixels in bounding box
     
-
-
+    
+    
     
     // CONSTRUCTOR METHOD
     public RingDetectionDetector() {
@@ -51,8 +51,8 @@ public class RingDetectionDetector {
 		this.height = 0;
         
     }
-
-
+    
+    
 	// PRIVATE METHODS
 	private void binarizeImage() {
 		// scan image, test threshold
@@ -72,9 +72,9 @@ public class RingDetectionDetector {
                 }
             }
         }
-
+        
 	}
-
+    
 	private void RANSAC_CIRCLES(int[][] edgesMatrix) {
         // RANSAC ALGORITHM
         //  1. pick three random points from data array
@@ -120,7 +120,7 @@ public class RingDetectionDetector {
                 // values
                 int p1v = edgesMatrix[p1y][p1x];
                 int p2v = edgesMatrix[p2y][p2x];
-                int p3v = edgesMatrix[p3y][p3x];                
+                int p3v = edgesMatrix[p3y][p3x];
                 // retrieve model
                 Circle model = fitCircle(p1, p2, p3);
                 
@@ -138,7 +138,7 @@ public class RingDetectionDetector {
                         // test if pixel is within range of radius
                         double error = getCirclePointError(model, x, y);
                         
-                        if (error < (ERROR_CONST*model.getRadius()*ERROR_THRESH)) {
+                        if (error < (ERROR_THRESH + ERROR_CONST*model.getRadius())) {
                             // test passes, add to consensus set
                             Point in = new Point(x,y);
                             consensusSet.add(in);
@@ -189,7 +189,7 @@ public class RingDetectionDetector {
             
             // increment trials
             trials++;
-
+            
         }
         
 		
@@ -206,9 +206,9 @@ public class RingDetectionDetector {
         //
         // Radius Calculations:
         //      ~ Done by calculating distance from any input point to center point
-        // 
+        //
         
-        // CENTER POINT CALCULATIONS        
+        // CENTER POINT CALCULATIONS
         double A = p1.getX() - p3.getX();
         double B = p1.getX() - p2.getX();
         double C = A*(p2.getX()*p2.getX() + p2.getY()*p2.getY()) + B*(p1.getX()*p1.getX() + p1.getY()*p1.getY()) - A*(p1.getX()*p1.getX() + p1.getY()*p1.getY()) - B*(p3.getX()*p3.getX() + p3.getY()*p3.getY());
@@ -234,7 +234,7 @@ public class RingDetectionDetector {
         //  ~ compare distance with radius
         //  ~ return difference in distance
         Point c = model.getCenter();
-        double r = model.getRadius();        
+        double r = model.getRadius();
         double dist = Math.sqrt((x - c.getX())*(x - c.getX()) + (y - c.getY())*(y - c.getY()));
         
         return Math.abs(dist - r);
@@ -249,8 +249,8 @@ public class RingDetectionDetector {
 		this.height = im.getHeight();
 		this.t = thresh;
 		this.binarizedImageArray = new int[height][width];
-
-		this.im = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); 
+        
+		this.im = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         this.im = im;
 		
 		// run thresholding, signal matches on binarized image
@@ -259,12 +259,12 @@ public class RingDetectionDetector {
         // run edge detection on binarized image
 		CannyEdgeDetector detector = new CannyEdgeDetector();
 		detector.setLowThreshold(low_thresh);
-		detector.setHighThreshold(high_thresh);		
+		detector.setHighThreshold(high_thresh);
 		detector.setSourceImage(this.getBinarizedImage());
 		detector.process();
 		this.edges = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		this.edges = detector.getEdgesImage();
-
+        
 		// store data points in matrix
 		int[][] edgesMatrix = new int[height][width];
 		int[] edge_data = ((DataBufferInt) this.edges.getRaster().getDataBuffer()).getData();
@@ -279,7 +279,7 @@ public class RingDetectionDetector {
 			}
 		}
 		System.out.println("Edge Count: " + edge_count);
-
+        
 		// run RANSAC Circle Detection on data points
 		RANSAC_CIRCLES(edgesMatrix);
         
@@ -296,11 +296,11 @@ public class RingDetectionDetector {
                 data[x + y*width] = binarizedImageArray[y][x];
             }
         }
-        raster.setPixels(0, 0, width, height, data);        
+        raster.setPixels(0, 0, width, height, data);
         return out;
         
     }
-
+    
 	public BufferedImage getThinnedImage() {
 		for (int i = 0; i < circles_list.size(); i++) {
 			Circle cur_circle = circles_list.get(i);
@@ -318,9 +318,9 @@ public class RingDetectionDetector {
 			}
 		}
 		return this.edges;
-
+        
 	}
-
     
-
+    
+    
 }
