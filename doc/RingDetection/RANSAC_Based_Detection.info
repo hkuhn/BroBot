@@ -1,0 +1,36 @@
+RANSAC-Based Circle Detection Implementation
+The following file is documentation for the RANSAC based circle detection algorithm implemented for cup detection. Written by Hobey Kuhn, University of Michigan.
+
+DESCRIPTION:
+The image is first thresholded with an average RGB value to find the white, bright rings of the cup. The image is then run through a canny edge detection algorithm to thin the edges.  The white pixels are then sent through a RANSAC detection system that fits circles to points.  While RANSAC does not provide us with perfect centers for our circles, it does do a decent enough job for our implementation.
+
+RESULTS:
+Setup #1 Results:
+    - Parameters:
+        k = 1000
+        q = 3
+        n = 3
+        MIN_RADIUS = 200
+        MAX_RADIUS = 700
+        MIN_SIZE = 400
+        ERROR_CONST = 0.022
+        ERROR_THRESH = 2
+        OFFSET = 10
+        White Threshold = 230
+
+
+    Trial #         Time            Accuracy Description
+    1               15 sec          All centers are inside circles
+    2               15 sec          " "
+    3               15 sec          Two circles in center, one on edge, lowest score in center
+    4               15 sec          All centers are inside circles
+    5               15 sec          " "
+    OPTIMIZATION OCCURS HERE (Edited code for better results, same parameters)
+    6               12 sec          " "
+    7               11 sec          " "
+    8               13 sec          " "
+    9               12 sec          " "
+    10              11 sec          " "
+    
+    NOTE: run on a virtual machine -> time could be much faster on better machine
+    
