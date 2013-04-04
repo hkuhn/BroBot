@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.ArrayList;
 
 
-public class RingDetectionDetector {
+public class RingDetectionDetector_full_scan {
 
 	// const
 	// EDGE DETECTION
@@ -46,7 +46,7 @@ public class RingDetectionDetector {
 
     
     // CONSTRUCTOR METHOD
-    public RingDetectionDetector() {
+    public RingDetectionDetector_full_scan() {
 		this.width = 0;
 		this.height = 0;
         
