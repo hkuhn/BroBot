@@ -1,0 +1,46 @@
+PONG BOT PROJECT:
+John H. Kuhn, Scott Lessans, Kat Liu, Shafeen Mahmud
+University of Michigan, 2013
+EECS498-003: Autonomous Robotics Lab
+
+
+
+GENERAL DESCRIPTION:
+Using the robotic arm from the APRIL Lab at the University of Michigan, our goal is to enable this arm to engage in a game of Pong.  The object of Pong is to throw a (ping pong) ball into a plastic cup a good distance away.  There are a certain number of cups on each end of a table, and the first player to sink all their cups in alternating turns wins the game.  The robotic arm, therefore, must be able to detect a ball, pick the ball up, and throw it into its opponent's cup across the table.
+
+There are two main aspects of this project. The first is when the bot has possession (AWAY PACKAGE), and the other is when the bot is watching the other player (HOME PACKAGE).  Full implementation includes both aspects, and our fallback (if we run out of time) will be to demonstrate the first aspect of this project. A full description of both are below.
+
+
+AWAY PACKAGE:
+DESCRIPTION:
+Kinematics - 
+The bot should be able to pick up a ball, and determine the correct trajectory to throw the ball to sink the ball into an opponent's cup.  There are many ways to implement these kinematics, and we are still evaluating which implementation is best.
+
+Vision - 
+This system should be able to detect the opponent's cups using stereo vision and image rectification to solve for the center of a cup's ring. We will place two cameras above the arm, facing the opponent, and tilted downward at an angle.  We will use stereo camera calibration to retrieve real world coordinates of cups.  We will implement the TILT algorithm to get the plane of top of the cups in an image.  We will then run a Ring Detection algorithm to solve for the center of a cup.  This coordinate point is then transformed into real world coordinates, and passed into kinematics so the bot can shoot towards this point.
+
+REQUIREMENTS:
+1. 3D Stereo Vision Calibration
+2. Robotic Kinematics
+3. Ring Detection using RANSAC Circle Matching
+4. TILT Algorithm for rectifying input images
+5. Ball Detection
+
+
+HOME PACKAGE:
+DESCRIPTION:
+Kinematics - 
+The bot is configured such that there is a set of cups set up in a formation in front of the robotic arm. There is an overhead calibrated camera that has the cups and a "dump" space in its field of view.  This system should be able to detect the cups' rings, and if there is a ball inside one. If there is a ball inside one of the cup's rings, the robotic arm should pull the cup from the playing field and place it in the dump space, without interfering with the formation of the other cups.
+
+Vision -
+There will be a calibrated overhead camera that enables us to get real world coordinates of cups in front of the bot.  We will need to implement ring detection to understand the locations of each cup, and a ball detection algorithm to test if a ball is in a cup.
+
+REQUIREMENTS:
+1. Simple overhead Camera Calibration techniques
+2. Ball Detection
+3. Ring Detection using RANSAC algorithm
+4. Robotic Kinematics
+
+
+
+
