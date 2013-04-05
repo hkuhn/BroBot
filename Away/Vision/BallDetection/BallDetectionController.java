@@ -185,7 +185,7 @@ public class BallDetectionController {
     
     // Image Processing
     protected BufferedImage processImage(BufferedImage im) {
-        // run ring detection
+        // run ball detection
 		//System.out.println(this.whiteThreshold);
         //BallDetectionDetector bdd = new BallDetectionDetector();
 		//bdd.runDetection(im, this.whiteThreshold);
