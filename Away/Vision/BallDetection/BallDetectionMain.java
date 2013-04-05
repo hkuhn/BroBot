@@ -14,7 +14,7 @@ public class BallDetectionMain {
                 // create app frame
                 BallDetectionFrame frame = new BallDetectionFrame();
                 // build controller
-                //BallDetectionController appController = new BallDetectionController(frame);
+                BallDetectionController appController = new BallDetectionController(frame);
                 
             }
         });

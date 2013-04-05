@@ -10,7 +10,6 @@ public class RingDetectionFrame extends JFrame {
     
     // args
     private JButton         chooseCameraSourceButton;
-    private JButton         chooseImageButton;
     private JImage          centerImage;
     private JSlider         whiteThresholdSlider;
 	private JLabel			sliderLabel;
@@ -30,7 +29,6 @@ public class RingDetectionFrame extends JFrame {
         // add image source button
         // add slider
         chooseCameraSourceButton = new JButton("Camera Source");
-        chooseImageButton = new JButton("Choose Image");
         whiteThresholdSlider = new JSlider(0,255,230);  //range = 0-255
 		whiteThresholdLabel = new JLabel("230");
 
@@ -67,10 +65,6 @@ public class RingDetectionFrame extends JFrame {
     
     public JImage getCenterImage() {
         return centerImage;
-    }
-    
-    public synchronized JButton getChooseImageButton() {
-        return chooseImageButton;
     }
     
     public JSlider getSlider() {
