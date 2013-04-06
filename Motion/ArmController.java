@@ -45,8 +45,8 @@ public class ArmController {
             dynamixel_command_t cmd = new dynamixel_command_t();
             cmd.position_radians = MathUtil.mod2pi(0);
             cmd.utime = TimeUtil.utime();
-            cmd.speed = 1.0;
-            cmd.max_torque = 2.0;
+            cmd.speed = 0.1;
+            cmd.max_torque = 0.5;
             cmdlist.commands[i] = cmd;
         }
 
@@ -106,6 +106,28 @@ public class ArmController {
 
     }
 
+    public void handMeBall() {
+        setOpenClaw();
+        for (int i=0; i < cmdlist.len; i++) {
+            dynamixel_command_t cmd = new dynamixel_command_t();
+            //cmd.position_radians = MathUtil.mod2pi(0);
+            cmd.utime = TimeUtil.utime();
+            cmd.speed = 0.3;
+            cmd.max_torque = 2.0;
+            cmdlist.commands[i] = cmd;
+        }
+
+        setCloseClaw();
+        // reset to old values
+        for (int i=0; i < cmdlist.len; i++) {
+            dynamixel_command_t cmd = new dynamixel_command_t();
+            cmd.position_radians = MathUtil.mod2pi(0);
+            cmd.utime = TimeUtil.utime();
+            cmd.speed = 1.0;
+            cmd.max_torque = 2.0;
+            cmdlist.commands[i] = cmd;
+        }
+    }
 
     protected void setCmd (int index, double angle) {
         cmdlist.commands[index].position_radians = MathUtil.mod2pi(angle);
