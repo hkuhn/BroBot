@@ -11,10 +11,9 @@ public class TestArmController {
 
             arm.setOpenClaw();
             arm.sendCommands(false);
-/*
             try {
                 Thread.sleep(2000);
-            } catch (Exception e) {} */
+            } catch (Exception e) {}
             arm.setCloseClaw();
             arm.sendCommands(false);
 
@@ -26,7 +25,7 @@ public class TestArmController {
             arm.sendCommands(false);
 
 
-            arm.setThrowingAngle(Math.PI/4);
+            arm.setThrowingAngle(-Math.PI/4);
             arm.executeThrow();
 
 

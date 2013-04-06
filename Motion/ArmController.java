@@ -124,14 +124,14 @@ public class ArmController {
     public void executeThrow () {
 
         double threshold = Math.PI/10;
-        setFirstJoint (-Math.PI/2 + threshold); // initial position of arm
+        setFirstJoint (Math.PI/2 - threshold); // initial position of arm
         sendCommands(false);
         try {
             Thread.sleep(300);
         } catch (Exception e) {
             System.out.println(e);
         }
-        setFirstJoint (Math.PI/2 - threshold);
+        setFirstJoint (-Math.PI/2 + threshold);
         sendCommands(true);
 
 
@@ -142,7 +142,7 @@ public class ArmController {
 
         double effectiveAngle = MathUtil.mod2pi(angle);
         System.out.println("angle is " + effectiveAngle);
-        double threshold = Math.PI/8;
+        double threshold = Math.PI/6;
         dynamixel_status_list_t previousStats = null;
             while (true) {
                 dynamixel_status_list_t stats = statusReceiver.getStats();
@@ -152,7 +152,7 @@ public class ArmController {
                     previousStats = stats;
                     continue;
                 }
-                System.out.println(stats.statuses[1].position_radians);
+               // System.out.println(stats.statuses[1].position_radians);
                 if (stats.statuses[1].position_radians > (effectiveAngle - threshold)
                     /*&& stats.statuses[2].position_radians < (effectiveAngle + threshold)*/) {
                     setClaw(OPEN_CLAW_ANGLE);
