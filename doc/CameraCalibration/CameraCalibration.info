@@ -1,0 +1,3 @@
+Camera Calibration Intrinsics calculated with Camera Calibration Matlab Toolbox and are stored in left and right directories.  These directories correspond to the left and right cameras in our stereo rig.
+
+
