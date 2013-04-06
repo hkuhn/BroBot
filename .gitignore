@@ -1,0 +1,13 @@
+*.class
+*.java~
+*.java.swp
+*.png
+
+bin
+lcmtypes/*.java
+.DS_Store
+
+# Package Files #
+*.jar
+*.war
+*.ear
