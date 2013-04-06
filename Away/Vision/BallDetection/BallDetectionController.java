@@ -1,5 +1,7 @@
 package Away.Vision.BallDetection;
 
+import Away.Vision.util.*;
+
 import java.io.*;
 
 import javax.imageio.ImageIO;
@@ -37,9 +39,13 @@ public class BallDetectionController {
     private String		    		selectedCameraURL;
     private Thread		    		imageThread;
     private BufferedImage 	    	selectedImage;
+
     
     // slider white threshold (dynamic)
     private volatile int whiteThreshold;
+
+	// timer vars
+	private static final int interval = 30000;	// 5 sec
     
     
     // CONSTRUCTOR
@@ -51,6 +57,7 @@ public class BallDetectionController {
         frame.setSize(1024, 768);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
         
         // add action event listeners
         frame.getChooseCameraSourceButton().addActionListener(new ActionListener() {
@@ -150,6 +157,8 @@ public class BallDetectionController {
 			@Override
             public void run() {
                 ImageSourceFormat fmt = BallDetectionController.this.selectedImageSource.getCurrentFormat();
+				long prev_time = 0;
+
                 while (true) {
                     // get buffer with image data from next frame
                     byte buf[] = BallDetectionController.this.selectedImageSource.getFrame().data;
@@ -168,12 +177,21 @@ public class BallDetectionController {
                                                                          fmt.height,
                                                                          buf
                                                                          );
+
+					final BackgroundSubtraction backgroundSubtraction = new BackgroundSubtraction();
+					// check timer
+					long cur_time = System.currentTimeMillis();
+					// reset reference frame
+					if (cur_time > prev_time + interval) {
+						prev_time = cur_time;
+						backgroundSubtraction.setRef(im);
+					}
                     
                     // set image on main window
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                            BufferedImage out = BallDetectionController.this.processImage(im);
+                            BufferedImage out = BallDetectionController.this.processImage(im, backgroundSubtraction);
                             BallDetectionController.this.getFrame().getCenterImage().setImage(out);
                         }
                     });
@@ -184,13 +202,13 @@ public class BallDetectionController {
     }
     
     // Image Processing
-    protected BufferedImage processImage(BufferedImage im) {
+    protected BufferedImage processImage(BufferedImage im, BackgroundSubtraction backgroundSubtraction) {
         // run ball detection
-		//System.out.println(this.whiteThreshold);
-        //BallDetectionDetector bdd = new BallDetectionDetector();
-		//bdd.runDetection(im, this.whiteThreshold);
+			
+		// run background subtraction
+		BufferedImage out = backgroundSubtraction.runSubtraction(im);
         
-        return im;
+        return out;
     }
     
     
