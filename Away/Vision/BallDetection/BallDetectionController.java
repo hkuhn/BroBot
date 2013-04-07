@@ -203,10 +203,34 @@ public class BallDetectionController {
     
     // Image Processing
     protected BufferedImage processImage(BufferedImage im, BackgroundSubtraction backgroundSubtraction) {
-        // run ball detection
 			
 		// run background subtraction
 		BufferedImage out = backgroundSubtraction.runSubtraction(im);
+        
+        // run ball detection
+        BallDetectionDetector bdd = new BallDetectionDetector();
+        int[] bounds = bdd.runDetector(im, whiteThreshold);
+        
+        
+         // Display the detection, by drawing on the image
+         // draw the horizontal lines
+         for (int y = bounds[1]; y <= bounds[3]; y++) {
+             for (int x = bounds[0]; x <=bounds[2]; x++) {
+                    im.setRGB(x,y, 0xff0000ff); //Go Blue!
+             }
+         }
+         
+         int center_x = (bounds[2] + bounds[0])/2;
+         int center_y = (bounds[3] + bounds[1])/2;
+         for (int y = -2; y < 3; y++) {
+             for (int x = -2; x < 3; x++) {
+                 if (bounds[0] > 0) {
+                        out.setRGB(center_x + x, center_y + y, 0xff0000);
+                 }
+             }
+         }
+        
+
         
         return out;
     }
