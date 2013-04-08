@@ -153,7 +153,8 @@ public class ArmController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        setFirstJoint (-Math.PI/2 + threshold);
+        //setFirstJoint (-Math.PI/2 + threshold);
+        setFirstJoint (-this.throwingAngle + threshold);
         sendCommands(true);
 
 
