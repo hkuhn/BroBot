@@ -160,8 +160,8 @@ public class BallDetectionDetector
 		for (Integer root : treeHash.keySet()) {
 			treeStats_t stats = treeHash.get(root);
             if (stats.num_pixels > 100) {
-                stats.mean_x = stats.sum_x / stats.num_pixels;
-                stats.mean_y = stats.sum_y / stats.num_pixels;
+                stats.mean_x = (float)stats.sum_x / (float)stats.num_pixels;
+                stats.mean_y = (float)stats.sum_y / (float)stats.num_pixels;
                 int examine_x = root;
                 int examine_y = root;
                 while (nodes[examine_y].down != -1) {
@@ -195,7 +195,7 @@ public class BallDetectionDetector
         prev.var_y = 0;
 		for (Integer root : treeHash.keySet()) {
 			treeStats_t stats = treeHash.get(root);
-            System.out.printf("var_x: %f, var_y: %f, cov: %f\n", stats.var_x, stats.var_y, stats.cov);
+            //System.out.printf("var_x: %f, var_y: %f, cov: %f\n", stats.var_x, stats.var_y, stats.cov);
             
             if (stats.num_pixels > 70 && stats.num_pixels < 2800) {
                 if (Math.abs(stats.max_x - stats.min_x - (stats.max_y - stats.min_y)) <= 25) {
@@ -270,8 +270,8 @@ public class BallDetectionDetector
             
             return new int[]{0, 0, 0, 0};
         }
-        System.out.printf("min x: %d min y: %d max x: %d max y: %d\n",
-                          ballStats.min_x, ballStats.min_y, ballStats.max_x, ballStats.max_y);
+        //System.out.printf("min x: %d min y: %d max x: %d max y: %d\n",
+                          //ballStats.min_x, ballStats.min_y, ballStats.max_x, ballStats.max_y);
         
         return new int[]{ballStats.min_x, ballStats.min_y, ballStats.max_x, ballStats.max_y};
     }

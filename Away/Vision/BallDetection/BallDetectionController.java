@@ -225,14 +225,14 @@ public class BallDetectionController {
          for (int y = -2; y < 3; y++) {
              for (int x = -2; x < 3; x++) {
                  if (bounds[0] > 0) {
-                        out.setRGB(center_x + x, center_y + y, 0xff0000);
+                        im.setRGB(center_x + x, center_y + y, 0xff0000);
                  }
              }
          }
         
 
         
-        return out;
+        return im;
     }
     
     
