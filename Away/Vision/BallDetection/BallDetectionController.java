@@ -278,9 +278,10 @@ public class BallDetectionController {
         binarize b = new binarize(out, blueThreshold);
         out = b.getBinarizedImage();
         
+		/*
         // run ball detection
         BallDetectionDetector bdd = new BallDetectionDetector();
-        int[] bounds = bdd.runDetector(out, whiteThreshold);
+        int[] bounds = bdd.runDetector(out, blueThreshold);
         
         
          // Display the detection, by drawing on the image
@@ -300,7 +301,7 @@ public class BallDetectionController {
                  }
              }
          }
-        
+        */
 
         
         return out;
