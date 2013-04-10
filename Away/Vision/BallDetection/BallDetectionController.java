@@ -82,10 +82,45 @@ public class BallDetectionController {
             }
         });
         
+        frame.getChooseImageButton().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                                                                             "Images", "jpg", "gif", "png");
+			    chooser.setFileFilter(filter);
+			    int returnVal = chooser.showOpenDialog(BallDetectionController.this.frame);
+			    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			    	selectedImage = imageFromFile(chooser.getSelectedFile());
+			    	selectedImageSource = null;
+			    	if ( selectedImage != null ) {
+			    		startImage();
+			    	}
+			    }
+			}
+		});
+        
         
     }
     
-    // PROTECTED CLASS METHODS    
+    // PROTECTED CLASS METHODS
+    protected static BufferedImage imageFromFile(File file) {
+		BufferedImage in;
+		try {
+			in = ImageIO.read(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.err.println("Error Reading from File");
+			return null;
+		}
+		BufferedImage newImage = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = newImage.createGraphics();
+		g.drawImage(in, 0, 0, null);
+		g.dispose();
+		return newImage;
+	}
+    
+    
     protected void didClickMouse(MouseEvent me) {
         // toggle click action
         
@@ -96,6 +131,8 @@ public class BallDetectionController {
         //System.out.println("Threshold Change from Slider: " + this.frame.getSlider().getValue());
         this.blueThreshold = this.frame.getSlider().getValue();
 		this.frame.getThresholdLabel().setText(String.valueOf(this.blueThreshold));
+        
+        startImage();
 
     }
     
@@ -132,6 +169,30 @@ public class BallDetectionController {
 			this.selectedCameraURL = option;
 			this.startCamera();
 		}
+	}
+    
+    protected void startImage() {
+		
+		if ( this.imageThread != null ) {
+			//System.err.println("Warning, camera already running");
+			//return;
+		}
+		
+        
+		this.imageThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+                        final BackgroundSubtraction backgroundSubtraction = new BackgroundSubtraction();
+						BufferedImage out = BallDetectionController.this.processImage(selectedImage, backgroundSubtraction, false);
+                        BallDetectionController.this.getFrame().getCenterImage().setImage(out);
+					}
+				});
+			}
+		});
+		this.imageThread.start();
 	}
     
     protected void startCamera() {
@@ -191,7 +252,7 @@ public class BallDetectionController {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                            BufferedImage out = BallDetectionController.this.processImage(im, backgroundSubtraction);
+                            BufferedImage out = BallDetectionController.this.processImage(im, backgroundSubtraction, true);
                             BallDetectionController.this.getFrame().getCenterImage().setImage(out);
                         }
                     });
@@ -202,10 +263,16 @@ public class BallDetectionController {
     }
     
     // Image Processing
-    protected BufferedImage processImage(BufferedImage im, BackgroundSubtraction backgroundSubtraction) {
-			
-		// run background subtraction
-		BufferedImage out = backgroundSubtraction.runSubtraction(im);
+    protected BufferedImage processImage(BufferedImage im, BackgroundSubtraction backgroundSubtraction, boolean camera) {
+		
+        BufferedImage out;
+        if (camera) {
+            // run background subtraction
+            out = backgroundSubtraction.runSubtraction(im);
+        }
+        else {
+            out = im;
+        }
         
         // run image binarization with blue thresh
         binarize b = new binarize(out, blueThreshold);
