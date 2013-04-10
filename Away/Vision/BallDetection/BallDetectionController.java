@@ -42,7 +42,7 @@ public class BallDetectionController {
 
     
     // slider white threshold (dynamic)
-    private volatile int whiteThreshold;
+    private volatile int blueThreshold;
 
 	// timer vars
 	private static final int interval = 30000;	// 5 sec
@@ -51,7 +51,7 @@ public class BallDetectionController {
     // CONSTRUCTOR
     public BallDetectionController(BallDetectionFrame frame) {
         
-        this.whiteThreshold = 255;
+        this.blueThreshold = 255;
         
         this.frame = frame;
         frame.setSize(1024, 768);
@@ -94,8 +94,8 @@ public class BallDetectionController {
     protected void updateThreshold() {
         // update threshold value
         //System.out.println("Threshold Change from Slider: " + this.frame.getSlider().getValue());
-        this.whiteThreshold = this.frame.getSlider().getValue();
-		this.frame.getThresholdLabel().setText(String.valueOf(this.whiteThreshold));
+        this.blueThreshold = this.frame.getSlider().getValue();
+		this.frame.getThresholdLabel().setText(String.valueOf(this.blueThreshold));
 
     }
     
@@ -206,6 +206,10 @@ public class BallDetectionController {
 			
 		// run background subtraction
 		BufferedImage out = backgroundSubtraction.runSubtraction(im);
+        
+        // run image binarization with blue thresh
+        binarize b = new binarize(out, blueThreshold);
+        out = b.getBinarizedImage();
         
         // run ball detection
         BallDetectionDetector bdd = new BallDetectionDetector();

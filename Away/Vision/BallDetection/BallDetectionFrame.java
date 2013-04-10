@@ -14,9 +14,9 @@ public class BallDetectionFrame extends JFrame {
     private JButton         chooseCameraSourceButton;
     private JButton         chooseImageButton;
     private JImage          centerImage;
-    private JSlider         whiteThresholdSlider;
+    private JSlider         blueThresholdSlider;
 	private JLabel			sliderLabel;
-	private JLabel			whiteThresholdLabel;
+	private JLabel			blueThresholdLabel;
 
 
 
@@ -34,10 +34,10 @@ public class BallDetectionFrame extends JFrame {
         // add slider
         chooseCameraSourceButton = new JButton("Camera Source");
         chooseImageButton = new JButton("Choose Image");
-        whiteThresholdSlider = new JSlider(0,255,255);  //range = 0-255
-		whiteThresholdLabel = new JLabel("255");
+        blueThresholdSlider = new JSlider(0,255,255);  //range = 0-255
+		blueThresholdLabel = new JLabel("255");
 
-		sliderLabel = new JLabel("White Threshold: ");
+		sliderLabel = new JLabel("Blue Threshold: ");
         
         // build GUI
         buildGUI();
@@ -57,8 +57,8 @@ public class BallDetectionFrame extends JFrame {
         southPanel.setLayout(new FlowLayout());
         this.add(southPanel, BorderLayout.SOUTH);
 		southPanel.add(sliderLabel);
-        southPanel.add(whiteThresholdSlider);
-		southPanel.add(whiteThresholdLabel);
+        southPanel.add(blueThresholdSlider);
+		southPanel.add(blueThresholdLabel);
         
     }
 
@@ -77,11 +77,11 @@ public class BallDetectionFrame extends JFrame {
     }
     
     public JSlider getSlider() {
-        return whiteThresholdSlider;
+        return blueThresholdSlider;
     }
 
 	public JLabel getThresholdLabel() {
-		return whiteThresholdLabel;
+		return blueThresholdLabel;
 	}
 
 }
