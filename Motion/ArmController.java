@@ -45,8 +45,8 @@ public class ArmController {
             dynamixel_command_t cmd = new dynamixel_command_t();
             cmd.position_radians = MathUtil.mod2pi(0);
             cmd.utime = TimeUtil.utime();
-            cmd.speed = 0.1;
-            cmd.max_torque = 0.5;
+            cmd.speed = 1.0;
+            cmd.max_torque = 1.0;
             cmdlist.commands[i] = cmd;
         }
 
@@ -146,15 +146,20 @@ public class ArmController {
     public void executeThrow () {
 
         double threshold = Math.PI/10;
-        setFirstJoint (Math.PI/2 - threshold); // initial position of arm
+        setFirstJoint (Math.PI/8);
+        setSecondJoint (Math.PI/6);
+        setWristJoint (Math.PI/6); // initial position of arm
+
         sendCommands(false);
         try {
-            Thread.sleep(300);
+            Thread.sleep(1500);
         } catch (Exception e) {
             System.out.println(e);
         }
-        //setFirstJoint (-Math.PI/2 + threshold);
-        setFirstJoint (-this.throwingAngle + threshold);
+        setWristJoint (0);
+        setFirstJoint (0);
+        setSecondJoint (0);
+        //setWristJoint (this.throwingAngle - threshold);
         sendCommands(true);
 
 
@@ -176,7 +181,7 @@ public class ArmController {
                     continue;
                 }
                // System.out.println(stats.statuses[1].position_radians);
-                if (stats.statuses[1].position_radians > (effectiveAngle - threshold)
+                if (stats.statuses[3].position_radians > (effectiveAngle - threshold)
                     /*&& stats.statuses[2].position_radians < (effectiveAngle + threshold)*/) {
                     setClaw(OPEN_CLAW_ANGLE);
                     sendCommands(false);

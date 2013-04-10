@@ -12,27 +12,24 @@ public class TestArmController {
             arm.setOpenClaw();
 
             //arm.handMeBall();
-            
+
             arm.setCloseClaw();
 
             arm.sendCommands(false);
             try {
-                Thread.sleep(10000);
+                Thread.sleep(1000);
             } catch (Exception e) {}
             arm.setCloseClaw();
+            arm.setClawRotateJoint(Math.PI/2);
             arm.sendCommands(false);
 
             arm.setFirstJoint(0);
             arm.setSecondJoint(0);
             arm.setRotateJoint(0);
             arm.setWristJoint(0);
-            arm.setClawRotateJoint(0);
             arm.sendCommands(false);
 
-            
-
-
-            arm.setThrowingAngle(-Math.PI/4);
+            arm.setThrowingAngle(Math.PI/4);
             arm.executeThrow();
 
 
