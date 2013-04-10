@@ -24,31 +24,21 @@ public class binarize {
 	}
 
 	protected void binarizeImage() {
-		for (int i = 0; i < color.getWidth(); i++) {
-			for (int j = 0; j < (color.getHeight()/2); j++) {
-				int x = i;
-				int y = color.getHeight() - 1 - j;
-				//int r = in.getRGB(x,y) & 0xff;
-				int cur_pixel = color.getRGB(x,y);
-				float[] hsv = Color.RGBtoHSB((cur_pixel >> 16) & 0xff, (cur_pixel >> 8) & 0xff, (cur_pixel) & 0xff, null);
-				if (r > thresh) {
-					//int newPixel = 16777215;	// 255 255 255
-					//edited.setRGB(i,j, newPixel);
-				}
-				if (hsv[0] >= MIN_BLUE_HUE && hsv[0] <= MAX_BLUE_HUE) {
-					int newPixel = 0;
-					binarized.setRGB(x,y,newPixel);
-					binarized.setRGB(x,y-1,newPixel);	
-					binarized.setRGB(x,y-2,newPixel);
-					binarized.setRGB(x,y-3,newPixel);
-					binarized.setRGB(x,y-4,newPixel);
-					binarized.setRGB(x,y-5,newPixel);	
-					binarized.setRGB(x,y-6,newPixel);
-					break;			
-				}
-				
-			}
+        int[] data = (int[]) color.getData().getDataElements(0, 0, width, height, null);
+		int[] out_stream = new int[data_stream.length];
+        for (int i = 0; i < data_stream.length - 3; i = i + 3) {
+			int pR = data_stream[i] - ref_stream[i];
+			int pG = data_stream[i+1] - ref_stream[i+1];
+			int pB = data_stream[i+2] - ref_stream[i+2];
+            float[] hsv = Color.RGBtoHSB(pR, pG, pB, null);
+            if (hsv[0] >= MIN_BLUE_HUE && hsv[0] <= MAX_BLUE_HUE) {
+                out_stream[i] = 255;    // white
+                out_stream[i+1] = 255;  // white
+                out_stream[i+2] = 255;  // white
+            }
 		}
+        this.binarized = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		binarized.getRaster().setDataElements(0, 0, width, height, out_stream);
 	}
 
 	// PUBLIC METHOD

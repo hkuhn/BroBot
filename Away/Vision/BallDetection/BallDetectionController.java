@@ -213,14 +213,14 @@ public class BallDetectionController {
         
         // run ball detection
         BallDetectionDetector bdd = new BallDetectionDetector();
-        int[] bounds = bdd.runDetector(im, whiteThreshold);
+        int[] bounds = bdd.runDetector(out, whiteThreshold);
         
         
          // Display the detection, by drawing on the image
          // draw the horizontal lines
          for (int y = bounds[1]; y <= bounds[3]; y++) {
              for (int x = bounds[0]; x <=bounds[2]; x++) {
-                    im.setRGB(x,y, 0xff0000ff); //Go Blue!
+                    out.setRGB(x,y, 0xffff00ff);
              }
          }
          
@@ -229,14 +229,14 @@ public class BallDetectionController {
          for (int y = -2; y < 3; y++) {
              for (int x = -2; x < 3; x++) {
                  if (bounds[0] > 0) {
-                        im.setRGB(center_x + x, center_y + y, 0xff0000);
+                        im.setRGB(center_x + x, center_y + y, 0xff00ffff);
                  }
              }
          }
         
 
         
-        return im;
+        return out;
     }
     
     
