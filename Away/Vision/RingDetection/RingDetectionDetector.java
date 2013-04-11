@@ -58,20 +58,39 @@ public class RingDetectionDetector {
 		// scan image, test threshold
         int[] imageArray = ((DataBufferInt) im.getRaster().getDataBuffer()).getData();
         
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
+		// CHECK FOR BAYER PATTERN
+		if (imageArray.length > im.getWidth() * im.getHeight()) {
+			int index = 0;
+        	for (int y = 0; y < height; y++) {
+            	for (int x = 0; x < width; x++) {
+                	int r = imageArray[index];
+                	int g = imageArray[index + 1];
+                	int b = imageArray[index + 2];
+                	int avg = (r + g + b) / 3;
+                	if (avg >= t) {
+                    	binarizedImageArray[y][x] = 1;
+                    	//im.setRGB(x,y, 0xff0000ff);   //fill blue
+                	}
+					index = index + 3;
+        		}
+        	}
+		}
+		else {
+        	for (int y = 0; y < height; y++) {
+            	for (int x = 0; x < width; x++) {
                 
-                int rgb = imageArray[x + y*width];
-                int r = (rgb >> 16) & 0xff;
-                int g = (rgb >> 8) & 0xff;
-                int b = (rgb) & 0xff;
-                int avg = (r + g + b) / 3;
-                if (avg >= t) {
-                    binarizedImageArray[y][x] = 1;
-                    //im.setRGB(x,y, 0xff0000ff);   //fill blue
-                }
-            }
-        }
+                	int rgb = imageArray[x + y*width];
+                	int r = (rgb >> 16) & 0xff;
+                	int g = (rgb >> 8) & 0xff;
+                	int b = (rgb) & 0xff;
+                	int avg = (r + g + b) / 3;
+                	if (avg >= t) {
+                    	binarizedImageArray[y][x] = 1;
+                    	//im.setRGB(x,y, 0xff0000ff);   //fill blue
+                	}
+        		}
+        	}
+		}
         
 	}
     

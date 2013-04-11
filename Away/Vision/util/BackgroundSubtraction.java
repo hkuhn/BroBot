@@ -25,14 +25,34 @@ public class BackgroundSubtraction {
 	public BufferedImage runSubtraction(BufferedImage im) {
 		int[] data_stream = (int[]) im.getData().getDataElements(0, 0, width, height, null);
 		int[] out_stream = new int[data_stream.length];
-		for (int i = 0; i < data_stream.length - 3; i = i + 3) {
-			int pR = data_stream[i] - ref_stream[i];
-			int pG = data_stream[i+1] - ref_stream[i+1];
-			int pB = data_stream[i+2] - ref_stream[i+2];
 
-			out_stream[i] = pR;
-			out_stream[i+1] = pG;
-			out_stream[i+2] = pB;
+		// TEST BAYER PATTERN CAMERA TYPE
+		if (data_stream.length > im.getWidth() * im.getHeight()) {
+			for (int i = 0; i < data_stream.length - 3; i = i + 3) {
+				int pR = data_stream[i] - ref_stream[i];
+				int pG = data_stream[i+1] - ref_stream[i+1];
+				int pB = data_stream[i+2] - ref_stream[i+2];
+
+				out_stream[i] = pR;
+				out_stream[i+1] = pG;
+				out_stream[i+2] = pB;
+			}
+		}
+		else {
+        	for (int i = 0; i < data_stream.length; i++) {
+				int p = data_stream[i];
+				int r = ref_stream[i];
+				int pR = (p >> 16) & 0xff;
+				int pG = (p >> 8) & 0xff;
+				int pB = (p) & 0xff;
+				int rR = (r >> 16) & 0xff;
+				int rG = (r >> 8) & 0XFF;
+				int rB = (r) & 0xff;
+
+				out_stream[i] = pR - rR;
+				out_stream[i+1] = pG - rG;
+				out_stream[i+2] = pB - rB;
+			}
 		}
 
 		BufferedImage out = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
