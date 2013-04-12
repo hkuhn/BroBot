@@ -146,17 +146,18 @@ public class ArmController {
     public void executeThrow () {
 
         double threshold = Math.PI/10;
+        setRotateJoint (0);
         setFirstJoint (Math.PI/8);
         setSecondJoint (Math.PI/6);
         setWristJoint (Math.PI/6); // initial position of arm
 
         sendCommands(false);
         try {
-            Thread.sleep(1500);
+            Thread.sleep(2500);
         } catch (Exception e) {
             System.out.println(e);
         }
-        setWristJoint (0);
+        setWristJoint (-Math.PI/4);
         setFirstJoint (0);
         setSecondJoint (0);
         //setWristJoint (this.throwingAngle - threshold);
