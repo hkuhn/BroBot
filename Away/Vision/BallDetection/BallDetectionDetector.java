@@ -283,7 +283,7 @@ public class BallDetectionDetector {
                         best_difference = difference;
                         x_center = (current_stats.getX() / current_stats.getN());
                         y_center = (current_stats.getY() / current_stats.getN());
-						System.out.println("Center: " + x_center + " " + y_center);
+						//System.out.println("Center: " + x_center + " " + y_center);
                    }
                     
                 }
