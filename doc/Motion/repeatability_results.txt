@@ -1,0 +1,60 @@
+BOT MOTION REPEATABILITY TESTS
+
+PURPOSE:
+Tests are meant to confirm repeatability of the bot's throwing capabilities, given an initial "loading" position and a final "launched" position.
+
+GENERAL INFORMATION:
+    o Bot is stationed 31.5 inches up from contact point (z = 31.5)
+
+RESULTS:
+Configuration #1:
+    Loaded Position -
+        o 1st Joint: pi/8
+        o 2nd Joint: pi/6
+        o Wrist Joint: pi/6
+        o Torque: 1.0
+    Launched Position -
+        o 1st Joint: 0
+        o 2nd Joint: 0
+        o Wrist Joint: 0
+        
+Trials:             1       2       3       4       5       6       7       8
+Distance (in):      94      95      94      99.5    95      96.5    94      94.5
+
+Landing Diameter (left/right): 1.5 inches
+
+
+
+Configuration #2:
+    Loaded Position -
+        Configuration #1
+    Launched Position -
+        o 1st Joint: 0
+        o 2nd Joint: 0
+        o Wrist Joint: pi/8
+
+Trials:             1       2       3       4       5       6       7       8
+Distance (in):      75      78.5    76.7    76.4    76.7    77.9    76.7    76.6
+
+Landing Diameter (left/right): 3 inches
+
+
+
+Configuration #3:
+    Loaded Position -
+        Configuration #1
+    Launched Position -
+        o 1st Joint: 0
+        o 2nd Joint: 0
+        o Wrist Joint: 0
+        o Base Joint: - pi/8
+        
+**Produced consistent trajectory results
+
+
+
+SUMMARY:
+We can conclude that our bot's setup can produce repeatable results given trajectory setup. These results will allow us to focus on correcting the error in our learning and trajectory computing algorithms, and attribute the majority of error towards these algorithms as opposed to the setup of our bot.
+    
+    
+        

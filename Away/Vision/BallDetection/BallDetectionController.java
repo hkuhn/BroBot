@@ -275,14 +275,26 @@ public class BallDetectionController {
         //}
         
         // run image binarization with blue thresh
-        //binarize b = new binarize(out, blueThreshold);
-        //out = b.getBinarizedImage();
+        binarize b = new binarize(out, blueThreshold);
+        out = b.getBinarizedImage();
         
 		
         // run ball detection
-        //BallDetectionDetector bdd = new BallDetectionDetector();
-
-
+        BallDetectionDetector bdd = new BallDetectionDetector();
+        bdd.setImage(out);
+        
+        Point center = bdd.runDetection();
+        int y_center = center.getY();
+        int x_center = center.getX();
+        
+        if (x_center > 3 && x_center < (out.getWidth() + 3) && y_center > 3 && y_center < (out.getHeight() + 3)) {
+            // SET CENTER RED (3 x 3)
+            for (int y = y_center - 3; y < y_center + 3; y++) {
+                for (int x = x_center - 3; x < x_center + 3; x++) {
+                    img.setRGB(x,y, 0xffff0000); //Red
+                }
+            }
+        }
         
         return out;
     }
