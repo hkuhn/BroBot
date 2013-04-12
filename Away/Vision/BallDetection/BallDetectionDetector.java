@@ -224,13 +224,15 @@ public class BallDetectionDetector {
                     //		else, add this id information to the stats at this location
                     Stats current_stats = (Stats)id_stats.get(rootID);
                     if (current_stats == null) {
-                        id_stats.put(rootID, new Stats(x, y, 1));
+						Stats insert = new Stats(x, y, 1);
+                        id_stats.put(rootID, insert);
                     }
                     else {
                         int sum_x = x + current_stats.getX();
                         int sum_y = y + current_stats.getY();
                         int n = 1 + current_stats.getN();
-                        id_stats.put(rootID, new Stats(sum_x, sum_y, n));
+						Stats insert = new Stats(sum_x, sum_y, n);
+                        id_stats.put(rootID, insert);
                     }
                 }
             }
@@ -264,11 +266,11 @@ public class BallDetectionDetector {
                 }
                 
                 Stats current_stats = (Stats)id_stats.get(rootID);
-                if (current_stats != null && current_stats.getN() != 0 && current_stats.getY() != 0) {
+                if (current_stats != null && current_stats.getN() != 0) {
                     // retrieve stats object
                     // calculate distribution values
                     double sigma_x = x - (current_stats.getX() / current_stats.getN());
-                    double sigma_y = y - (current_stats.getY() / current_stats.getY());
+                    double sigma_y = y - (current_stats.getY() / current_stats.getN());
                     double sigma_x2 = pow(sigma_x, 2);
                     double sigma_y2 = pow(sigma_y, 2);
                     double a = sigma_x * sigma_y;
@@ -276,13 +278,13 @@ public class BallDetectionDetector {
                     
                     
                     // find center
-                    //if ((a <= best_a) && (difference <= best_difference)) {
+                    if ((a <= best_a) && (difference <= best_difference)) {
                         best_a = a;
                         best_difference = difference;
                         x_center = (current_stats.getX() / current_stats.getN());
-                        y_center = (current_stats.getY() / current_stats.getY());
+                        y_center = (current_stats.getY() / current_stats.getN());
 						System.out.println("Center: " + x_center + " " + y_center);
-                   // }
+                   }
                     
                 }
             }
