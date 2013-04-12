@@ -34,16 +34,18 @@ public class binarize {
 
 		// CHECK FOR BAYER PATTERN
 		if (out_stream.length > width * height) {
+			System.out.println("Bayer Pattern");
 			for (int i = 0; i < data_stream.length - 3; i = i + 3) {
 				int pR = data_stream[i];
 				int pG = data_stream[i+1];
 				int pB = data_stream[i+2];
             	float[] hsv = Color.RGBtoHSB(pR, pG, pB, null);
             	if (hsv[0] >= MIN_BLUE_HUE && hsv[0] <= MAX_BLUE_HUE) {
-                	out_stream[i] = 0xffffffff;    // white
-					out_stream[i+1] = 0xffffffff;
-					out_stream[i+2] = 0xffffffff;
+                	out_stream[i] = 0xff0000ff;    // blue
+					out_stream[i+1] = 0xff0000ff;
+					out_stream[i+2] = 0xff0000ff;
             	}
+			}
 		}
 		else {
         	for (int i = 0; i < data_stream.length; i++) {
@@ -53,7 +55,7 @@ public class binarize {
 				int pB = (p) & 0xff;
             	float[] hsv = Color.RGBtoHSB(pR, pG, pB, null);
             	if (hsv[0] >= MIN_BLUE_HUE && hsv[0] <= MAX_BLUE_HUE) {
-                	out_stream[i] = 0xff0000ff;    // white
+                	out_stream[i] = 0xff0000ff;    // blue
             	}
 			}
 		}
