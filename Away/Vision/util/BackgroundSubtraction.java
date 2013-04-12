@@ -27,7 +27,8 @@ public class BackgroundSubtraction {
 		int[] out_stream = new int[data_stream.length];
 
 		// TEST BAYER PATTERN CAMERA TYPE
-		if (data_stream.length > im.getWidth() * im.getHeight()) {
+		//if (data_stream.length > width * height) {
+			//System.out.println("Bayer Pattern");
 			for (int i = 0; i < data_stream.length - 3; i = i + 3) {
 				int pR = data_stream[i] - ref_stream[i];
 				int pG = data_stream[i+1] - ref_stream[i+1];
@@ -37,8 +38,11 @@ public class BackgroundSubtraction {
 				out_stream[i+1] = pG;
 				out_stream[i+2] = pB;
 			}
-		}
-		else {
+		//}
+		//else {
+			//System.out.println("RGB Pattern");
+
+			/*
         	for (int i = 0; i < data_stream.length; i++) {
 				int p = data_stream[i];
 				int r = ref_stream[i];
@@ -49,11 +53,17 @@ public class BackgroundSubtraction {
 				int rG = (r >> 8) & 0XFF;
 				int rB = (r) & 0xff;
 
-				out_stream[i] = pR - rR;
-				out_stream[i+1] = pG - rG;
-				out_stream[i+2] = pB - rB;
+				
+				int dR = pR - rR;
+				int dG = pG - rG;
+				int dB = pB - rB;
+	
+				int out = (dB) & (dG >> 8) & (dR >> 16);
+				
+				out_stream[i] = out;
 			}
 		}
+		*/
 
 		BufferedImage out = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		out.getRaster().setDataElements(0, 0, width, height, out_stream);
