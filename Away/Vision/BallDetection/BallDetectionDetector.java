@@ -5,7 +5,9 @@ import Away.DataTypes.*;
 import java.io.*;
 import java.util.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 import java.awt.Point;
+import static java.lang.Math.*;
 
 
 
@@ -30,13 +32,13 @@ public class BallDetectionDetector {
     // PUBLIC METHODS
     public Point runDetection() {
         // test image setting
-        if (width == null) {
+        if (width == 0) {
             System.err.println("Image not set! Can not run detection");
         }
         
         // initialize union find
-        int x_center = Double.POSITIVE_INFINITY;
-        int y_center = Double.POSITIVE_INFINITY;
+        int x_center = (int)Double.POSITIVE_INFINITY;
+        int y_center = (int)Double.POSITIVE_INFINITY;
         
         int data[] = ((DataBufferInt) (im.getRaster().getDataBuffer())).getData();
         int[] id_parent = new int[height * width];
@@ -262,7 +264,7 @@ public class BallDetectionDetector {
                 }
                 
                 Stats current_stats = (Stats)id_stats.get(rootID);
-                if (current_stats != null) {
+                if (current_stats != null && current_stats.getN() != 0 && current_stats.getY() != 0) {
                     // retrieve stats object
                     // calculate distribution values
                     double sigma_x = x - (current_stats.getX() / current_stats.getN());
@@ -274,12 +276,13 @@ public class BallDetectionDetector {
                     
                     
                     // find center
-                    if ((a <= best_a) && (difference <= best_difference)) {
+                    //if ((a <= best_a) && (difference <= best_difference)) {
                         best_a = a;
                         best_difference = difference;
                         x_center = (current_stats.getX() / current_stats.getN());
                         y_center = (current_stats.getY() / current_stats.getY());
-                    }
+						System.out.println("Center: " + x_center + " " + y_center);
+                   // }
                     
                 }
             }

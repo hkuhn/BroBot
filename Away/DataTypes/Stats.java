@@ -1,3 +1,5 @@
+package Away.DataTypes;
+
 // CUSTOM CLASS
 //		data structure that contains a sum of x coordinates, y coordinates,
 //		and the number of coordinates stored from a root id
