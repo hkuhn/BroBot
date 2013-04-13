@@ -16,18 +16,16 @@ import april.util.JImage;
  */
 public class MainWindow extends JFrame {
 	
-	private static final String SelectLeftImageButtonText = "Select Left Image";
-	private static final String SelectRightImageButtonText = "Select Right Image";
-	private static final String SelectLeftImagePointsButtonText = "Select Left Points";
-	private static final String SelectRightImagePointsButtonText = "Select Right Points";
+	private static final String SelectLeftImageSourceButtonText = "Select Left Image Source";
+	private static final String SelectRightImageSourceButtonText = "Select Right Image Source";
 	
 	private static final long serialVersionUID = 1L;
 	private JImage leftImageView;
 	private JImage rightImageView;
-	private JButton selectLeftImageButton;
-	private JButton selectRightImageButton;
-	private JButton selectLeftImagePointsButton;
-	private JButton selectRightImagePointsButton;
+	private JButton selectLeftImageSourceButton;
+	private JButton selectRightImageSourceButton;
+    private JButton startButton;
+    private JButton takePictureButton;
 
 	public MainWindow() {
 		super("Template Image Matcher");
@@ -36,10 +34,10 @@ public class MainWindow extends JFrame {
 		// make the image views
 		leftImageView = new JImage();
 		rightImageView = new JImage();
-		selectLeftImageButton = new JButton(SelectLeftImageButtonText);
-		selectRightImageButton = new JButton(SelectRightImageButtonText);
-		selectLeftImagePointsButton = new JButton(SelectLeftImagePointsButtonText);
-		selectRightImagePointsButton = new JButton(SelectRightImagePointsButtonText);
+		selectLeftImageSourceButton = new JButton(SelectLeftImageSourceButtonText);
+		selectRightImageSourceButton = new JButton(SelectRightImageSourceButtonText);
+        startButton = new JButton("Start");
+        takePictureButton = new JButton("Take Picture");
 		
 		// add center image
 		JPanel imagePanel = new JPanel();
@@ -49,14 +47,22 @@ public class MainWindow extends JFrame {
 		this.add(imagePanel, BorderLayout.CENTER);
 		
 		JPanel bottomButtonPanel = new JPanel(new FlowLayout());
-		bottomButtonPanel.add(selectLeftImageButton);
-		bottomButtonPanel.add(selectRightImageButton);
-		bottomButtonPanel.add(selectLeftImagePointsButton);
-		bottomButtonPanel.add(selectRightImagePointsButton);
+		bottomButtonPanel.add(selectLeftImageSourceButton);
+		bottomButtonPanel.add(selectRightImageSourceButton);
+        bottomButtonPanel.add(startButton);
+        bottomButtonPanel.add(takePictureButton);
 		this.add(bottomButtonPanel, BorderLayout.SOUTH);
 	}
 
-	public JImage getLeftImageView() {
+    public JButton getTakePictureButton() {
+        return takePictureButton;
+    }
+
+    public JButton getStartButton() {
+        return startButton;
+    }
+
+    public JImage getLeftImageView() {
 		return leftImageView;
 	}
 
@@ -64,20 +70,12 @@ public class MainWindow extends JFrame {
 		return rightImageView;
 	}
 
-	public JButton getSelectLeftImageButton() {
-		return selectLeftImageButton;
+	public JButton getSelectLeftImageSourceButton() {
+		return selectLeftImageSourceButton;
 	}
 
-	public JButton getSelectRightImageButton() {
-		return selectRightImageButton;
-	}
-
-	public JButton getSelectLeftImagePointsButton() {
-		return selectLeftImagePointsButton;
-	}
-
-	public JButton getSelectRightImagePointsButton() {
-		return selectRightImagePointsButton;
+	public JButton getSelectRightImageSourceButton() {
+		return selectRightImageSourceButton;
 	}
 
 }
