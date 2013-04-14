@@ -74,51 +74,43 @@ public class ArmControllerGUI implements ParameterListener {
     public void setThrowingAngle (double angle) {
         this.throwingAngle = angle;
     }
-
-
     public void setRotateJoint (double angle) {
         this.rotateJoint = angle;
         setCmd (0, angle);
     }
-
     public void setFirstJoint (double angle) {
         this.firstJoint = angle;
         setCmd (1, angle);
     }
-
     public void setSecondJoint (double angle) {
         this.secondJoint = angle;
         setCmd (2, angle);
     }
-
     public void setWristJoint (double angle) {
         this.wristJoint = angle;
         setCmd (3, angle);
     }
-
-
     public void setClawRotateJoint (double angle) {
         this.clawRotateJoint = angle;
         setCmd (4, angle);
     }
-
     public void setClaw (double angle) {
 
         this.claw = angle;
         setCmd (5, angle);
     }
-
     public void setOpenClaw () {
         this.claw = OPEN_CLAW_ANGLE;
         setCmd (5, OPEN_CLAW_ANGLE);
 
     }
-
     public void setCloseClaw () {
         this.claw = CLOSE_CLAW_ANGLE;
         setCmd (5, CLOSE_CLAW_ANGLE);
-
     }
+
+
+
 
     public void handMeBall() {
         setOpenClaw();
@@ -177,9 +169,9 @@ public class ArmControllerGUI implements ParameterListener {
         //setWristJoint (this.throwingAngle - threshold);
         sendCommands(true);
 
-
-
     }
+
+
     private void executeThrowGUI() {
 
         double threshold = Math.PI/10;
@@ -228,7 +220,7 @@ public class ArmControllerGUI implements ParameterListener {
                     System.out.println ("GOT TO ANGLE");
                     break;
                 } else {
-/*
+                /*
                     boolean allEqual = true;
                     for ( int i = 0; i < stats.len; i++ ) {
                         boolean equal = stats.statuses[i].position_radians == previousStats.statuses[i].position_radians;
@@ -328,7 +320,7 @@ public class ArmControllerGUI implements ParameterListener {
         //pg.addDoubleSlider("claw_after","claw_after",0,Math.PI/2, OPEN_CLAW_ANGLE); // CLAW
         
         pg.addButtons("launch_button", "Launch!!");
-        
+        pg.addButtons("reset_button", "Reset Arm");
 
 
 
@@ -347,7 +339,14 @@ public class ArmControllerGUI implements ParameterListener {
         {
             executeThrowGUI(); // execute the throw if launch button pressed
         }
-
+        else if(name.equals("reset_button"))
+        {
+            // get to the salute position
+            setFirstJoint (0);
+            setSecondJoint (0);
+            setWristJoint (0); 
+            sendCommands(false);
+        }
 
     }
 
