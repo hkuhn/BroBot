@@ -42,7 +42,7 @@ public class AppController {
     	frame.setVisible(true);
 
         running = false;
-        pictureNumber = 0;
+        pictureNumber = 1;
 
         frame.getStartButton().setEnabled(false);
         frame.getTakePictureButton().setEnabled(false);
@@ -67,14 +67,27 @@ public class AppController {
                 takePicture();
             }
         });
-    	
-	}
+
+	frame.getStartButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                startCameraAction();
+            }
+        });
+}
 
     protected void takePicture() {
 
         if ( this.leftImage != null && this.rightImage != null ) {
-            imageToFile(this.leftImage, "ImagePair." + pictureNumber + ".Left");
-            imageToFile(this.leftImage, "ImagePair." + pictureNumber + ".Right");
+		
+		String numberString = "" + pictureNumber;
+		if ( pictureNumber < 10 ) {
+			numberString = "0" + pictureNumber;
+		}
+
+            imageToFile(this.leftImage, "left" + numberString);
+            imageToFile(this.rightImage, "right" + numberString);
+	     
             pictureNumber++;
         }  else {
             System.err.println("Null image or images");
@@ -103,7 +116,9 @@ public class AppController {
                         getFrame().getTakePictureButton().setEnabled(true);
                     }
                 });
-
+		
+		System.out.println("about to run");
+		
                 while (true) {
                     byte [] leftBuffer = leftImageSource.getFrame().data;
                     byte [] rightBuffer = rightImageSource.getFrame().data;
@@ -173,6 +188,7 @@ public class AppController {
 		    // retrieve image
 		    File outputFile = new File(name + ".png");
 		    ImageIO.write(image, "png", outputFile);
+		System.out.println("Saved image to file: " + outputFile);
 		} catch (IOException e) {
 			e.printStackTrace(System.err);
 		}
