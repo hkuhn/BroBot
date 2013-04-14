@@ -23,6 +23,7 @@ public class BallDetectionDetector_Expand {
     // stats data
     private static final int THRESH_COUNT = 500; // min number of pixels in group
     private static final int JUMP = 10;         // skip length during traversal
+    private static final int SCORE_WEIGHT = 0.7;
     ArrayList<Stats> groups = new ArrayList<Stats>();
     private int group = 1;
     
@@ -59,6 +60,7 @@ public class BallDetectionDetector_Expand {
 
         double best_a = Double.POSITIVE_INFINITY;
         double best_difference = Double.POSITIVE_INFINITY;
+        double best_score = Double.POSITIVE_INFINITY;
         Stats best_stats = new Stats();
         
         for (Stats s: groups) {
@@ -74,12 +76,15 @@ public class BallDetectionDetector_Expand {
                 	double sigma_y2 = pow(sigma_y, 2);
                 	double a = sigma_x * sigma_y;
                 	double difference = abs(sigma_x2 - sigma_y2);
+                    
+                    double score = SCORE_WEIGHT*a + (1-SCORE_WEIGHT)*difference;
                 
                 
                 	// find center
-                	if ((a <= best_a) && (difference <= best_difference)) {
+                	if (score < best_score) {
                     	best_a = a;
                     	best_difference = difference;
+                        best_score = score;
                     	x_center = (s.getX() / s.getN());
                     	y_center = (s.getY() / s.getN());
 						im.setRGB(x_center, y_center, 0xffff0000);
