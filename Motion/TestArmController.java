@@ -30,7 +30,7 @@ public class TestArmController {
             arm.sendCommands(false);
 
             arm.setThrowingAngle(Math.PI/4);
-            arm.executeThrowGUI();
+            //arm.executeThrowGUI();
 
 
 
