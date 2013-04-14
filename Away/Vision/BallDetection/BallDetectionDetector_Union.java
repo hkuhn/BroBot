@@ -12,7 +12,7 @@ import static java.lang.Math.*;
 
 
 
-public class BallDetectionDetector {
+public class BallDetectionDetector_Union {
     // NOTE: No threshold is needed
     //          test R = 0, G = 0, B = 255
     //
@@ -24,7 +24,7 @@ public class BallDetectionDetector {
     
     
     // CONSTRUCTOR METHOD
-    public BallDetectionDetector() {
+    public BallDetectionDetector_Union() {
         
     }
     

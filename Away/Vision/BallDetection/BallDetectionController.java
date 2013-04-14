@@ -280,11 +280,12 @@ public class BallDetectionController {
         
 		
         // run ball detection
-        BallDetectionDetector bdd = new BallDetectionDetector();
+        BallDetectionDetector_Expand bdd = new BallDetectionDetector_Expand();
         bdd.setImage(out);
         
 	
-        Point center = bdd.runDetection();
+        bdd.runDetection();
+        Point center = bdd.getCenter();
         int y_center = (int)center.getY();
         int x_center = (int)center.getX();
 	
