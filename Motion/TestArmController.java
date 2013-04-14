@@ -7,7 +7,7 @@ import java.util.*;
 public class TestArmController {
 
     public static void main (String[] args) {
-        ArmController arm = new ArmController();
+        ArmControllerGUI arm = new ArmControllerGUI();
 
             arm.setOpenClaw();
 
@@ -16,9 +16,9 @@ public class TestArmController {
             arm.setCloseClaw();
 
             arm.sendCommands(false);
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {}
+            //try {
+            //    Thread.sleep(1000);
+            //} catch (Exception e) {}
             arm.setCloseClaw();
             arm.setClawRotateJoint(Math.PI/2);
             arm.sendCommands(false);
@@ -30,7 +30,7 @@ public class TestArmController {
             arm.sendCommands(false);
 
             arm.setThrowingAngle(Math.PI/4);
-            arm.executeThrow();
+            arm.executeThrowGUI();
 
 
 

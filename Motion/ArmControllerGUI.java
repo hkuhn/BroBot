@@ -1,5 +1,6 @@
 package Motion;
 
+import java.io.*;
 import java.lang.*;
 import java.util.*;
 import java.awt.*;
@@ -7,10 +8,13 @@ import java.awt.*;
 import lcm.lcm.*;
 import lcmtypes.*;
 
+import april.util.*;
+import javax.swing.JFrame;
+
 import april.jmat.MathUtil;
 import april.util.TimeUtil;
 // controls commands to the arm
-public class ArmController {
+public class ArmControllerGUI {
 
     static final private double FIRST_JOINT_THROW_ANGLE = 0;
     static final private double WRIST_JOINT_THROW_ANGLE = 0;
@@ -28,13 +32,18 @@ public class ArmController {
     private double claw;
     private double throwingAngle;
 
+    // GUI STUFF
+    JFrame jf = new JFrame("GUI Testing");
+    ParameterGUI pg = new ParameterGUI();
+
+
     protected AngleCalculator angleCalculator;
     protected StatusReceiver statusReceiver;
     private dynamixel_command_list_t cmdlist;
 
 
 
-    public ArmController() {
+    public ArmControllerGUI() {
 
         cmdlist = new dynamixel_command_list_t();
         cmdlist.len = 6;
@@ -53,6 +62,10 @@ public class ArmController {
         angleCalculator = new AngleCalculator();
         statusReceiver = new StatusReceiver();
         LCM.getSingleton().subscribe ("ARM_STATUS", statusReceiver);
+
+
+        // INITIALIZE THE GUI
+        initGUI();
 
 
     }
@@ -157,6 +170,29 @@ public class ArmController {
         } catch (Exception e) {
             System.out.println(e);
         }
+        setWristJoint (-Math.PI/4);
+        setFirstJoint (0);
+        setSecondJoint (0);
+        //setWristJoint (this.throwingAngle - threshold);
+        sendCommands(true);
+
+
+
+    }
+    public void executeThrowGUI() {
+
+        double threshold = Math.PI/10;
+        setRotateJoint (pg.gd("base_b4"));
+        setFirstJoint (pg.gd("1st_b4"));
+        setSecondJoint (pg.gd("2nd_b4"));
+        setWristJoint (pg.gd("wrist_b4")); // initial position of arm
+
+        sendCommands(false);
+        try {
+            Thread.sleep(2500);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         //setWristJoint (-Math.PI/4);
         setWristJoint (0);
         setFirstJoint (0);
@@ -254,6 +290,46 @@ public class ArmController {
         setClaw (CLOSE_CLAW_ANGLE);
 
 
+    }
+
+
+
+
+    public void initGUI()
+    {
+        /******* GUI STUFF ********/
+        // pg documentation
+        // http://code.google.com/p/lcm/source/browse/trunk/lcm-java/lcm/util/ParameterGUI.java?r=35
+        // check javax.swing
+
+        // SLIDERS
+
+        // Servo Configs Before
+        pg.addDoubleSlider("base_b4","base_b4",0,Math.PI, 0); // BASE ROTATION
+        pg.addDoubleSlider("1st_b4","1st_b4",-Math.PI/8,Math.PI/8, Math.PI/8); // 1st 
+        pg.addDoubleSlider("2nd_b4","2nd_b4",-Math.PI/6,Math.PI/6, Math.PI/6); // 2nd
+        pg.addDoubleSlider("wrist_b4","wrist_b4",-Math.PI/6,Math.PI/6, Math.PI/6); // WRIST
+        pg.addDoubleSlider("claw_b4","claw_b4",0,Math.PI/2, OPEN_CLAW_ANGLE); // CLAW
+        
+        // Servo Configs After
+        pg.addDoubleSlider("base_after","base_after",0,Math.PI, 0); // BASE ROTATION
+        pg.addDoubleSlider("1st_after","1st_after",-Math.PI/8,Math.PI/8, Math.PI/8); // 1st 
+        pg.addDoubleSlider("2nd_after","2nd_after",-Math.PI/6,Math.PI/6, Math.PI/6); // 2nd
+        pg.addDoubleSlider("wrist_after","wrist_after",-Math.PI/6,Math.PI/6, Math.PI/6); // WRIST
+        pg.addDoubleSlider("claw_after","claw_after",0,Math.PI/2, OPEN_CLAW_ANGLE); // CLAW
+        
+        pg.addButtons("launch_button", "Launch!!");
+        
+
+
+
+
+        // LAYOUT OF THE GUI
+        jf.setLayout(new BorderLayout());
+        jf.add(pg, BorderLayout.SOUTH);
+        jf.setVisible(true);
+        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jf.setSize(512, 300);
     }
 
 
