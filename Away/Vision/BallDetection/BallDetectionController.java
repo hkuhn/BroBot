@@ -288,6 +288,8 @@ public class BallDetectionController {
         Point center = bdd.getCenter();
         int y_center = (int)center.getY();
         int x_center = (int)center.getX();
+
+		out = bdd.getImage();
 	
 		System.out.println(center);        
 		

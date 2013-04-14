@@ -1,6 +1,11 @@
 package Away.Vision.BallDetection;
 
-import Away.DataTypes;
+import Away.DataTypes.*;
+
+import java.awt.image.*;
+import java.awt.Point;
+import java.util.ArrayList;
+import static java.lang.Math.*;
 
 
 
@@ -16,7 +21,7 @@ public class BallDetectionDetector_Expand {
     private int[][] binarizedImageMatrix;
     
     // stats data
-    private static final int THRESH_COUNT = 10; // min number of pixels in group
+    private static final int THRESH_COUNT = 500; // min number of pixels in group
     private static final int JUMP = 10;         // skip length during traversal
     ArrayList<Stats> groups = new ArrayList<Stats>();
     private int group = 1;
@@ -50,32 +55,36 @@ public class BallDetectionDetector_Expand {
             }
         }
         
+		System.out.println(groups.size());
+
         double best_a = Double.POSITIVE_INFINITY;
         double best_difference = Double.POSITIVE_INFINITY;
         Stats best_stats = new Stats();
         
         for (Stats s: groups) {
-            if (s.get_count() > THRESH_COUNT) {
+            if (s.getN() > THRESH_COUNT) {
                 // retrieve stats object
                 // calculate distribution values
-                double x = (s.get_minX().getX() + s.get_maxX().getX()) / 2;
-                double y = (s.get_minY().getY() + s.get_maxY().getY()) / 2;
+                ArrayList<Point> coords = s.getCoords();
+				for (int i = 0; i < coords.size(); i++) {
+					Point test = coords.get(i);
+                	double sigma_x = test.getX() - (s.getX() / s.getN());
+                	double sigma_y = test.getY() - (s.getY() / s.getN());
+                	double sigma_x2 = pow(sigma_x, 2);
+                	double sigma_y2 = pow(sigma_y, 2);
+                	double a = sigma_x * sigma_y;
+                	double difference = abs(sigma_x2 - sigma_y2);
                 
-                double sigma_x = x - (s.get_sumX() / s.get_count());
-                double sigma_y = y - (s.get_sumY() / s.get_count());
-                double sigma_x2 = pow(sigma_x, 2);
-                double sigma_y2 = pow(sigma_y, 2);
-                double a = sigma_x * sigma_y;
-                double difference = abs(sigma_x2 - sigma_y2);
                 
-                
-                // find center
-                if ((a <= best_a) && (difference <= best_difference)) {
-                    best_a = a;
-                    best_difference = difference;
-                    x_center = (s.get_sumX() / s.get_count());
-                    y_center = (s.get_sumX() / s.get_count());
-                    //System.out.println("Center: " + x_center + " " + y_center);
+                	// find center
+                	if ((a <= best_a) && (difference <= best_difference)) {
+                    	best_a = a;
+                    	best_difference = difference;
+                    	x_center = (s.getX() / s.getN());
+                    	y_center = (s.getY() / s.getN());
+						im.setRGB(x_center, y_center, 0xffff0000);
+                    	//System.out.println("Center: " + x_center + " " + y_center);
+					}
                 }
             }
         }
@@ -85,53 +94,41 @@ public class BallDetectionDetector_Expand {
     // EXPAND METHOD
     private void expand(int[][] groupMatrix, int x, int y) {
         if (y < 2 || y > height - 2) return;
-        if (x < 2 || x > height - 2) return;
+        if (x < 2 || x > width - 2) return;
         
         groupMatrix[y][x] = group;
         Stats s = groups.get(group - 1);
         s.addCoord(x,y);
         groups.set(group - 1, s);
         
-        if (s.get_count() > 1000) return;
+        if (s.getN() > 1000) return;
         
         // test east pixel
         if (groupMatrix[y][x+1] == 0) {
             if (binarizedImageMatrix[y][x+1] == 1) {
-                s = groups.get(group - 1);
-                s.addCoord(x,y);
-                groups.set(group - 1, s);
+            	expand(groupMatrix, x+1, y);
             }
-            expand(groupMatrix, x+1, y);
         }
         
         // test west pixel
         if (groupMatrix[y][x-1] == 0) {
             if (binarizedImageMatrix[y][x-1] == 1) {
-                s = groups.get(group - 1);
-                s.addCoord(x-1,y);
-                groups.set(group - 1, s);
+				expand(groupMatrix, x-1, y);
             }
-            expand(groupMatrix, x-1, y);
         }
         
         // test south pixel
         if (groupMatrix[y+1][x] == 0) {
             if (binarizedImageMatrix[y+1][x] == 1) {
-                s = groups.get(group - 1);
-                s.addCoord(x,y+1);
-                groups.set(group - 1, s);
+				expand(groupMatrix, x, y+1);
             }
-            expand(groupMatrix, x, y+1);
         }
         
         // test north pixel
         if (groupMatrix[y-1][x] == 0) {
             if (binarizedImageMatrix[y-1][x] == 1) {
-                s = groups.get(group - );
-                s.addCoord(x,y-1);
-                groups.set(group - 1, s);
+				expand(groupMatrix, x, y-1);
             }
-            expand(groupMatrix, x, y-1);
         }
         
         

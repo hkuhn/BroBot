@@ -13,6 +13,7 @@ import static java.lang.Math.*;
 
 
 public class BallDetectionDetector_Union {
+
     // NOTE: No threshold is needed
     //          test R = 0, G = 0, B = 255
     //
@@ -28,7 +29,7 @@ public class BallDetectionDetector_Union {
         
     }
     
-    
+ /*   
     // PUBLIC METHODS
     public Point runDetection() {
         // test image setting
@@ -301,6 +302,6 @@ public class BallDetectionDetector_Union {
         this.width = im.getWidth();
         this.height = im.getHeight();
     }
-    
+ */   
     
 }
