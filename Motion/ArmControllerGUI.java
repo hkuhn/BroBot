@@ -172,7 +172,7 @@ public class ArmControllerGUI implements ParameterListener {
     }
 
 
-    private void executeThrowGUI() {
+    public void executeThrowGUI() {
 
         double threshold = Math.PI/10;
         setRotateJoint (pg.gd("base_b4"));
