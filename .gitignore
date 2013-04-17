@@ -11,3 +11,6 @@ lcmtypes/*.java
 *.jar
 *.war
 *.ear
+
+# not these jar
+!lib/*.jar
