@@ -1,20 +1,35 @@
 package learning;
 
-/**
- * Created with IntelliJ IDEA.
- * User: slessans
- * Date: 4/13/13
- * Time: 8:55 PM
- * To change this template use File | Settings | File Templates.
- */
 public class LinearEquation {
 
-    protected double [] coefficients;
-    protected double constant;
+    private double [] coefficients;
+    private double constant;
 
     public LinearEquation(double [] coefficients, double constant) {
         this.coefficients = coefficients;
         this.constant = constant;
+    }
+
+    public double[] getCoefficients() {
+        return this.coefficients;
+    }
+
+    public OneDimensionalLinearEquation getEquationForDimension(final int d) {
+        if ( d >= this.coefficients.length ) {
+            throw new IllegalArgumentException(
+                    "Dimension " + d + " exceeds number of " +
+                    "dimensions in this linear equation (" + this.coefficients.length + ")."
+            );
+        }
+        return new OneDimensionalLinearEquation(this.coefficients[d], this.constant);
+    }
+
+    public double getConstant() {
+        return this.constant;
+    }
+
+    public int getNumberOfDimensions() {
+        return this.coefficients.length;
     }
 
     public double getResult(double [] values) {
