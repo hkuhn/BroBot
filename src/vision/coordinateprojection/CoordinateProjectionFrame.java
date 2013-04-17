@@ -16,15 +16,18 @@ public class CoordinateProjectionFrame extends JFrame {
     
     
     // CONSTRUCTOR METHOD
-    public RingDetectionFrame() {
+    public CoordinateProjectionFrame() {
         super("Coordinate Projection");
         this.setLayout(new BorderLayout());
         
         // add center image from JCam
         LeftImage = new JImage();
         RightImage = new JImage();
-        this.add(LeftImage, BorderLayout.CENTER);
-        this.add(RightImage, BorderLayout.CENTER);
+		JPanel centerPanel = new JPanel();
+		centerPanel.setLayout(new GridLayout(1, 2, 10, 10));
+        centerPanel.add(LeftImage);
+        centerPanel.add(RightImage);
+		this.add(centerPanel, BorderLayout.CENTER);
         
         // add camera source button
 		chooseLeftImageButton = new JButton("Choose Left Image");
