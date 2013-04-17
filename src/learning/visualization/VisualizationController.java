@@ -1,6 +1,9 @@
 package learning.visualization;
 
+import april.jmat.Matrix;
+import learning.GradientDescent;
 import learning.LinearEquation;
+import learning.LinearEquationErrorGradientFunction;
 import learning.OneDimensionalLinearEquation;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -19,6 +22,7 @@ import org.jfree.data.xy.XYDataset;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 public class VisualizationController {
 
@@ -35,12 +39,70 @@ public class VisualizationController {
         this.frame.getDimensionChooserComboBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if ( getEquation() == null ) return;;
+                if ( getEquation() == null ) return;
                 final int equationIndex = getFrame().getDimensionChooserComboBox().getSelectedIndex();
                 OneDimensionalLinearEquation equationToDisplay = getEquation().getEquationForDimension(equationIndex);
                 displayOneDimensionalEquation(equationToDisplay, equationIndex);
             }
         });
+
+        this.frame.getSolveEquationForAnglesButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                calculateAnglesForUserSuppliedDistance();
+            }
+        });
+
+
+    }
+
+    protected void calculateAnglesForUserSuppliedDistance() {
+
+        LinearEquation equation = getEquation();
+        if ( equation == null ) return;
+
+        // get distance from the user of the interface
+        String input = JOptionPane.showInputDialog(
+                this.getFrame(),
+                "Enter the target distance",
+                "Target Distance",
+                JOptionPane.PLAIN_MESSAGE
+        );
+
+        if ( input != null ) {
+            try {
+                final double distance = Double.parseDouble(input);
+                LinearEquationErrorGradientFunction gradientFunction = new LinearEquationErrorGradientFunction(equation, distance);
+                GradientDescent gradientDescent = new GradientDescent(gradientFunction);
+                final Matrix estimate = gradientDescent.estimateLocalMinimum();
+                String estimateString = "[";
+                for ( int i = 0; i < estimate.getRowDimension(); i++ ) {
+                    if ( i > 0 ) estimateString += ", ";
+                    estimateString += estimate.get(i, 0);
+                }
+                estimateString += "]";
+
+                final double estimatedParamsResult = equation.getResult(LinearEquationErrorGradientFunction.makeArrayFromVectorMatrix(estimate));
+                final double finalError = (estimatedParamsResult - distance);
+                final double percentageError = (distance == 0) ? 0 : (finalError / distance) * 100;
+
+                DecimalFormat formatter = new DecimalFormat();
+                formatter.setMaximumFractionDigits(4);
+
+                JOptionPane.showMessageDialog(
+                        this.getFrame(),
+                        "The final computed parameter estimate for target distance " +
+                                distance + " is:\n" + estimateString +
+                                "\n\nThe estimated parameters give result: " + formatter.format(estimatedParamsResult) +
+                                "\nFinal error: " + formatter.format(finalError) + " (" + formatter.format(percentageError) + "%)",
+                        "Results",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+
+            } catch (NumberFormatException e) {
+                e.printStackTrace(System.out);
+            }
+        }
 
     }
 

@@ -8,6 +8,9 @@ import java.awt.*;
 
 public class VisualizationFrame extends JFrame {
 
+    protected JButton solveEquationForAnglesButton;
+    protected JPanel topPanel;
+    protected JButton chooseDataFileButton;
     protected JComboBox dimensionChooserComboBox;
     protected ChartPanel centerChartPanel;
 
@@ -15,11 +18,33 @@ public class VisualizationFrame extends JFrame {
         super("Data Visualization for Learning");
         this.setLayout(new BorderLayout());
 
+        this.topPanel = new JPanel(new FlowLayout());
+
         this.centerChartPanel = new ChartPanel(null);
         this.add(this.centerChartPanel, BorderLayout.CENTER);
 
         this.dimensionChooserComboBox = new JComboBox();
-        this.add(this.dimensionChooserComboBox, BorderLayout.NORTH);
+        this.dimensionChooserComboBox.setSize(
+                300,
+                (int)this.dimensionChooserComboBox.getSize().getHeight()
+        );
+        this.topPanel.add(this.dimensionChooserComboBox, BorderLayout.NORTH);
+
+        this.chooseDataFileButton = new JButton("Load File");
+        this.topPanel.add(this.chooseDataFileButton);
+
+        this.solveEquationForAnglesButton = new JButton("Solve for Angles");
+        this.topPanel.add(this.solveEquationForAnglesButton);
+
+        this.add(this.topPanel, BorderLayout.NORTH);
+    }
+
+    public JButton getSolveEquationForAnglesButton() {
+        return solveEquationForAnglesButton;
+    }
+
+    public JButton getChooseDataFileButton() {
+        return chooseDataFileButton;
     }
 
     public JComboBox getDimensionChooserComboBox() {

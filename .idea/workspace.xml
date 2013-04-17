@@ -2,28 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9774c084-0c12-4d55-9093-e35eb2276a17" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/learning/OneDimensionalLinearEquation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/learning/visualization/VisualizationController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/learning/visualization/VisualizationFrame.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/learning/visualization/VisualizationMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BroBot.iml" afterPath="$PROJECT_DIR$/BroBot.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/learning/LinearEquation.java" afterPath="$PROJECT_DIR$/src/learning/LinearEquation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/learning/Test.java" afterPath="$PROJECT_DIR$/src/learning/Test.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/learning/GradientDescent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/learning/GradientFunction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/learning/LinearEquationErrorGradientFunction.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjection.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionFrame.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionMain.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/learning/visualization/VisualizationController.java" afterPath="$PROJECT_DIR$/src/learning/visualization/VisualizationController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/learning/visualization/VisualizationFrame.java" afterPath="$PROJECT_DIR$/src/learning/visualization/VisualizationFrame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BroBot.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366064928534" ignored="false" />
-    <file path="/fragment.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365902517680" ignored="false" />
+    <file path="/Dummy.txt" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366168099335" ignored="false" />
+    <file path="/fragment.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366174941730" ignored="false" />
     <file path="/MainWindow.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365889671587" ignored="false" />
     <file path="/AppController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365890349226" ignored="false" />
     <file path="/LinearRegression.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365903272730" ignored="false" />
-    <file path="/LinearEquation.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365965315438" ignored="false" />
+    <file path="/LinearEquation.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366176034467" ignored="false" />
     <file path="/Test.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366070255318" ignored="false" />
-    <file path="/VisualizationFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366068627379" ignored="false" />
-    <file path="/VisualizationController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366071950875" ignored="false" />
+    <file path="/VisualizationFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366175142990" ignored="false" />
+    <file path="/VisualizationController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366181866805" ignored="false" />
     <file path="/VisualizationMain.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365962218914" ignored="false" />
     <file path="/OneDimensionalLinearEquation.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365962898296" ignored="false" />
+    <file path="/GradientDescent.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366177344424" ignored="false" />
+    <file path="/GradientFunction.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366177224399" ignored="false" />
+    <file path="/LinearEquationGradientFunction.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366181459801" ignored="false" />
+    <file path="/LinearEquationErrorGradientFunction.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366176121009" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +44,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -74,7 +81,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -84,10 +90,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Test.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/learning/Test.java">
+      <file leaf-file-name="VisualizationFrame.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="0" selection-start="1142" selection-end="1142" vertical-scroll-proportion="0.8842105">
+            <state line="48" column="0" selection-start="1520" selection-end="1520" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,22 +101,58 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VisualizationController.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="VisualizationController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="121" selection-start="4072" selection-end="4072" vertical-scroll-proportion="0.0">
+            <state line="91" column="54" selection-start="3736" selection-end="3736" vertical-scroll-proportion="0.6320631">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VisualizationFrame.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationFrame.java">
+      <file leaf-file-name="OneDimensionalLinearEquation.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/learning/OneDimensionalLinearEquation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="53" selection-start="769" selection-end="769" vertical-scroll-proportion="0.0">
+            <state line="20" column="1" selection-start="495" selection-end="495" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/learning/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="0" selection-start="1142" selection-end="1142" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GradientFunction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/learning/GradientFunction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="39" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LinearEquationErrorGradientFunction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/learning/LinearEquationErrorGradientFunction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="61" selection-start="612" selection-end="612" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LinearEquation.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/learning/LinearEquation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="5" selection-start="955" selection-end="955" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -138,18 +180,22 @@
         <option value="$PROJECT_DIR$/src/learning/LinearRegression.java" />
         <option value="$PROJECT_DIR$/src/learning/visualization/VisualizationMain.java" />
         <option value="$PROJECT_DIR$/src/learning/OneDimensionalLinearEquation.java" />
-        <option value="$PROJECT_DIR$/src/learning/LinearEquation.java" />
         <option value="$PROJECT_DIR$/src/learning/visualization/VisualizationFrame.java" />
+        <option value="$PROJECT_DIR$/src/learning/LinearEquationGradientFunction.java" />
+        <option value="$PROJECT_DIR$/src/learning/LinearEquation.java" />
+        <option value="$PROJECT_DIR$/src/learning/GradientFunction.java" />
+        <option value="$PROJECT_DIR$/src/learning/GradientDescent.java" />
         <option value="$PROJECT_DIR$/src/learning/Test.java" />
+        <option value="$PROJECT_DIR$/src/learning/LinearEquationErrorGradientFunction.java" />
         <option value="$PROJECT_DIR$/src/learning/visualization/VisualizationController.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-4" />
-    <option name="width" value="1377" />
-    <option name="height" value="905" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1855" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -179,6 +225,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -201,10 +249,58 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vision" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -224,9 +320,9 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RunManager" selected="Application.Test">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -241,6 +337,19 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -269,19 +378,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -360,9 +456,27 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <list size="2">
+    <configuration default="false" name="VisualizationMain" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="learning.visualization.VisualizationMain" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="BroBot" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.StereoCalibrationMain" />
       <item index="1" class="java.lang.String" itemvalue="Application.Test" />
+      <item index="2" class="java.lang.String" itemvalue="Application.VisualizationMain" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -401,8 +515,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1377" height="905" extended-state="6" />
-    <editor active="false" />
+    <frame x="65" y="24" width="1855" height="1176" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -415,19 +529,19 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756326" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.096499525" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21207547" sideWeight="0.6724368" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756326" sideWeight="0.9532374" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15201768" sideWeight="0.74456006" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25543994" sideWeight="0.9532374" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -512,29 +626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/LinearRegression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="17" selection-start="2261" selection-end="2261" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/LinearEquation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="20" selection-start="890" selection-end="890" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cameracalib/StereoCalibrationMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="28" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0" />
@@ -554,21 +645,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cameracalib/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="44" selection-start="1207" selection-end="1207" vertical-scroll-proportion="0.19067797">
-          <folding />
-        </state>
+        <state line="41" column="44" selection-start="1207" selection-end="1207" vertical-scroll-proportion="0.19067797" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cameracalib/MainWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="36" selection-start="763" selection-end="763" vertical-scroll-proportion="0.031578947" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="5" selection-start="484" selection-end="484" vertical-scroll-proportion="0.29126215">
+        <state line="17" column="5" selection-start="484" selection-end="484" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1520" selection-end="1520" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/learning/LinearEquation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="65" selection-start="414" selection-end="414" vertical-scroll-proportion="0.3448276">
+        <state line="32" column="5" selection-start="955" selection-end="955" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/learning/GradientFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="39" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -580,35 +690,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cameracalib/MainWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/learning/GradientDescent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="36" selection-start="763" selection-end="763" vertical-scroll-proportion="0.031578947">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="53" selection-start="769" selection-end="769" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="121" selection-start="4072" selection-end="4072" vertical-scroll-proportion="0.0">
+        <state line="89" column="40" selection-start="2894" selection-end="2894" vertical-scroll-proportion="0.7364865">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/learning/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="1142" selection-end="1142" vertical-scroll-proportion="0.8842105">
+        <state line="33" column="0" selection-start="1142" selection-end="1142" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/learning/LinearEquationErrorGradientFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="61" selection-start="612" selection-end="612" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="54" selection-start="3736" selection-end="3736" vertical-scroll-proportion="0.6320631">
+          <folding />
         </state>
       </provider>
     </entry>
