@@ -1,6 +1,8 @@
 package learning;
 
 import april.jmat.Matrix;
+import learning.math.LinearEquation;
+import learning.math.LinearRegression;
 import learning.visualization.VisualizationController;
 import learning.visualization.VisualizationFrame;
 
