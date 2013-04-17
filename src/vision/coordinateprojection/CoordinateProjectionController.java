@@ -35,11 +35,14 @@ public class CoordinateProjectionController {
     // args
     private ImageSource		    	selectedLeftImageSource;
     private ImageSource             selectedRightImageSource;
-    private CoordinateProjetionFrame      frame;
+    private CoordinateProjectionFrame      frame;
     private Thread		    		leftImageThread;
     private Thread                  rightImageThread;
     private BufferedImage 	    	selectedLeftImage;
     private BufferedImage           selectedRightImage;
+
+	protected Point					pixel_left_point;
+	protected Point					pixel_right_point;
     
     
     // CONSTRUCTOR
@@ -59,7 +62,7 @@ public class CoordinateProjectionController {
 			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
                                                                              "Images", "jpg", "gif", "png");
 			    chooser.setFileFilter(filter);
-			    int returnVal = chooser.showOpenDialog(RingDetectionController.this.frame);
+			    int returnVal = chooser.showOpenDialog(CoordinateProjectionController.this.frame);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
 			    	selectedLeftImage = imageFromFile(chooser.getSelectedFile());
 			    	selectedLeftImageSource = null;
@@ -79,7 +82,7 @@ public class CoordinateProjectionController {
 			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
                                                                              "Images", "jpg", "gif", "png");
 			    chooser.setFileFilter(filter);
-			    int returnVal = chooser.showOpenDialog(RingDetectionController.this.frame);
+			    int returnVal = chooser.showOpenDialog(CoordinateProjectionController.this.frame);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
 			    	selectedRightImage = imageFromFile(chooser.getSelectedFile());
 			    	selectedRightImageSource = null;
@@ -95,6 +98,7 @@ public class CoordinateProjectionController {
         frame.getProjectButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+				System.out.println("Projecting points into 3D");
                 // run computation
             }
         });
@@ -155,7 +159,7 @@ public class CoordinateProjectionController {
 					@Override
 					public void run() {
 						//BufferedImage out = RingDetectionController.this.processImage(selectedImage);
-                        CoordinateProjectionController.this.getFrame().getCenterImage().setImage(selectedLeftImage);
+                        CoordinateProjectionController.this.getFrame().getLeftImage().setImage(selectedLeftImage);
 					}
 				});
 			}
@@ -179,7 +183,7 @@ public class CoordinateProjectionController {
 					@Override
 					public void run() {
 						//BufferedImage out = RingDetectionController.this.processImage(selectedImage);
-                        CoordinateProjectionController.this.getFrame().getCenterImage().setImage(selectedRightImage);
+                        CoordinateProjectionController.this.getFrame().getRightImage().setImage(selectedRightImage);
 					}
 				});
 			}
@@ -189,7 +193,7 @@ public class CoordinateProjectionController {
     
     
     // Image Processing
-    protected BufferedImage processImage(BufferedImage im) {
+    protected void processImage(BufferedImage im) {
         // do shit to image
     }
     

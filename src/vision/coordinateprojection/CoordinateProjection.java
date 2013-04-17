@@ -1,5 +1,8 @@
 package src.vision.coordinateprojection;
 
+import java.awt.Point;
+
+import april.jmat.Matrix;
 
 public class CoordinateProjection {
 
@@ -13,9 +16,9 @@ public class CoordinateProjection {
         
     }
     
-    
+    /*
     // ACCESS METHODS
-    public double[] projectPoint(Point pixel_coord_left, Point, pixel_coord_right) {
+    public double[] projectPoint(Point pixel_coord_left, Point pixel_coord_right) {
         
         
     }
@@ -24,6 +27,7 @@ public class CoordinateProjection {
         
         
     }
+	*/
 
 
 
