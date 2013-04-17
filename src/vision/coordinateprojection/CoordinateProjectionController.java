@@ -41,8 +41,8 @@ public class CoordinateProjectionController {
     private BufferedImage 	    	selectedLeftImage;
     private BufferedImage           selectedRightImage;
 
-	protected Point					pixel_left_point;
-	protected Point					pixel_right_point;
+	protected Point2D					pixel_left_point;
+	protected Point2D					pixel_right_point;
     
     
     // CONSTRUCTOR
@@ -99,6 +99,8 @@ public class CoordinateProjectionController {
             @Override
             public void actionPerformed(ActionEvent e) {
 				System.out.println("Projecting points into 3D");
+                System.out.println("Left Point: " + pixel_left_point);
+                System.out.println("Right Point: " + pixel_right_point);
                 // run computation
             }
         });
@@ -106,14 +108,14 @@ public class CoordinateProjectionController {
         // CLICK ACTION ON LEFT IMAGE
         frame.getLeftImage().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) {
-				CoordinateProjectionController.this.didClickMouse(me);
+				CoordinateProjectionController.this.didClickMouse(me, true);
 			}
 		});
                                                    
         // CLICK ACTION ON RIGHT IMAGE
         frame.getRightImage().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) {
-				CoordinateProjectionController.this.didClickMouse(me);
+				CoordinateProjectionController.this.didClickMouse(me, false);
 			}
 		});
         
@@ -137,9 +139,33 @@ public class CoordinateProjectionController {
 		return newImage;
 	}
     
-    protected void didClickMouse(MouseEvent me) {
+    protected void didClickMouse(MouseEvent me, boolean leftimage) {
         // toggle click action
-        System.out.println("Clicked on an image!");
+        // retrieve pixel coordinate point
+        Point input = me.getPoint();
+        
+        final Point2D guiPoint = new Point2D.Double(input.x, input.y);
+		System.out.println("Clicked at " + guiPoint + " w.r.t GUI.");
+		AffineTransform imageTransform = null;
+		try {
+            imageTransform = this.getFrame().getCenterImage().getAffine().createInverse();
+		} catch ( Exception e ) {
+			System.out.println("Fuck.");
+			return;
+		}
+        Point2D imagePoint = imageTransform.transform(guiPoint, null);
+        System.out.println("Clicked at " + imagePoint + " w.r.t image.");
+        
+		// test bounds
+		if ( imagePoint.getX() < 0 || imagePoint.getX() > 1296 ||
+			imagePoint.getY() < 0 || imagePoint.getY() > 964 ) {
+			System.out.println("Error. Click Went beyond bounds");
+			return;
+		}
+        
+        if (leftimage) this.pixel_left_point = imagePoint;
+        else this.pixel_right_point = imagePoint;
+        
         
 	}
     
