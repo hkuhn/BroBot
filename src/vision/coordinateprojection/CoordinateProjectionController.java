@@ -148,7 +148,12 @@ public class CoordinateProjectionController {
 		System.out.println("Clicked at " + guiPoint + " w.r.t GUI.");
 		AffineTransform imageTransform = null;
 		try {
-            imageTransform = this.getFrame().getCenterImage().getAffine().createInverse();
+			if (leftimage) {
+            	imageTransform = this.getFrame().getLeftImage().getAffine().createInverse();
+			}
+			else {
+				imageTransform = this.getFrame().getRightImage().getAffine().createInverse();
+			}
 		} catch ( Exception e ) {
 			System.out.println("Fuck.");
 			return;
