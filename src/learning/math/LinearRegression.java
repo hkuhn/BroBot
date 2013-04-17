@@ -1,4 +1,4 @@
-package learning;
+package learning.math;
 
 import april.jmat.Matrix;
 

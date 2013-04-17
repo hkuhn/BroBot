@@ -1,4 +1,4 @@
-package learning;
+package learning.math;
 
 public class LinearEquation {
 

@@ -1,6 +1,7 @@
-package learning;
+package learning.math.optimization;
 
 import april.jmat.Matrix;
+import learning.math.LinearEquation;
 
 /**
  * User: slessans
