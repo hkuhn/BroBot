@@ -51,7 +51,7 @@ public class DataReader {
 
         BufferedReader reader = new BufferedReader(new FileReader(this.getInputFile()));
 
-        Pattern inputStructure = Pattern.compile("^\\s*\\(([0-9., \t]+)\\)\\s*=\\s*([0-9.]+)\\s*$");
+        Pattern inputStructure = Pattern.compile("^\\s*\\(([\\-0-9., \t]+)\\)\\s*=\\s*([\\-0-9.]+)\\s*$");
 
         String line = null;
         int lineNumber = 0;

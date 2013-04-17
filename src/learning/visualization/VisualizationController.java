@@ -82,6 +82,10 @@ public class VisualizationController {
             Matrix y = parser.getParsedOutput();
             LinearRegression r = new LinearRegression(x, y);
             LinearEquation eq = r.getResultantLinearEquation();
+
+            System.out.println("Parsed new data, got linear equation: " + eq);
+
+
             this.setEquation(eq, x, y);
 
         } catch (Exception e) {

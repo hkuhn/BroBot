@@ -1,5 +1,7 @@
 package learning.math;
 
+import java.util.Arrays;
+
 public class LinearEquation {
 
     private double [] coefficients;
@@ -46,4 +48,11 @@ public class LinearEquation {
         return sum;
     }
 
+    @Override
+    public String toString() {
+        return "LinearEquation{" +
+                "coefficients=" + Arrays.toString(coefficients) +
+                ", constant=" + constant +
+                '}';
+    }
 }
