@@ -1,10 +1,12 @@
 package learning.visualization;
 
 import april.jmat.Matrix;
+import learning.math.LinearRegression;
 import learning.math.optimization.GradientDescent;
 import learning.math.LinearEquation;
 import learning.math.optimization.LinearEquationErrorGradientFunction;
 import learning.math.OneDimensionalLinearEquation;
+import learning.util.DataReader;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.ValueAxis;
@@ -19,6 +21,8 @@ import org.jfree.data.xy.XYDataset;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class VisualizationController {
@@ -49,6 +53,46 @@ public class VisualizationController {
                 calculateAnglesForUserSuppliedDistance();
             }
         });
+
+        this.frame.getChooseDataFileButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                loadDataFromUserChosenFile();
+            }
+        });
+
+
+    }
+
+    protected void loadDataFromUserChosenFile() {
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setMultiSelectionEnabled(false);
+        int result = fileChooser.showDialog(this.getFrame(), "Load");
+
+        File selectedFile = fileChooser.getSelectedFile();
+        if ( result != JFileChooser.APPROVE_OPTION || selectedFile == null ) return;
+
+        DataReader parser = new DataReader(selectedFile);
+
+        try {
+            parser.parse();
+
+            Matrix x = parser.getParsedInput();
+            Matrix y = parser.getParsedOutput();
+            LinearRegression r = new LinearRegression(x, y);
+            LinearEquation eq = r.getResultantLinearEquation();
+            this.setEquation(eq, x, y);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(
+                    this.getFrame(),
+                    e.getLocalizedMessage(),
+                    "Uh, Oh!",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
 
 
     }
@@ -166,7 +210,35 @@ public class VisualizationController {
         this.getFrame().getCenterChartPanel().setChart(chart);
     }
 
-    public void setEquation(final LinearEquation equation, double [][] xData, double [] yData) {
+    public static double [][] matrixToDoubleArray(final Matrix m) {
+        double [][] data = new double[m.getRowDimension()][m.getColumnDimension()];
+        final int numRows = data.length;
+        for ( int row = 0; row < numRows; row++ ) {
+            final int numCols = data[row].length;
+            for ( int col = 0; col < numCols; col++ ) {
+                data[row][col] = m.get(row, col);
+            }
+        }
+        return data;
+    }
+
+    /**
+     *
+     * @param equation
+     * @param x n rows, d cols. n samples. each row is sample of dimension d
+     * @param y n rows, 1 col. corresponds to each entry of x. 1d output
+     */
+    public void setEquation(final LinearEquation equation, Matrix x, Matrix y) {
+
+        if ( x.getRowDimension() != y.getRowDimension() ) {
+            throw new IllegalArgumentException("matrix x and y must have same number of rows.");
+        }
+
+        if ( x.getColumnDimension() == 0 || y.getColumnDimension() == 0 ) {
+            String argName = (x.getColumnDimension() == 0) ? "x" : "y";
+            throw new IllegalArgumentException("matrix " + argName + " must have more than one column");
+        }
+
         this.equation = equation;
         if ( this.equation == null ) {
             this.getFrame().getDimensionChooserComboBox().setEnabled(false);
@@ -178,8 +250,8 @@ public class VisualizationController {
         for ( int i = 0; i < equation.getNumberOfDimensions(); i++ ) {
             options[i] = "Joint " + (i + 1) + " Angle";
         }
-        this.xData = xData;
-        this.yData = yData;
+        this.xData = matrixToDoubleArray(x.transpose());
+        this.yData = matrixToDoubleArray(y.transpose())[0];
         this.getFrame().getDimensionChooserComboBox().setModel(new DefaultComboBoxModel(options));
         this.getFrame().getDimensionChooserComboBox().setSelectedIndex(0);
     }

@@ -14,28 +14,18 @@ public class Test {
         final double [][] xData = {{1, 4}, {3, 7}, {10, -19}};
         final double [][] yData = {{9}, {17}, {-28}};
 
-        LinearRegression r = new LinearRegression(new Matrix(xData), new Matrix(yData));
+        final Matrix x = new Matrix(xData);
+        final Matrix y = new Matrix(yData);
+
+        LinearRegression r = new LinearRegression(x, y);
         final LinearEquation eq = r.getResultantLinearEquation();
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-
-                double [] chartYData = new double[yData.length];
-                for ( int i = 0; i < yData.length; i++ ) {
-                    chartYData[i] = yData[i][0];
-                }
-
-                double [][] chartXData = new double[eq.getNumberOfDimensions()][xData.length];
-                for ( int i = 0; i < xData.length; i++ ) {
-                    for ( int d = 0; d < eq.getNumberOfDimensions(); d++ ) {
-                        chartXData[d][i] = xData[i][d];
-                    }
-                }
-
                 VisualizationFrame mainWindow = new VisualizationFrame();
                 VisualizationController controller = new VisualizationController(mainWindow);
-                controller.setEquation(eq, chartXData, chartYData);
+                controller.setEquation(eq, x, y);
                 controller.show();
             }
         });
