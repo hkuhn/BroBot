@@ -1,6 +1,6 @@
-package Away.Vision.BallDetection;
+package src.vision.balldetection;
 
-import Away.Vision.util.*;
+import src.vision.util.*;
 
 import java.io.*;
 

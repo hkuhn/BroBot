@@ -1,6 +1,5 @@
-package Away.Vision.BallDetection;
+package src.vision.ringdetection;
 
-import Away.Vision.util.*;
 
 import java.io.*;
 
@@ -30,57 +29,38 @@ import april.jmat.Matrix;
 
 
 
-public class BallDetectionController {
+public class RingDetectionController {
     
     
     // args
     private ImageSource		    	selectedImageSource;
-    private BallDetectionFrame      frame;
+    private RingDetectionFrame      frame;
     private String		    		selectedCameraURL;
     private Thread		    		imageThread;
     private BufferedImage 	    	selectedImage;
-
     
     // slider white threshold (dynamic)
-    private volatile int blueThreshold;
-
-	// timer vars
-	private static final int interval = 10000;	// 5 sec
+    private volatile int whiteThreshold;
     
     
     // CONSTRUCTOR
-    public BallDetectionController(BallDetectionFrame frame) {
+    public RingDetectionController(RingDetectionFrame frame) {
         
-        this.blueThreshold = 255;
+        this.whiteThreshold = 230;
         
         this.frame = frame;
         frame.setSize(1024, 768);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
         
         // add action event listeners
         frame.getChooseCameraSourceButton().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				BallDetectionController.this.chooseCameraSourceAction();
-			}
-		});
-                
-        
-        // toggle click action
-        frame.getCenterImage().addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent me) {
-				BallDetectionController.this.didClickMouse(me);
+				RingDetectionController.this.chooseCameraSourceAction();
 			}
 		});
         
-        // toggle jslider action
-        frame.getSlider().addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                BallDetectionController.this.updateThreshold();
-            }
-        });
         
         frame.getChooseImageButton().addActionListener(new ActionListener() {
 			@Override
@@ -89,7 +69,7 @@ public class BallDetectionController {
 			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
                                                                              "Images", "jpg", "gif", "png");
 			    chooser.setFileFilter(filter);
-			    int returnVal = chooser.showOpenDialog(BallDetectionController.this.frame);
+			    int returnVal = chooser.showOpenDialog(RingDetectionController.this.frame);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
 			    	selectedImage = imageFromFile(chooser.getSelectedFile());
 			    	selectedImageSource = null;
@@ -99,6 +79,21 @@ public class BallDetectionController {
 			    }
 			}
 		});
+        
+        
+        // toggle click action
+        frame.getCenterImage().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent me) {
+				RingDetectionController.this.didClickMouse(me);
+			}
+		});
+        
+        // toggle jslider action
+        frame.getSlider().addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                RingDetectionController.this.updateThreshold();
+            }
+        });
         
         
     }
@@ -120,7 +115,6 @@ public class BallDetectionController {
 		return newImage;
 	}
     
-    
     protected void didClickMouse(MouseEvent me) {
         // toggle click action
         
@@ -129,10 +123,10 @@ public class BallDetectionController {
     protected void updateThreshold() {
         // update threshold value
         //System.out.println("Threshold Change from Slider: " + this.frame.getSlider().getValue());
-        this.blueThreshold = this.frame.getSlider().getValue();
-		this.frame.getThresholdLabel().setText(String.valueOf(this.blueThreshold));
-        
-        startImage();
+        this.whiteThreshold = this.frame.getSlider().getValue();
+		this.frame.getThresholdLabel().setText(String.valueOf(this.whiteThreshold));
+
+		startImage();
 
     }
     
@@ -185,9 +179,8 @@ public class BallDetectionController {
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-                        final BackgroundSubtraction backgroundSubtraction = new BackgroundSubtraction();
-						BufferedImage out = BallDetectionController.this.processImage(selectedImage, backgroundSubtraction, false);
-                        BallDetectionController.this.getFrame().getCenterImage().setImage(out);
+						BufferedImage out = RingDetectionController.this.processImage(selectedImage);
+                        RingDetectionController.this.getFrame().getCenterImage().setImage(out);
 					}
 				});
 			}
@@ -217,12 +210,10 @@ public class BallDetectionController {
 		this.imageThread = new Thread(new Runnable() {
 			@Override
             public void run() {
-                ImageSourceFormat fmt = BallDetectionController.this.selectedImageSource.getCurrentFormat();
-				long prev_time = 0;
-
+                ImageSourceFormat fmt = RingDetectionController.this.selectedImageSource.getCurrentFormat();
                 while (true) {
                     // get buffer with image data from next frame
-                    byte buf[] = BallDetectionController.this.selectedImageSource.getFrame().data;
+                    byte buf[] = RingDetectionController.this.selectedImageSource.getFrame().data;
                     
                     // if next frame is not ready, buffer will be null
                     // continue and keep trying
@@ -238,22 +229,13 @@ public class BallDetectionController {
                                                                          fmt.height,
                                                                          buf
                                                                          );
-
-					final BackgroundSubtraction backgroundSubtraction = new BackgroundSubtraction();
-					// check timer
-					long cur_time = System.currentTimeMillis();
-					// reset reference frame
-					if (cur_time > prev_time + interval) {
-						prev_time = cur_time;
-						backgroundSubtraction.setRef(im);
-					}
                     
                     // set image on main window
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                            BufferedImage out = BallDetectionController.this.processImage(im, backgroundSubtraction, true);
-                            BallDetectionController.this.getFrame().getCenterImage().setImage(out);
+                            BufferedImage out = RingDetectionController.this.processImage(im);
+                            RingDetectionController.this.getFrame().getCenterImage().setImage(out);
                         }
                     });
                 }
@@ -263,51 +245,20 @@ public class BallDetectionController {
     }
     
     // Image Processing
-    protected BufferedImage processImage(BufferedImage im, BackgroundSubtraction backgroundSubtraction, boolean camera) {
-		
-        BufferedImage out;
-        //if (camera) {
-            // run background subtraction
-            //out = backgroundSubtraction.runSubtraction(im);
-        //}
-        //else {
-            out = im;
-        //}
-        
-        // run image binarization with blue thresh
-        binarize b = new binarize(out, blueThreshold);
-        out = b.getBinarizedImage();
-        
-		
-        // run ball detection
-        BallDetectionDetector_Expand bdd = new BallDetectionDetector_Expand();
-        bdd.setImage(out);
-        
+    protected BufferedImage processImage(BufferedImage im) {
+        // run ring detection
+		//System.out.println(this.whiteThreshold);
+        RingDetectionDetector rdd = new RingDetectionDetector();
+		rdd.runDetection(im, this.whiteThreshold);
 	
-        bdd.runDetection();
-        Point center = bdd.getCenter();
-        int y_center = (int)center.getY();
-        int x_center = (int)center.getX();
-
-		out = bdd.getImage();
-	
-		System.out.println(center);        
-		
-        if (x_center > 3 && x_center < (out.getWidth() + 3) && y_center > 3 && y_center < (out.getHeight() + 3)) {
-            // SET CENTER RED (3 x 3)
-            for (int y = y_center - 3; y < y_center + 3; y++) {
-                for (int x = x_center - 3; x < x_center + 3; x++) {
-                    out.setRGB(x,y, 0xffff0000); //Red
-                }
-            }
-        }
+		BufferedImage out = rdd.getThinnedImage();
         
         return out;
     }
     
     
     // PUBLIC CLASS METHODS
-    public BallDetectionFrame getFrame() {
+    public RingDetectionFrame getFrame() {
         return frame;
     }
     

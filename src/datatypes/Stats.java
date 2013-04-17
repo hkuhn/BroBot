@@ -1,4 +1,4 @@
-package Away.DataTypes;
+package src.datatypes;
 
 
 import java.util.ArrayList;

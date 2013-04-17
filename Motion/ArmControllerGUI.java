@@ -1,5 +1,6 @@
 package Motion;
 
+import java.io.*;
 import java.lang.*;
 import java.util.*;
 import java.awt.*;
@@ -7,10 +8,13 @@ import java.awt.*;
 import lcm.lcm.*;
 import lcmtypes.*;
 
+import april.util.*;
+import javax.swing.JFrame;
+
 import april.jmat.MathUtil;
 import april.util.TimeUtil;
 // controls commands to the arm
-public class ArmController {
+public class ArmControllerGUI implements ParameterListener {
 
     static final private double FIRST_JOINT_THROW_ANGLE = 0;
     static final private double WRIST_JOINT_THROW_ANGLE = 0;
@@ -28,13 +32,18 @@ public class ArmController {
     private double claw;
     private double throwingAngle;
 
+    // GUI STUFF
+    JFrame jf = new JFrame("GUI Testing");
+    ParameterGUI pg = new ParameterGUI();
+
+
     protected AngleCalculator angleCalculator;
     protected StatusReceiver statusReceiver;
     private dynamixel_command_list_t cmdlist;
 
 
 
-    public ArmController() {
+    public ArmControllerGUI() {
 
         cmdlist = new dynamixel_command_list_t();
         cmdlist.len = 6;
@@ -55,56 +64,53 @@ public class ArmController {
         LCM.getSingleton().subscribe ("ARM_STATUS", statusReceiver);
 
 
+        // INITIALIZE THE GUI
+        initGUI();
+        this.pg.addListener(this);
+
+
     }
 
     public void setThrowingAngle (double angle) {
         this.throwingAngle = angle;
     }
-
-
     public void setRotateJoint (double angle) {
         this.rotateJoint = angle;
         setCmd (0, angle);
     }
-
     public void setFirstJoint (double angle) {
         this.firstJoint = angle;
         setCmd (1, angle);
     }
-
     public void setSecondJoint (double angle) {
         this.secondJoint = angle;
         setCmd (2, angle);
     }
-
     public void setWristJoint (double angle) {
         this.wristJoint = angle;
         setCmd (3, angle);
     }
-
-
     public void setClawRotateJoint (double angle) {
         this.clawRotateJoint = angle;
         setCmd (4, angle);
     }
-
     public void setClaw (double angle) {
 
         this.claw = angle;
         setCmd (5, angle);
     }
-
     public void setOpenClaw () {
         this.claw = OPEN_CLAW_ANGLE;
         setCmd (5, OPEN_CLAW_ANGLE);
 
     }
-
     public void setCloseClaw () {
         this.claw = CLOSE_CLAW_ANGLE;
         setCmd (5, CLOSE_CLAW_ANGLE);
-
     }
+
+
+
 
     public void handMeBall() {
         setOpenClaw();
@@ -134,7 +140,7 @@ public class ArmController {
 
     }
 
-    public void sendCommands (boolean throwing) {
+    public void sendCommands (boolean throwing) { // <-- this boolean is no longer really necessary
         //TODO: send to LCM
         LCM.getSingleton().publish ("ARM_COMMAND", cmdlist);
         if (throwing == false)
@@ -157,10 +163,34 @@ public class ArmController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        //setWristJoint (-Math.PI/4);
-        setWristJoint (0);
+        setWristJoint (-Math.PI/4);
         setFirstJoint (0);
         setSecondJoint (0);
+        //setWristJoint (this.throwingAngle - threshold);
+        sendCommands(true);
+
+    }
+
+
+    public void executeThrowGUI() {
+
+        double threshold = Math.PI/10;
+        setRotateJoint (pg.gd("base_b4"));
+        setFirstJoint (pg.gd("1st_b4"));
+        setSecondJoint (pg.gd("2nd_b4"));
+        setWristJoint (pg.gd("wrist_b4")); // initial position of arm
+
+        sendCommands(false);
+        try {
+            Thread.sleep( (pg.gi("throw_delay"))*1000 );
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        //setWristJoint (-Math.PI/4);
+        setWristJoint (pg.gd("wrist_after"));
+        setFirstJoint (pg.gd("1st_after"));
+        setSecondJoint (pg.gd("2nd_after"));
         //setWristJoint (this.throwingAngle - threshold);
         sendCommands(true);
 
@@ -190,7 +220,7 @@ public class ArmController {
                     System.out.println ("GOT TO ANGLE");
                     break;
                 } else {
-/*
+                /*
                     boolean allEqual = true;
                     for ( int i = 0; i < stats.len; i++ ) {
                         boolean equal = stats.statuses[i].position_radians == previousStats.statuses[i].position_radians;
@@ -253,6 +283,70 @@ public class ArmController {
         setClawRotateJoint (angles[4]);
         setClaw (CLOSE_CLAW_ANGLE);
 
+
+    }
+
+
+    /******* GUI STUFF ********/
+    //
+    //
+    //
+    //
+
+
+    public void initGUI()
+    {
+        
+        // pg documentation
+        // http://code.google.com/p/lcm/source/browse/trunk/lcm-java/lcm/util/ParameterGUI.java?r=35
+        // check javax.swing
+
+        // SLIDERS
+
+        // Servo Configs Before
+        pg.addDoubleSlider("base_b4","base_b4",0,Math.PI, 0); // BASE ROTATION
+        pg.addDoubleSlider("1st_b4","1st_b4",-Math.PI/8,Math.PI/8, Math.PI/8); // 1st 
+        pg.addDoubleSlider("2nd_b4","2nd_b4",-Math.PI/6,Math.PI/6, Math.PI/6); // 2nd
+        pg.addDoubleSlider("wrist_b4","wrist_b4",-Math.PI/6,Math.PI/6, Math.PI/6); // WRIST
+        //pg.addDoubleSlider("claw_b4","claw_b4",0,Math.PI/2, OPEN_CLAW_ANGLE); // CLAW
+        
+        pg.addIntSlider("throw_delay", "Throw Delay (sec)", 0, 3, 2);
+
+        // Servo Configs After
+        pg.addDoubleSlider("base_after","base_after",0,Math.PI, 0); // BASE ROTATION
+        pg.addDoubleSlider("1st_after","1st_after",-Math.PI/8,Math.PI/8, 0); // 1st 
+        pg.addDoubleSlider("2nd_after","2nd_after",-Math.PI/6,Math.PI/6, 0); // 2nd
+        pg.addDoubleSlider("wrist_after","wrist_after",-Math.PI/6,Math.PI/6, 0); // WRIST
+        //pg.addDoubleSlider("claw_after","claw_after",0,Math.PI/2, OPEN_CLAW_ANGLE); // CLAW
+        
+        pg.addButtons("launch_button", "Launch!!");
+        pg.addButtons("reset_button", "Reset Arm");
+
+
+
+
+        // LAYOUT OF THE GUI
+        jf.setLayout(new BorderLayout());
+        jf.add(pg, BorderLayout.SOUTH);
+        jf.setVisible(true);
+        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jf.setSize(512, 300);
+    }
+
+    public void parameterChanged(ParameterGUI pg, String name)
+    {
+        if(name.equals("launch_button"))
+        {
+            executeThrowGUI(); // execute the throw if launch button pressed
+        }
+        else if(name.equals("reset_button"))
+        {
+            // get to the salute position
+            setFirstJoint (0);
+            setSecondJoint (0);
+            setWristJoint (0); 
+            sendCommands(false);
+        }
 
     }
 
