@@ -7,6 +7,7 @@ import learning.visualization.VisualizationController;
 import learning.visualization.VisualizationFrame;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 public class Test {
 

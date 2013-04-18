@@ -1,4 +1,4 @@
-package src.vision.coordinateprojection;
+package vision.coordinateprojection;
 
 
 import java.io.*;

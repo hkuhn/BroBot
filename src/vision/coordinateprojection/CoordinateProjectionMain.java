@@ -1,4 +1,4 @@
-package src.vision.coordinateprojection;
+package vision.coordinateprojection;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -15,7 +15,6 @@ public class CoordinateProjectionMain {
                 CoordinateProjectionFrame frame = new CoordinateProjectionFrame();
                 // build controller
                 CoordinateProjectionController appController = new CoordinateProjectionController(frame);
-                
             }
         });
     }
