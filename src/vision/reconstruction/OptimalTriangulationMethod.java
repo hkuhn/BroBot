@@ -107,8 +107,9 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         // Replace fundamentalMatrix by rp * fundamentalMatrix * r^T
         this.rotateFundamentalMatrix();
 
-        // Step 6
-        //
+        // Step 6/7
+        // form the 6-degree polynomial g(t) representing the derivative of the cost function and then
+        // solve for its 6 roots in terms of t to get extrema points.
 
 
     }
