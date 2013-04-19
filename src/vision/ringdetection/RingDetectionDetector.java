@@ -28,13 +28,13 @@ public class RingDetectionDetector {
     
     
     // RANSAC Parameters
-    private static final int k = 1000;       // number of iterations in search of a circle
+    private static final int k = 500;       // number of iterations in search of a circle
     private static final int q = 3;        // number of total circles to be found
     private static final int n = 3;         // randomly selected n points
     private static final double inf = Double.POSITIVE_INFINITY;
-    private static final int MIN_RADIUS = 200;   // min pixel radius
-	private static final int MAX_RADIUS = 700;	// max pixel radius
-    private static final int MIN_SIZE = 400; // min. number of data points to define a circle (circum of min radius)
+    private static final int MIN_RADIUS = 10;   // min pixel radius
+	private static final int MAX_RADIUS = 70;	// max pixel radius
+    private static final int MIN_SIZE = 100; // min. number of data points to define a circle (circum of min radius)
     private static final double ERROR_CONST = 0.022;
     private static final int ERROR_THRESH = 2;  // base error threshold in pixels for pixel offset
     // actual error dependent on radius size
@@ -105,6 +105,18 @@ public class RingDetectionDetector {
         //      - remove these points from data array and continue
         //  5. Repeat after we find n circles
         
+		// build white pixel array hashmap
+		ArrayList<Point> whiteHashMap = new ArrayList<Point>();
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				if (edgesMatrix[y][x] == 1) {
+					Point in = new Point(x,y);
+					whiteHashMap.add(in);
+				}
+			}
+		}
+
+
         this.circles_list = new ArrayList<Circle>();
         int trials = 0;
         
@@ -116,43 +128,45 @@ public class RingDetectionDetector {
             // begin traversal
             Random randomizer = new Random();
             int iterations = 0;
+
             while (iterations < k) {
+				//System.out.println(iterations);
                 // coords
-                int p1x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS));
-				int p1y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
-                int p2x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS)); 
-				int p2y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
-                int p3x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS));
-				int p3y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
-                // points
-                Point p1 = new Point(p1x, p1y);
-                Point p2 = new Point(p2x, p2y);
-                Point p3 = new Point(p3x, p3y);
+				int i1 = (int)(Math.random()*(whiteHashMap.size()));
+				int i2 = (int)(Math.random()*(whiteHashMap.size()));
+				int i3 = (int)(Math.random()*(whiteHashMap.size()));
+				//System.out.println("i1: " + i1 + " i2: " + i2 + " i3: " + i3);
+				Point p1 = whiteHashMap.get(i1);
+				Point p2 = whiteHashMap.get(i2);
+				Point p3 = whiteHashMap.get(i3);
+                int p1x = (int)p1.getX();
+				int p1y = (int)p1.getY();
+                int p2x = (int)p2.getX();
+				int p2y = (int)p2.getY();
+                int p3x = (int)p3.getX();
+				int p3y = (int)p3.getY();
+
                 // test for dissimilar points
-                while (p1 == p2 || p2 == p3 || p1 == p3) {
-                    // coords
-                	p1x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS));
-					p1y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
-                	p2x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS)); 
-					p2y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
-                	p3x = MIN_RADIUS + (int)(Math.random()*(width - MIN_RADIUS));
-					p3y = MIN_RADIUS + (int)(Math.random()*(height - MIN_RADIUS));
-                    // points
-                    p1.setLocation(p1x, p1y);
-                    p2.setLocation(p2x, p2y);
-                    p3.setLocation(p3x, p3y);
+                while ((p1 == p2 || p2 == p3 || p1 == p3)) {
+                	// coords
+					i1 = (int)(Math.random()*(whiteHashMap.size()));
+					i2 = (int)(Math.random()*(whiteHashMap.size()));
+					i3 = (int)(Math.random()*(whiteHashMap.size()));
+					p1 = whiteHashMap.get(i1);
+					p2 = whiteHashMap.get(i2);
+					p3 = whiteHashMap.get(i3);
+
+					//System.out.println("i1: " + i1 + " i2: " + i2 + " i3: " + i3);
                 }
-                // values
-                int p1v = edgesMatrix[p1y][p1x];
-                int p2v = edgesMatrix[p2y][p2x];
-                int p3v = edgesMatrix[p3y][p3x];
+
                 // retrieve model
                 Circle model = fitCircle(p1, p2, p3);
                 
                 // test radius
-                if (model.getRadius() < MIN_RADIUS || model.getRadius() > MAX_RADIUS || model.getCenter().getX() - model.getRadius() - OFFSET < 0 || model.getCenter().getY() - model.getRadius() - OFFSET < 0 || model.getCenter().getX() + model.getRadius() + OFFSET > width || model.getCenter().getY() + model.getRadius() + OFFSET > height) continue;
+                if (model.getRadius() < MIN_RADIUS || model.getRadius() > MAX_RADIUS || model.getCenter().getX() - model.getRadius() - OFFSET < 0 || model.getCenter().getY() - model.getRadius() - OFFSET < 0 || model.getCenter().getX() + model.getRadius() + 5*OFFSET > width || model.getCenter().getY() + model.getRadius() + 5*OFFSET > height) continue;
 
 				// test center
+				/*
 				boolean flag = false;
 				for (int y = (int)(model.getCenter().getY() - 5*OFFSET); y < (int)(model.getCenter().getY() + 5*OFFSET); y++) {
 					for (int x = (int)(model.getCenter().getX() - 5*OFFSET); x < (int)(model.getCenter().getX() + 5*OFFSET); x++) {
@@ -165,7 +179,7 @@ public class RingDetectionDetector {
 				}
 
 				if (flag) continue;
-						
+				*/
                 
                 // find consensus points
                 double squared_error = 0;
