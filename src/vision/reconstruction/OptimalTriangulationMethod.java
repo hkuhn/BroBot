@@ -6,6 +6,8 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.SingularValueDecomposition;
 
+import static java.lang.Math.*;
+
 /**
  * User: slessans
  * Date: 4/18/13
@@ -82,6 +84,65 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
     protected void rotateFundamentalMatrix() {
         this.fundamentalMatrix = this.rp.times(this.fundamentalMatrix).times(this.r.transpose());
     }
+    
+    protected void computeRootsOfCostFunction() {
+        // generated via MATLAB -
+        //
+        // polynomial coefficient array:
+        //  6: (a^2)cd(f^4) - ab(c^2)(f^4)
+        //  5: (a^2)(d^2)(f^4) - 2(a^2)(c^2)(f'^2) - (c^4)(f'^4)-(a^4)
+        //  4: 2(a^2)cd(f^2) - 4(a^2)cd(f'^2) + ab(d^2)(f^4) - 4ab(c^2)(f'^2) - 2ab(c^2)(f^2) -
+        //          (b^2)cd(f^4) - 4(c^3)d(f'^4) - 4(a^3)b
+        //  3: 2(a^2)(d^2)(f^2) - 8abcd(f'^2) - 6(c^2)(d^2)(f'^4) - 2(b^2)(c^2)(f'^2) -
+        //          2(a^2)(d^2)(f'^2) - 2(b^2)(c^2)(f^2) - 6(a^2)(b^2)
+        //  2: 2ab(d^2)(f^2) - 4(b^2)cd(f'^2) - 2(b^2)cd(f^2) - 4ab(d^2)(f'^2) + (a^2)cd -
+        //          4c(d^3)(f'^4) - ab(c^2) - 4a(b^3)
+        //  1: (a^2)(d^2) - 2(b^2)(d^2)(f'^2) - (d^4)(f'^4) - (b^2)(c^2) - (b^4)
+        //  0: ab(d^2) - (b^2)cd
+        //
+        //  Pass to ComplexRoots.java to solve for roots of 6-degree
+        //
+        // constants:
+        //      F =     ff'd    -f'c    f'd
+        //              -fb     a       b
+        //              -fd     c       d
+        ComplexRoots cr = new ComplexRoots();
+        double a = this.fundamentalMatrix.get(2,2);
+        double b = this.fundamentalMatrix.get(2,3);
+        double c = this.fundamentalMatrix.get(3,2);
+        double d = this.fundamentalMatrix.get(3,3);
+        double f = -1 * this.fundamentalMatrix.get(1,3) / d;
+        double f_p = -1 * this.fundamentalMatrix.get(1,2) / c;
+        
+        double six_coeff = pow(a,2)*c*d*pow(f,4) - a*b*pow(c,2)*pow(f,4);
+        double five_coeff = pow(a,2)*pow(d,2)*pow(f,4) - 2*pow(a,2)*pow(c,2)*pow(f_p,2)
+                                - pow(c,4)*pow(f_p,4) - pow(a,4);
+        double four_coeff = 2*pow(a,2)*c*d*pow(f,2) - 4*pow(a,2)*c*d*pow(f_p,2)
+                                + a*b*pow(d,2)*pow(f,4) - 4*a*b*pow(c,2)*pow(f_p,2)
+                                - 2*a*b*pow(c,2)*pow(f,2) - pow(b,2)*c*d*pow(f,4)
+                                - 4*pow(c,3)*d*pow(f_p,4) - 4*pow(a,3)*b;
+        double three_coeff = 2*pow(a,2)*pow(d,2)*pow(f,2) - 8*a*b*c*d*pow(f_p,2)
+                                - 6*pow(c,2)*pow(d,2)*pow(f_p,4) - 2*pow(b,2)*pow(c,2)*pow(f_p,2)
+                                - 2*pow(a,2)*pow(d,2)*pow(f_p,2) - 2*pow(b,2)*pow(c,2)*pow(f,2)
+                                - 6*pow(a,2)*pow(b,2);
+        double two_coeff = 2*a*b*pow(d,2)*pow(f,2) - 4*pow(b,2)*c*d*pow(f_p,2)
+                                - 2*pow(b,2)*c*d*pow(f,2) - 4*a*b*pow(d,2)*pow(f_p,2)
+                                + pow(a,2)*c*d - 4*c*pow(d,3)*pow(f_p,4) - a*b*pow(c,2)
+                                - 4*a*pow(b,3);
+        double one_coeff = pow(a,2)*pow(d,2) - 2*pow(b,2)*pow(d,2)*pow(f_p,2)
+                                - pow(d,4)*pow(f_p,4) - pow(b,2)*pow(c,2) - pow(b,4);
+        double zero_coeff = a*b*pow(d,2) - pow(b,2)*c*d;
+        
+        double[] coeff = {six_coeff, five_coeff, four_coeff, three_coeff, two_coeff, one_coeff, zero_coeff};
+        
+        
+        // TODO: solveRoots still needs to be written
+        double[] roots = cr.solveRoots(coeff);
+        
+        
+        
+        
+    }
 
     protected void runAlgorithm() {
 
@@ -110,6 +171,7 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         // Step 6/7
         // form the 6-degree polynomial g(t) representing the derivative of the cost function and then
         // solve for its 6 roots in terms of t to get extrema points.
+        this.computeRootsOfCostFunction();
 
 
     }

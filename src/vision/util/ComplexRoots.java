@@ -13,11 +13,22 @@ import org.jscience.mathematics.number.Complex;
  * 
  * @author John B. Matthews; distrbution per LGPL.
  */
-public final class ComplexRoots {
+public class ComplexRoots {
 
+    // const
     private static final double epsilon = ComplexPolynomial.getEpsilon();
     private static final DecimalFormat form =
         new DecimalFormat(" 0.00000000000000E0;-0.00000000000000E0");
+    
+    // args
+    
+    
+    // CONSTRUCTOR METHOD
+    public ComplexRoots() {
+        // null
+    }
+    
+    
 
 	/*
     public static void main(String[] args) {
@@ -73,9 +84,21 @@ public final class ComplexRoots {
             Complex.valueOf(4, 4));
     }
 	*/
+    
+    // Return roots of polynomial with complex coefficients
+    public static double[] solveRoots(double... a) {
+        Complex[] ca = ComplexPolynomial.complexArray(a);
+        Polynomial<Complex> px = ComplexPolynomial.create(ca);
+        System.out.println("Poly: " + px);
+        Complex[] r = ComplexPolynomial.roots(ca);
+        validate(ca, r);
+        
+        // RETURN ROOTS IN DOUBLE FORM
+        
+    }
 
     // Find roots of polynomial with complex coefficients
-    private static void showResult(Complex... a) {
+    public static void showResult(Complex... a) {
         Polynomial<Complex> px = ComplexPolynomial.create(a);
         System.out.println("Poly: " + px);
         Complex[] r = ComplexPolynomial.roots(a);
@@ -83,7 +106,7 @@ public final class ComplexRoots {
     }
 
     // Find roots of polynomial with real coefficients
-    private static void showResult(double... a) {
+    public static void showResult(double... a) {
         Complex[] ca = ComplexPolynomial.complexArray(a);
         Polynomial<Complex> px = ComplexPolynomial.create(ca);
         System.out.println("Poly: " + px);
