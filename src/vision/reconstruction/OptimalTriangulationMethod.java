@@ -1,10 +1,10 @@
 package vision.reconstruction;
 
-
-import src/vision/util.*;
-
 import april.jmat.Matrix;
 
+import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
+import org.apache.commons.math3.analysis.solvers.LaguerreSolver;
+import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.SingularValueDecomposition;
@@ -32,6 +32,9 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
     protected Matrix rp;
     protected Matrix e;
     protected Matrix ep;
+    protected Matrix xHat;
+    protected Matrix xHatPrime;
+    protected Matrix mleX;
 
 
     protected void reset() {
@@ -44,6 +47,9 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         this.rp = null;
         this.e = null;
         this.ep = null;
+        this.xHat = null;
+        this.xHatPrime = null;
+        this.mleX = null;
     }
 
     protected void calculateInitialTransformationMatrices() {
@@ -87,8 +93,12 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
     protected void rotateFundamentalMatrix() {
         this.fundamentalMatrix = this.rp.times(this.fundamentalMatrix).times(this.r.transpose());
     }
-    
-    protected void computeRootsOfCostFunction() {
+
+    /**
+     * Will set costFunctionMinimumT to param that minimizes cost function. if
+     * cost function is minimum at t --> infinity, will set to null.
+     */
+    protected void findGlobalMinimumOfCostFunctionAndMLEPointCorrespondencePair() {
         // generated via MATLAB -
         //
         // polynomial coefficient array:
@@ -103,13 +113,11 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         //  1: (a^2)(d^2) - 2(b^2)(d^2)(f'^2) - (d^4)(f'^4) - (b^2)(c^2) - (b^4)
         //  0: ab(d^2) - (b^2)cd
         //
-        //  Pass to ComplexRoots.java to solve for roots of 6-degree
         //
         // constants:
         //      F =     ff'd    -f'c    f'd
         //              -fb     a       b
         //              -fd     c       d
-        ComplexRoots cr = new ComplexRoots();
         double a = this.fundamentalMatrix.get(2,2);
         double b = this.fundamentalMatrix.get(2,3);
         double c = this.fundamentalMatrix.get(3,2);
@@ -135,16 +143,72 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         double one_coeff = pow(a,2)*pow(d,2) - 2*pow(b,2)*pow(d,2)*pow(f_p,2)
                                 - pow(d,4)*pow(f_p,4) - pow(b,2)*pow(c,2) - pow(b,4);
         double zero_coeff = a*b*pow(d,2) - pow(b,2)*c*d;
-        
-        double[] coeff = {six_coeff, five_coeff, four_coeff, three_coeff, two_coeff, one_coeff, zero_coeff};
-        
-        
-        // TODO: solveRoots still needs to be written
-        double[] roots = cr.solveRoots(coeff);
+
+        // first term should be the consants, then firt order, second order, etc
+        double [] coefficients = {zero_coeff, one_coeff, two_coeff, three_coeff, four_coeff, five_coeff, six_coeff};
+        //double[] coeff = {six_coeff, five_coeff, four_coeff, three_coeff, two_coeff, one_coeff, zero_coeff};
         
         
-        
-        
+        // now solve for roots
+        LaguerreSolver polynomialSolver = new LaguerreSolver();
+        Complex[] roots = polynomialSolver.solveAllComplex(coefficients, 0);
+        OptimalTriangulationCostFunction costFunction = new OptimalTriangulationCostFunction(a, b, c, d, f, f_p);
+
+
+        // now evaluate the cost function at the real values of each of the roots. find t that corresopnds
+        // to the global min.
+        double minimumValue = 0;
+        Double minT = null;
+        for (Complex complexRoot : roots ) {
+            final double realRoot = complexRoot.getReal();
+            final double value = costFunction.evaluate(realRoot);
+            if ( minT == null || value < minimumValue ) {
+                minimumValue = value;
+                minT = realRoot;
+            }
+        }
+
+        // now evaluate the cost function as t --> infinity and check if that is actually the minimum
+        final double asymptoticValue = costFunction.evaluateAsymtotically();
+
+        if (minT == null || asymptoticValue < minimumValue) {
+            // min value is at infinity
+            minT = null;
+        }
+
+        this.findMLEPointCorrespondencePair(minT, costFunction);
+    }
+
+
+    protected void findMLEPointCorrespondencePair(final Double minT, OptimalTriangulationCostFunction costFunction) {
+        // use the tMin to evaluate the lines. if tMin is null, min is at infinity
+        this.xHat = null;
+        this.xHatPrime = null;
+
+        if ( minT == null ) {
+            throw new RuntimeException("minT is at asymtote");
+        } else {
+            GeneralLine l = new GeneralLine(
+                    minT * costFunction.getF(),
+                    1,
+                    - minT
+            );
+            GeneralLine lPrime = new GeneralLine(
+                    - costFunction.getfPrime() * (costFunction.getC() * minT + costFunction.getD()),
+                    costFunction.getA() * minT + costFunction.getB(),
+                    costFunction.getC() * minT + costFunction.getD()
+            );
+            this.xHat = l.getClosestPointToOrigin();
+            this.xHatPrime = l.getClosestPointToOrigin();
+        }
+
+        // transform back to original system
+        this.xHat = this.t.inverse().times(this.r.transpose()).times(this.xHat);
+        this.xHatPrime = this.tp.inverse().times(this.rp.transpose()).times(this.xHatPrime);
+    }
+
+    protected void findXInThreeSpace() {
+
     }
 
     protected void runAlgorithm() {
@@ -171,12 +235,20 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         // Replace fundamentalMatrix by rp * fundamentalMatrix * r^T
         this.rotateFundamentalMatrix();
 
-        // Step 6/7
+        // Step 6/7/8
         // form the 6-degree polynomial g(t) representing the derivative of the cost function and then
-        // solve for its 6 roots in terms of t to get extrema points.
-        this.computeRootsOfCostFunction();
+        // solve for its 6 roots in terms of t to get extrema points. Then evaluate cost function at each
+        // of the points and additionally find the asympotic value as t --> infinity. Of all these values
+        // select t corresponding to the minimum value. that is our optimal parameter.
+        // Step 9/10
+        // using the parameter found in Step6/7/8, calculate the real world lines and then use them
+        // to find the corresponding points xHat <--> xHatPrime. Finally transform the points back
+        // to the original coordinate system using the translation and rotation matrices from the
+        // beginning steps.
+        this.findGlobalMinimumOfCostFunctionAndMLEPointCorrespondencePair();
 
-
+        // Step 11 find the MLE of X in 3-space
+        this.findXInThreeSpace();
     }
 
     @Override
@@ -205,7 +277,7 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
 
         runAlgorithm();
 
-        return null;
+        return this.mleX;
     }
 
     protected static Matrix rotationMatrixFromEpipole(Matrix epipole) {

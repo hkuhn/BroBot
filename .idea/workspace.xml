@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9774c084-0c12-4d55-9093-e35eb2276a17" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/3d reconstruction equations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/vision/reconstruction/GeneralLine.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationCostFunction.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/vision/util/ComplexRoots.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" afterPath="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BroBot.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366254805559" ignored="false" />
-    <file path="/fragment.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366174941730" ignored="false" />
+    <file path="/Dummy.txt" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366494242425" ignored="false" />
+    <file path="/fragment.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366495961779" ignored="false" />
     <file path="/MainWindow.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365889671587" ignored="false" />
     <file path="/AppController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365890349226" ignored="false" />
     <file path="/LinearRegression.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365903272730" ignored="false" />
@@ -29,8 +31,11 @@
     <file path="/CoordinateProjectionMain.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366255116166" ignored="false" />
     <file path="/CoordinateProjection.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366257737646" ignored="false" />
     <file path="/TwoViewStructureReconstructor.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366263568994" ignored="false" />
-    <file path="/OptimalTriangulationMethod.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366270885276" ignored="false" />
+    <file path="/OptimalTriangulationMethod.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366499116455" ignored="false" />
     <file path="/3d reconstruction equations" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366271612380" ignored="false" />
+    <file path="/CoeffTest.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366495720525" ignored="false" />
+    <file path="/OptimalTriangulationCostFunction.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366496979425" ignored="false" />
+    <file path="/GeneralLine.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366498606764" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,24 +50,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/learning/math/optimization/GradientDescent.java" line="86" class="learning.math.optimization.GradientDescent" package="learning.math.optimization">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -99,6 +86,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -111,16 +100,16 @@
       <file leaf-file-name="VisualizationMain.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="11" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0">
+            <state line="15" column="13" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OptimalTriangulationMethod.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="OptimalTriangulationMethod.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="0" selection-start="4100" selection-end="4100" vertical-scroll-proportion="0.0">
+            <state line="210" column="13" selection-start="9105" selection-end="9105" vertical-scroll-proportion="0.24710424">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -128,10 +117,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="3d reconstruction equations" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/3d reconstruction equations">
+      <file leaf-file-name="GeneralLine.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/GeneralLine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="150" selection-start="128" selection-end="128" vertical-scroll-proportion="0.03937008">
+            <state line="39" column="21" selection-start="856" selection-end="856" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OptimalTriangulationCostFunction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationCostFunction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="26" selection-start="769" selection-end="769" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -150,9 +148,7 @@
         <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="8" selection-start="8" selection-end="8" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -175,9 +171,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/learning/GradientFunction.java" />
-        <option value="$PROJECT_DIR$/src/learning/GradientDescent.java" />
-        <option value="$PROJECT_DIR$/src/learning/LinearEquationErrorGradientFunction.java" />
         <option value="$PROJECT_DIR$/src/learning/util/DataReader.java" />
         <option value="$PROJECT_DIR$/src/learning/math/LinearEquation.java" />
         <option value="$PROJECT_DIR$/src/learning/visualization/VisualizationController.java" />
@@ -189,16 +182,19 @@
         <option value="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjection.java" />
         <option value="$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java" />
         <option value="$PROJECT_DIR$/src/learning/Test.java" />
-        <option value="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" />
         <option value="$PROJECT_DIR$/3d reconstruction equations" />
+        <option value="$PROJECT_DIR$/src/CoeffTest.java" />
+        <option value="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationCostFunction.java" />
+        <option value="$PROJECT_DIR$/src/vision/reconstruction/GeneralLine.java" />
+        <option value="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="64" />
     <option name="y" value="-4" />
-    <option name="width" value="1857" />
-    <option name="height" value="1205" />
+    <option name="width" value="1377" />
+    <option name="height" value="905" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -228,6 +224,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -250,10 +248,84 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vision" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vision" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vision" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reconstruction" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -277,7 +349,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.VisualizationMain">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
@@ -474,12 +546,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1857" height="1205" extended-state="6" />
+    <frame x="64" y="-4" width="1377" height="905" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39924315" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -488,19 +561,18 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09555345" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09511229" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16860144" sideWeight="0.74550617" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25449386" sideWeight="0.9532374" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16779533" sideWeight="0.7463672" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25363275" sideWeight="0.9532374" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -569,77 +641,23 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/learning/util/DataReader.java">
+    <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="69" selection-start="1375" selection-end="1375" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/math/LinearRegression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="64" selection-start="2286" selection-end="2286" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/math/optimization/GradientDescent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="0" selection-start="2778" selection-end="2778" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/learning-data/test-data">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="12" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/math/optimization/LinearEquationErrorGradientFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="5" selection-start="667" selection-end="667" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="58" selection-start="3222" selection-end="3222" vertical-scroll-proportion="0.014520813">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="34" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="12" selection-start="579" selection-end="579" vertical-scroll-proportion="0.20368575">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/learning-data/original-data-simple">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="28" selection-start="134" selection-end="134" vertical-scroll-proportion="0.07874016">
+        <state line="18" column="84" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="11" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
+    <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="8" selection-start="8" selection-end="8" vertical-scroll-proportion="0.0">
+        <state line="112" column="0" selection-start="4207" selection-end="4207" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -653,35 +671,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/math/LinearEquation.java">
+    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="18" selection-start="1484" selection-end="1484" vertical-scroll-proportion="0.7440945">
+        <state line="0" column="8" selection-start="8" selection-end="8" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="58" selection-start="3222" selection-end="3222" vertical-scroll-proportion="0.014520813" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="34" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="12" selection-start="579" selection-end="579" vertical-scroll-proportion="0.20368575" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="13" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/learning/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="45" selection-start="341" selection-end="341" vertical-scroll-proportion="0.2559055">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="13" column="45" selection-start="341" selection-end="341" vertical-scroll-proportion="0.2559055" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3d reconstruction equations">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="150" selection-start="128" selection-end="128" vertical-scroll-proportion="0.03937008" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="8" selection-start="8" selection-end="8" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="84" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationCostFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="26" selection-start="769" selection-end="769" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/GeneralLine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="21" selection-start="856" selection-end="856" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="0" selection-start="4100" selection-end="4100" vertical-scroll-proportion="0.0">
+        <state line="210" column="13" selection-start="9105" selection-end="9105" vertical-scroll-proportion="0.24710424">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/3d reconstruction equations">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="150" selection-start="128" selection-end="128" vertical-scroll-proportion="0.03937008">
-          <folding />
         </state>
       </provider>
     </entry>
