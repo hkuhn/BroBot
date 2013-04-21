@@ -1,4 +1,4 @@
-package learning.visualization;
+package learning.visualization.linear;
 
 import april.jmat.Matrix;
 import learning.math.LinearRegression;
@@ -22,7 +22,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class VisualizationController {
@@ -81,7 +80,7 @@ public class VisualizationController {
             Matrix x = parser.getParsedInput();
             Matrix y = parser.getParsedOutput();
             LinearRegression r = new LinearRegression(x, y);
-            LinearEquation eq = r.getResultantLinearEquation();
+            LinearEquation eq = LinearEquation.getLinearEquationFromLinearRegression(r);
 
             System.out.println("Parsed new data, got linear equation: " + eq);
 

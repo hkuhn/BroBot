@@ -1,4 +1,4 @@
-package learning.visualization;
+package learning.visualization.linear;
 
 import javax.swing.*;
 

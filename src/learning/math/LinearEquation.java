@@ -1,5 +1,7 @@
 package learning.math;
 
+import april.jmat.Matrix;
+
 import java.util.Arrays;
 
 public class LinearEquation {
@@ -24,6 +26,17 @@ public class LinearEquation {
             );
         }
         return new OneDimensionalLinearEquation(this.coefficients[d], this.constant);
+    }
+
+
+    public static LinearEquation getLinearEquationFromLinearRegression(LinearRegression regression) {
+        Matrix result = regression.getResult();
+        double [] resultCoefficients = new double[result.getRowDimension() - 1];
+        for ( int i = 0; i < resultCoefficients.length; i++ ) {
+            resultCoefficients[i] = result.get(i+1, 0);
+        }
+        double resultConstant = result.get(0, 0);
+        return new LinearEquation(resultCoefficients, resultConstant);
     }
 
     public double getConstant() {

@@ -67,15 +67,6 @@ public class LinearRegression {
         return m.getRowDimension() + " by " + m.getColumnDimension();
     }
 
-    public LinearEquation getResultantLinearEquation() {
-        double [] resultCoefficients = new double[result.getRowDimension() - 1];
-        for ( int i = 0; i < resultCoefficients.length; i++ ) {
-            resultCoefficients[i] = result.get(i+1, 0);
-        }
-        double resultConstant = result.get(0, 0);
-        return new LinearEquation(resultCoefficients, resultConstant);
-    }
-
     public Matrix getResult() {
         return result;
     }
