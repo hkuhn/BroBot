@@ -157,6 +157,9 @@ public class ArmControllerGUI implements ParameterListener {
         setSecondJoint (Math.PI/6);
         setWristJoint (Math.PI/6); // initial position of arm
 
+
+
+
         sendCommands(false);
         try {
             Thread.sleep(2500);
@@ -180,6 +183,15 @@ public class ArmControllerGUI implements ParameterListener {
         setSecondJoint (pg.gd("2nd_b4"));
         setWristJoint (pg.gd("wrist_b4")); // initial position of arm
 
+        
+        // slow the speed during cockback
+        for (int i=0; i < cmdlist.len; i++)
+        {
+            cmdlist.commands[i].speed = 0.5;
+            cmdlist.commands[i].max_torque = 0.3;
+        }
+
+
         sendCommands(false);
         try {
             Thread.sleep( (pg.gi("throw_delay"))*1000 );
@@ -187,16 +199,31 @@ public class ArmControllerGUI implements ParameterListener {
             System.out.println(e);
         }
 
+
+        
         //setWristJoint (-Math.PI/4);
         setWristJoint (pg.gd("wrist_after"));
         setFirstJoint (pg.gd("1st_after"));
         setSecondJoint (pg.gd("2nd_after"));
         //setWristJoint (this.throwingAngle - threshold);
+
+        // increase the speed again
+        for (int i=0; i < cmdlist.len; i++)
+        {
+            cmdlist.commands[i].speed = 1.0;
+            cmdlist.commands[i].max_torque = pg.gd("throw_torque");
+        }
+
         sendCommands(true);
 
 
 
     }
+
+
+
+
+
 
     protected void openClawAtAngle (double angle) {
 
@@ -305,18 +332,19 @@ public class ArmControllerGUI implements ParameterListener {
 
         // Servo Configs Before
         pg.addDoubleSlider("base_b4","base_b4",0,Math.PI, 0); // BASE ROTATION
-        pg.addDoubleSlider("1st_b4","1st_b4",-Math.PI/8,Math.PI/8, Math.PI/8); // 1st 
-        pg.addDoubleSlider("2nd_b4","2nd_b4",-Math.PI/6,Math.PI/6, Math.PI/6); // 2nd
-        pg.addDoubleSlider("wrist_b4","wrist_b4",-Math.PI/6,Math.PI/6, Math.PI/6); // WRIST
+        pg.addDoubleSlider("1st_b4","1st_b4",-Math.PI/6,Math.PI/6, Math.PI/8); // 1st 
+        pg.addDoubleSlider("2nd_b4","2nd_b4",-Math.PI/4,Math.PI/4, Math.PI/6); // 2nd
+        pg.addDoubleSlider("wrist_b4","wrist_b4",-Math.PI/4,Math.PI/4, Math.PI/6); // WRIST
         //pg.addDoubleSlider("claw_b4","claw_b4",0,Math.PI/2, OPEN_CLAW_ANGLE); // CLAW
         
         pg.addIntSlider("throw_delay", "Throw Delay (sec)", 0, 3, 2);
+        pg.addDoubleSlider("throw_torque", "Throw Torque", 0.1, 1.0, 1.0);        
 
         // Servo Configs After
         pg.addDoubleSlider("base_after","base_after",0,Math.PI, 0); // BASE ROTATION
-        pg.addDoubleSlider("1st_after","1st_after",-Math.PI/8,Math.PI/8, 0); // 1st 
-        pg.addDoubleSlider("2nd_after","2nd_after",-Math.PI/6,Math.PI/6, 0); // 2nd
-        pg.addDoubleSlider("wrist_after","wrist_after",-Math.PI/6,Math.PI/6, 0); // WRIST
+        pg.addDoubleSlider("1st_after","1st_after",-Math.PI/6,Math.PI/6, 0); // 1st 
+        pg.addDoubleSlider("2nd_after","2nd_after",-Math.PI/4,Math.PI/4, 0); // 2nd
+        pg.addDoubleSlider("wrist_after","wrist_after",-Math.PI/4,Math.PI/4, 0); // WRIST
         //pg.addDoubleSlider("claw_after","claw_after",0,Math.PI/2, OPEN_CLAW_ANGLE); // CLAW
         
         pg.addButtons("launch_button", "Launch!!");
