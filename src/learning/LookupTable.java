@@ -13,7 +13,7 @@ public class LookupTable {
     private static double[] keys;
     
     // CONSTRUCTOR METHOD
-    public LookupTable(Matrix key_array, Matrix angles_array) {
+    public LookupTable(ArrayList<Double> key_array, ArrayList<double[]> angles_array) {
         
         // init hashmap
         this.Map = new HashMap(key_array.size());
