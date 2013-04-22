@@ -4,6 +4,10 @@ import java.util.*;
 
 public class LookupTable {
 
+    // const
+    private static final double cup_offset = -0.127;
+    
+    // args
     private static HashMap<Double,double[]> Map;
     private static double[] keys;
     
@@ -27,7 +31,8 @@ public class LookupTable {
     public double[] getAngles(double key) {
         
         // search for key index
-        int index = Arrays.binarySearch(keys, key);
+        int corrected_key = key + cup_offset;
+        int index = Arrays.binarySearch(keys, corrected_key);
         double hash_key = keys[index];
         double[] angles = Map.get(key);
         
