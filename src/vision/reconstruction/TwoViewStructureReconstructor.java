@@ -14,12 +14,12 @@ public interface TwoViewStructureReconstructor {
     /**
      * For two corresponding points x<==>x' from left and right images respectively,
      * finds the point X s.t. X is the point in 3-space where the image points x and x'
-     * originated from.
+     * originated from. Result should always be in meters.
      *
-     * @param leftImagePoint image point in left image, NOT homogeneous (2 by 1 matrix)
-     * @param rightImagePoint image point in right image, NOT homogeneous (2 by 1 matrix)
+     * @param leftImagePoint image point in left image
+     * @param rightImagePoint image point in right image
      * @param stereoCameraPair the information about the stereo
-     * @return the point in 3-space, NOT homogeneous (3 by 1 matrix)
+     * @return the point in 3-space, in meters
      */
     public Point3Space getPointInThreeSpace(StereoCameraPair stereoCameraPair,
                                             Point2Space leftImagePoint,

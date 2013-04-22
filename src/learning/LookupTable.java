@@ -31,7 +31,7 @@ public class LookupTable {
     public double[] getAngles(double key) {
         
         // search for key index
-        int corrected_key = key + cup_offset;
+        int corrected_key = (int)(key + cup_offset);
         int index = Arrays.binarySearch(keys, corrected_key);
         double hash_key = keys[index];
         double[] angles = Map.get(key);

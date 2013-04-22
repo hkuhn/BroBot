@@ -37,6 +37,10 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
     protected RealMatrix ep;
     protected RealMatrix xHat;
     protected RealMatrix xHatPrime;
+
+    /**
+     * THIS IS IN millimeters
+     */
     protected Point3Space mleX;
 
 
@@ -58,8 +62,8 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
 
     protected void calculateInitialTransformationMatrices() {
         // to move points to origin, simply translate.
-        this.t = translationRealMatrix(this.leftImagePoint.getEntry(0,0), this.leftImagePoint.getEntry(1,0));
-        this.tp = translationRealMatrix(this.rightImagePoint.getEntry(0,0), this.rightImagePoint.getEntry(1,0));
+        this.t = translationMatrix(-this.leftImagePoint.getEntry(0,0), -this.leftImagePoint.getEntry(1,0));
+        this.tp = translationMatrix(-this.rightImagePoint.getEntry(0,0), -this.rightImagePoint.getEntry(1,0));
     }
 
     protected void translatefundamentalMatrix() {
@@ -121,8 +125,8 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         double b = this.fundamentalMatrix.getEntry(1,2);
         double c = this.fundamentalMatrix.getEntry(2,1);
         double d = this.fundamentalMatrix.getEntry(2,2);
-        double f = -1 * this.fundamentalMatrix.getEntry(0,2) / d;
-        double f_p = -1 * this.fundamentalMatrix.getEntry(0,1) / c;
+        double f = this.e.getEntry(2,0);
+        double f_p = this.ep.getEntry(2,0);
         
         double six_coeff = pow(a,2)*c*d*pow(f,4) - a*b*pow(c,2)*pow(f,4);
         double five_coeff = pow(a,2)*pow(d,2)*pow(f,4) - 2*pow(a,2)*pow(c,2)*pow(f_p,2)
@@ -145,7 +149,6 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
 
         // first term should be the consants, then firt order, second order, etc
         double [] coefficients = {zero_coeff, one_coeff, two_coeff, three_coeff, four_coeff, five_coeff, six_coeff};
-        //double[] coeff = {six_coeff, five_coeff, four_coeff, three_coeff, two_coeff, one_coeff, zero_coeff};
         
         
         // now solve for roots
@@ -231,12 +234,12 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         // P and P' are leftCameraMatrix and rightCameraMatrix respectively
 
         // A will be (4x4) -- that is each row of P is (1x4)
-        RealVector [] topRows = makeVectorRowsInA(this.stereoCameraPair.getLeftCameraMatrix(), this.leftImagePoint);
-        RealVector [] bottomRows = makeVectorRowsInA(this.stereoCameraPair.getRightCameraMatrix(), this.rightImagePoint);
+        RealVector [] topRows = makeVectorRowsInA(this.stereoCameraPair.getLeftCameraMatrix(), this.xHat);
+        RealVector [] bottomRows = makeVectorRowsInA(this.stereoCameraPair.getRightCameraMatrix(), this.xHatPrime);
         A.setRowVector(0, topRows[0]);
-        A.setRowVector(0, topRows[1]);
-        A.setRowVector(0, bottomRows[0]);
-        A.setRowVector(0, bottomRows[1]);
+        A.setRowVector(1, topRows[1]);
+        A.setRowVector(2, bottomRows[0]);
+        A.setRowVector(3, bottomRows[1]);
 
 
         // finally take the SVD of A
@@ -308,6 +311,8 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         this.findXInThreeSpace();
     }
 
+    // RESULT IS IN METERS
+    @Override
     public Point3Space getPointInThreeSpace(StereoCameraPair stereoCameraPair,
                                             Point2Space leftImagePoint,
                                             Point2Space rightImagePoint) {
@@ -324,7 +329,15 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
 
         runAlgorithm();
 
-        return this.mleX;
+        return convertMillimetersToMeters(this.mleX);
+    }
+
+    private static Point3Space convertMillimetersToMeters(Point3Space point) {
+        return new Point3Space(
+                point.getX() * 0.001,
+                point.getY() * 0.001,
+                point.getZ() * 0.001
+        );
     }
 
     protected static RealMatrix rotationRealMatrixFromEpipole(RealMatrix epipole) {
@@ -362,7 +375,7 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         return result;
     }
 
-    protected static RealMatrix translationRealMatrix(final double x, final double y) {
+    protected static RealMatrix translationMatrix(final double x, final double y) {
         double [][] data = {
                 {1,0,x},
                 {0,1,y},
