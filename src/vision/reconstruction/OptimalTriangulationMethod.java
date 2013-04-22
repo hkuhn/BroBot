@@ -37,6 +37,10 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
     protected RealMatrix ep;
     protected RealMatrix xHat;
     protected RealMatrix xHatPrime;
+
+    /**
+     * THIS IS IN millimeters
+     */
     protected Point3Space mleX;
 
 
@@ -307,6 +311,8 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         this.findXInThreeSpace();
     }
 
+    // RESULT IS IN METERS
+    @Override
     public Point3Space getPointInThreeSpace(StereoCameraPair stereoCameraPair,
                                             Point2Space leftImagePoint,
                                             Point2Space rightImagePoint) {
@@ -323,7 +329,15 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
 
         runAlgorithm();
 
-        return this.mleX;
+        return convertMillimetersToMeters(this.mleX);
+    }
+
+    private static Point3Space convertMillimetersToMeters(Point3Space point) {
+        return new Point3Space(
+                point.getX() * 0.001,
+                point.getY() * 0.001,
+                point.getZ() * 0.001
+        );
     }
 
     protected static RealMatrix rotationRealMatrixFromEpipole(RealMatrix epipole) {
