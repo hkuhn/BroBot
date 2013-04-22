@@ -22,7 +22,7 @@ public class BroBotRingDetection {
         
         RingDetectionDetector rdd = new RingDetectionDetector();
 		rdd.runDetection(im, this.whiteThreshold);
-        circles_list = rdd.getCircles().clone();   // returns 3 circles
+        circles_list = rdd.getCircles();   // returns 3 circles
 		
     }
     

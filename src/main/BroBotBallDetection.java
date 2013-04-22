@@ -19,7 +19,7 @@ public class BroBotBallDetection {
     public BroBotBallDetection(BufferedImage im) {
         // run image binarization with blue thresh
         binarize b = new binarize(im, blueThreshold);
-        out = b.getBinarizedImage();
+        BufferedImage out = b.getBinarizedImage();
         
 		
         // run ball detection
