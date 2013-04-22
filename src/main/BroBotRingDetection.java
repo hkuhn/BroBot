@@ -4,6 +4,7 @@ import vision.ringdetection.*;
 import datatypes.*;
 
 import java.util.ArrayList;
+import java.awt.image.BufferedImage;
 
 public class BroBotRingDetection {
 
