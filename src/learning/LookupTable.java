@@ -4,15 +4,15 @@ import java.util.*;
 
 public class LookupTable {
 
-    private static HashMap<double,double[]> Map;
+    private static HashMap<Double,double[]> Map;
     private static double[] keys;
     
     // CONSTRUCTOR METHOD
-    public LookupTable(ArrayList<double> key_array, ArrayList<double[]> angles_array) {
+    public LookupTable(ArrayList<Double> key_array, ArrayList<double[]> angles_array) {
         
         // init hashmap
-        this.Map = new HashMap(key_array.length);
-        this.keys = new double[key_array.length];
+        this.Map = new HashMap(key_array.size());
+        this.keys = new double[key_array.size()];
         
         // build map
         for (int i = 0; i < angles_array.size(); i++) {
@@ -27,8 +27,8 @@ public class LookupTable {
     public double[] getAngles(double key) {
         
         // search for key index
-        int index = Array.binarySearch(keys, key);
-        double key = keys[index];
+        int index = Arrays.binarySearch(keys, key);
+        double hash_key = keys[index];
         double[] angles = Map.get(key);
         
         return angles;
