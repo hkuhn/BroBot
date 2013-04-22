@@ -6,10 +6,10 @@ public class BroBotController implements Runnable {
     // const
     
     // args
-    final protected BroBotControllerDelegate delegate;
+    final protected BroBotControllerDelegate        delegate;
     
-    protected boolean isExecuting;
-    protected boolean endOfGame;
+    protected boolean                               isExecuting;
+    protected boolean                               endOfGame;
 
 
     // CONSTRUCTOR METHOD
@@ -51,6 +51,9 @@ public class BroBotController implements Runnable {
         //      b. once ball is detected for at least "t1" seconds, goto opponent state
         //      c. wait until a ball is out of frame
         //      d. once ball leaves frame for at least "t2" seconds, goto bot state
+        
+        // start threads
+        
         
         while (true) {
             
