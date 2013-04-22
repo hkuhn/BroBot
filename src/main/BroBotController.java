@@ -55,6 +55,10 @@ public class BroBotController implements Runnable {
         //      d. once ball leaves frame for at least "t2" seconds, goto bot state
         
         // start threads
+        //this.ballDetectionThread = new Thread(this.ballDetectionController);
+        //this.ringDetectionThread = new Thread(this.ringDetectionController);
+        //this.ballDetectionThread.start();
+        //this.ringDetectionThread.start();
         
         
         while (true) {
