@@ -5,13 +5,13 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class BroBotApplicationController {
+public class BroBotApplicationController implements BroBotControllerDelegate {
 
     // const
     // args
-    private BroBotFrame         frame;
-    private Thread              mainThread;
-    //private BroBotController    botController;
+    protected BroBotFrame         frame;
+    protected Thread              mainThread;
+    protected BroBotController    botController;
     
     
     
@@ -55,13 +55,16 @@ public class BroBotApplicationController {
             System.out.println("Game Already Running!");
             return;
         }
-        //this.botController = new BroBotController();
-        //this.mainThread = new Thread(this.botController);
-        //this.mainThread.start();
+        this.botController = new BroBotController(this);
+        this.mainThread = new Thread(this.botController);
+        this.mainThread.start();
     }
     
     protected void endGame() {
-        
+        if (this.mainThread == null) {
+            System.out.println("Game has already stopped");
+            return;
+        }
         
         
     }
