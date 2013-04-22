@@ -13,7 +13,7 @@ public class PutInData {
 
 	public static void main (String[] args) {
 		
-		File dataFile = new File ("../../learning_data/data_type"); 
+		File dataFile = new File ("../learning-data/data_table"); 
 		DataReader dataReader = new DataReader (dataFile);
 
 		try {
@@ -35,6 +35,7 @@ public class PutInData {
 			System.out.println(out[0] + " " + out[1] + " " + out[2]);
 		} catch (Exception e) {
 			System.out.println("ERROR");
+			e.printStackTrace();
 		}
 
 				

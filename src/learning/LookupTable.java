@@ -22,20 +22,31 @@ public class LookupTable {
         // build map
         for (int i = 0; i < angles_array.size(); i++) {
             double cur_key = key_array.get(i);
-            double[] angles = angles_array.get(i);
+            double[] angles = new double[3];
+			angles[0] = angles_array.get(i)[0];
+			angles[1] = angles_array.get(i)[1];
+			angles[2] = angles_array.get(i)[2];
             Map.put(cur_key, angles);
             keys[i] = cur_key;
         }
+
+		Arrays.sort(keys);
     }
     
     // RETRIEVE VALUE
     public double[] getAngles(double key) {
         
+		//for (int i = 0; i < keys.length; i++) {
+			//System.out.println(keys[i]);
+		//}
         // search for key index
-        int corrected_key = (int)(key + cup_offset);
-        int index = Arrays.binarySearch(keys, corrected_key);
+        double corrected_key = key + (double)cup_offset;
+		//System.out.println("key: " + corrected_key);
+        int index = -1*(Arrays.binarySearch(keys, corrected_key));
+		//System.out.println(index);
         double hash_key = keys[index];
-        double[] angles = Map.get(key);
+		//System.out.println(hash_key);
+        double[] angles = Map.get(hash_key);
         
         return angles;
     }
