@@ -1,6 +1,7 @@
 package vision.reconstruction;
 
-import april.jmat.Matrix;
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.RealMatrix;
 
 /**
  * Takes three params, as if line is vector format (lambda, mu, v)
@@ -32,12 +33,13 @@ public class GeneralLine {
         return v;
     }
 
-    public Matrix getClosestPointToOrigin() {
-        Matrix point = new Matrix(3,1);
-        point.set(0, 0, -lambda * v);
-        point.set(0, 1, -mu * v);
-        point.set(0, 2, Math.pow(lambda, 2) + Math.pow(mu, 2));
-        return point;
+    public RealMatrix getClosestPointToOrigin() {
+        double [][] data = {
+                {-this.getLambda() * this.getV()},
+                {-this.getMu() * this.getV()},
+                {Math.pow(this.getLambda(), 2) + Math.pow(this.getMu(), 2)}
+        };
+        return new Array2DRowRealMatrix(data, false);
     }
 
 }

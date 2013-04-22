@@ -1,6 +1,8 @@
 package vision.reconstruction;
 
-import april.jmat.Matrix;
+import vision.datastructures.Point2Space;
+import vision.datastructures.Point3Space;
+import vision.datastructures.StereoCameraPair;
 
 /**
  * User: slessans
@@ -16,9 +18,11 @@ public interface TwoViewStructureReconstructor {
      *
      * @param leftImagePoint image point in left image, NOT homogeneous (2 by 1 matrix)
      * @param rightImagePoint image point in right image, NOT homogeneous (2 by 1 matrix)
-     * @param fundamentalMatrix the fundamental matrix between left and right camera
+     * @param stereoCameraPair the information about the stereo
      * @return the point in 3-space, NOT homogeneous (3 by 1 matrix)
      */
-    public Matrix getPointInThreeSpace(Matrix leftImagePoint, Matrix rightImagePoint, Matrix fundamentalMatrix);
+    public Point3Space getPointInThreeSpace(StereoCameraPair stereoCameraPair,
+                                            Point2Space leftImagePoint,
+                                            Point2Space rightImagePoint);
 
 }

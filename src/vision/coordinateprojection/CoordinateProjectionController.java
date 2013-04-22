@@ -26,7 +26,11 @@ import april.jcam.ImageConvert;
 import april.jcam.ImageSourceFormat;
 import april.jcam.ImageSourceFile;
 import april.jmat.Matrix;
-
+import vision.datastructures.Point2Space;
+import vision.datastructures.Point3Space;
+import vision.datastructures.StereoCameraPair;
+import vision.reconstruction.OptimalTriangulationMethod;
+import vision.reconstruction.TwoViewStructureReconstructor;
 
 
 public class CoordinateProjectionController {
@@ -41,8 +45,10 @@ public class CoordinateProjectionController {
     private BufferedImage 	    	selectedLeftImage;
     private BufferedImage           selectedRightImage;
 
-	protected Point2D					pixel_left_point;
-	protected Point2D					pixel_right_point;
+	protected Point2D					leftPoint;
+	protected Point2D					rightPoint;
+
+    protected StereoCameraPair stereoPairInfo;
     
     
     // CONSTRUCTOR
@@ -98,10 +104,20 @@ public class CoordinateProjectionController {
         frame.getProjectButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                if ( leftPoint == null || rightPoint == null ) return;
+
 				System.out.println("Projecting points into 3D");
-                System.out.println("Left Point: " + pixel_left_point);
-                System.out.println("Right Point: " + pixel_right_point);
-                // run computation
+                System.out.println("Left Point: " + leftPoint);
+                System.out.println("Right Point: " + rightPoint);
+
+                // convert to other points
+                Point2Space left2SpacePoint = new Point2Space(leftPoint.getX(), rightPoint.getY());
+                Point2Space right2SpacePoint = new Point2Space(rightPoint.getX(), rightPoint.getY());
+
+                TwoViewStructureReconstructor reconstructor = new OptimalTriangulationMethod();
+                Point3Space point = reconstructor.getPointInThreeSpace(stereoPairInfo, left2SpacePoint, right2SpacePoint);
+                System.out.println("Got point in 3 space: " + point);
             }
         });
         
@@ -145,7 +161,7 @@ public class CoordinateProjectionController {
         Point input = me.getPoint();
         
         final Point2D guiPoint = new Point2D.Double(input.x, input.y);
-		System.out.println("Clicked at " + guiPoint + " w.r.t GUI.");
+		// System.out.println("Clicked at " + guiPoint + " w.r.t GUI.");
 		AffineTransform imageTransform = null;
 		try {
 			if (leftimage) {
@@ -156,10 +172,11 @@ public class CoordinateProjectionController {
 			}
 		} catch ( Exception e ) {
 			System.out.println("Fuck.");
+            e.printStackTrace();
 			return;
 		}
         Point2D imagePoint = imageTransform.transform(guiPoint, null);
-        System.out.println("Clicked at " + imagePoint + " w.r.t image.");
+        // System.out.println("Clicked at " + imagePoint + " w.r.t image.");
         
 		// test bounds
 		if ( imagePoint.getX() < 0 || imagePoint.getX() > 1296 ||
@@ -167,12 +184,35 @@ public class CoordinateProjectionController {
 			System.out.println("Error. Click Went beyond bounds");
 			return;
 		}
-        
-        if (leftimage) this.pixel_left_point = imagePoint;
-        else this.pixel_right_point = imagePoint;
-        
+
+        if ( leftimage ) {
+            setLeftPoint(imagePoint);
+        } else {
+            setRightPoint(imagePoint);
+        }
+
         
 	}
+
+    public void setLeftPoint(Point2D point) {
+        this.leftPoint = point;
+        if ( point == null ) {
+            this.getFrame().getLeftPointLabel().setText("No Point Selected");
+        } else {
+            this.getFrame().getLeftPointLabel().setText("Point: " + point);
+        }
+    }
+
+    public void setRightPoint(Point2D point) {
+        this.rightPoint = point;
+        if ( point == null ) {
+            this.getFrame().getRightPointLabel().setText("No Point Selected");
+        } else {
+            this.getFrame().getRightPointLabel().setText("Point: " + point);
+        }
+    }
+
+
     
     // RUN LEFT IMAGE
     protected void startLeftImage() {
