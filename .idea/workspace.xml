@@ -2,22 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9774c084-0c12-4d55-9093-e35eb2276a17" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" afterPath="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" afterPath="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/datastructures/Point2Space.java" afterPath="$PROJECT_DIR$/src/vision/datastructures/Point2Space.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/BroBotAppControllerDelegate.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/BroBotAppControllerDelegateImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/StereoVisionFrame.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/learning/OneDimensionalLinearEquation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/learning/Test.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/learning/Test.java_bak" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/BroBotApplicationController.java" afterPath="$PROJECT_DIR$/src/main/BroBotApplicationController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/BroBotControllerDelegate.java" afterPath="$PROJECT_DIR$/src/main/BroBotControllerDelegate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/BroBotFrame.java" afterPath="$PROJECT_DIR$/src/main/BroBotFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/BroBotMain.java" afterPath="$PROJECT_DIR$/src/main/BroBotMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/learning/visualization/VisualizationController.java" afterPath="$PROJECT_DIR$/src/learning/visualization/VisualizationController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BroBot.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366494242425" ignored="false" />
-    <file path="/fragment.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366587943657" ignored="false" />
+    <file path="/Dummy.txt" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366620268946" ignored="false" />
+    <file path="/fragment.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366620725182" ignored="false" />
     <file path="/MainWindow.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365889671587" ignored="false" />
     <file path="/AppController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365890349226" ignored="false" />
     <file path="/LinearRegression.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365903272730" ignored="false" />
     <file path="/LinearEquation.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366582411662" ignored="false" />
     <file path="/Test.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366265041903" ignored="false" />
     <file path="/VisualizationFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366175142990" ignored="false" />
-    <file path="/VisualizationController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366582424243" ignored="false" />
+    <file path="/VisualizationController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366618477711" ignored="false" />
     <file path="/VisualizationMain.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365962218914" ignored="false" />
     <file path="/OneDimensionalLinearEquation.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1365962898296" ignored="false" />
     <file path="/GradientDescent.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366177344424" ignored="false" />
@@ -51,16 +59,16 @@
     <file path="/OurStereoCameraPair.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366595596629" ignored="false" />
     <file path="/OurStereoCameraPairFactory.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366595502024" ignored="false" />
     <file path="/LookupTable.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366599497824" ignored="false" />
-    <file path="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector_full_scan.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
-    <file path="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionMain.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
     <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionDetector_Union.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
-    <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionMain.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
     <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
     <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
     <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionDetector_Expand.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
-    <file path="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
-    <file path="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
-    <file path="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
+    <file path="/BroBotApplicationController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366621981927" ignored="false" />
+    <file path="/StereoVisionFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366619385061" ignored="false" />
+    <file path="/BroBotMain.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366620807162" ignored="false" />
+    <file path="/BroBotFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366620423383" ignored="false" />
+    <file path="/BroBotControllerDelegate.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366620676738" ignored="false" />
+    <file path="/BroBotAppControllerDelegateImpl.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366621791748" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +83,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -158,7 +167,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -168,19 +176,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CoordinateProjectionController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
+      <file leaf-file-name="BroBotApplicationController.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/BroBotApplicationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="68" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MatrixUtils.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vision/util/MatrixUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="0" selection-start="1300" selection-end="1300" vertical-scroll-proportion="0.0">
+            <state line="126" column="26" selection-start="3661" selection-end="3661" vertical-scroll-proportion="0.19502617">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -188,21 +187,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OptimalTriangulationMethod.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java">
+      <file leaf-file-name="RingDetectionController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vision/ringdetection/RingDetectionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="344" column="10" selection-start="14881" selection-end="14881" vertical-scroll-proportion="0.96007603">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Point2Space.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vision/datastructures/Point2Space.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="45" selection-start="701" selection-end="701" vertical-scroll-proportion="0.0">
+            <state line="31" column="13" selection-start="737" selection-end="737" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -226,14 +214,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/learning/visualization/quadratic/QuadraticVisualizationController.java" />
-        <option value="$PROJECT_DIR$/src/vision/app/MainWindow.java" />
-        <option value="$PROJECT_DIR$/src/vision/app/StereoVisionController.java" />
-        <option value="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionFrame.java" />
-        <option value="$PROJECT_DIR$/src/vision/datastructures/Point.java" />
-        <option value="$PROJECT_DIR$/src/vision/datastructures/Point3Space.java" />
-        <option value="$PROJECT_DIR$/src/vision/datastructures/OurStereoCameraPair.java" />
-        <option value="$PROJECT_DIR$/src/vision/datastructures/OurStereoCameraPairFactory.java" />
         <option value="$PROJECT_DIR$/src/vision/datastructures/StereoCameraPair.java" />
         <option value="$PROJECT_DIR$/src/learning/LookupTable.java" />
         <option value="$PROJECT_DIR$/src/vision/util/MatrixUtils.java" />
@@ -242,14 +222,22 @@
         <option value="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" />
         <option value="$PROJECT_DIR$/src/vision/datastructures/Point2Space.java" />
         <option value="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" />
+        <option value="$PROJECT_DIR$/src/learning/visualization/VisualizationController.java" />
+        <option value="$PROJECT_DIR$/src/main/StereoVisionFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/BroBotFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/BroBotControllerDelegate.java" />
+        <option value="$PROJECT_DIR$/src/main/BroBotMain.java" />
+        <option value="$PROJECT_DIR$/src/main/BroBotAppControllerDelegateImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/BroBotAppControllerDelegate.java" />
+        <option value="$PROJECT_DIR$/src/main/BroBotApplicationController.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-4" />
-    <option name="width" value="1377" />
-    <option name="height" value="905" />
+    <option name="x" value="-1" />
+    <option name="y" value="-5" />
+    <option name="width" value="1922" />
+    <option name="height" value="1206" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -279,8 +267,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -320,28 +306,6 @@
               <option name="myItemId" value="vision" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BroBot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BroBot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vision" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -361,7 +325,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="reconstruction" />
+              <option name="myItemId" value="ringdetection" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -379,33 +343,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vision" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="datastructures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BroBot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BroBot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vision" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="coordinateprojection" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -437,34 +375,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="learning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BroBot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BroBot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="learning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
+              <option name="myItemId" value="cameracalib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -489,12 +407,15 @@
     <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="main" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/vision/app" />
       <recent name="$PROJECT_DIR$/src/learning/visualization/quadratic" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CoordinateProjectionMain">
+  <component name="RunManager" selected="Application.BroBotMain">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
@@ -695,12 +616,30 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <list size="5">
+    <configuration default="false" name="BroBotMain" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="main.BroBotMain" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="BroBot" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Application.StereoCalibrationMain" />
       <item index="1" class="java.lang.String" itemvalue="Application.Test" />
       <item index="2" class="java.lang.String" itemvalue="Application.VisualizationMain" />
       <item index="3" class="java.lang.String" itemvalue="Application.QuadraticVisualizationMain" />
       <item index="4" class="java.lang.String" itemvalue="Application.CoordinateProjectionMain" />
+      <item index="5" class="java.lang.String" itemvalue="Application.BroBotMain" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -739,13 +678,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1377" height="905" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1" y="-5" width="1922" height="1206" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21928665" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -754,18 +692,19 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09511229" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09460738" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19714071" sideWeight="0.7463672" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25363275" sideWeight="0.9532374" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19690502" sideWeight="0.7473983" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2526017" sideWeight="0.9532374" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282876" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -834,124 +773,112 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionFrame.java">
+    <entry file="file://$PROJECT_DIR$/src/learning/math/OneDimensionalLinearEquation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="39" selection-start="1870" selection-end="1870" vertical-scroll-proportion="0.0">
+        <state line="2" column="13" selection-start="37" selection-end="37" vertical-scroll-proportion="0.029097963" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/learning/visualization/VisualizationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="98" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cameracalib/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="157" column="33" selection-start="4854" selection-end="4854" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/datastructures/Point.java">
+    <entry file="file://$PROJECT_DIR$/src/cameracalib/StereoCalibrationMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="18" selection-start="1824" selection-end="1824" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/CameraCalibration/stereo/stationary/Calib_Results_stereo.out">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="34" selection-start="2755" selection-end="2755" vertical-scroll-proportion="0.7100372">
+        <state line="4" column="13" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/datastructures/OurStereoCameraPairFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/cameracalib/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="21" selection-start="619" selection-end="619" vertical-scroll-proportion="0.503876">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="448" selection-end="448" vertical-scroll-proportion="0.5327869">
+        <state line="16" column="13" selection-start="0" selection-end="2244" vertical-scroll-proportion="0.15706806">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/commons-math3-3.2.jar!/org/apache/commons/math3/linear/MatrixUtils.class">
+    <entry file="file://$PROJECT_DIR$/src/main/StereoVisionFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="0" selection-start="9453" selection-end="9453" vertical-scroll-proportion="-4.0">
+        <state line="38" column="19" selection-start="1072" selection-end="1072" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/datastructures/StereoCameraPair.java">
+    <entry file="file://$PROJECT_DIR$/src/main/BroBotFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="39" selection-start="3563" selection-end="3563" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/LookupTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="51" selection-start="918" selection-end="918" vertical-scroll-proportion="0.0">
+        <state line="55" column="30" selection-start="1869" selection-end="1869" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/commons-math3-3.2.jar!/org/apache/commons/math3/linear/Array2DRowRealMatrix.class">
+    <entry file="file://$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="5638" selection-end="5638" vertical-scroll-proportion="0.7256098">
+        <state line="11" column="13" selection-start="190" selection-end="190" vertical-scroll-proportion="-2.117177">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/BroBotController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="5" selection-start="1385" selection-end="1385" vertical-scroll-proportion="1.4749537">
+        <state line="53" column="5" selection-start="1474" selection-end="1474" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/BroBotControllerDelegate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="46" selection-start="567" selection-end="567" vertical-scroll-proportion="0.5009276">
+        <state line="5" column="43" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/BroBotMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="86" selection-start="778" selection-end="778" vertical-scroll-proportion="0.43193716">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/BroBotRingDetection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="37" selection-start="774" selection-end="774" vertical-scroll-proportion="0.5104712">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/ringdetection/RingDetectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="13" selection-start="737" selection-end="737" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/BroBotAppControllerDelegateImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="434" selection-end="434" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/BroBotAppControllerDelegate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="68" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0">
+        <state line="12" column="92" selection-start="299" selection-end="299" vertical-scroll-proportion="0.2356021">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/util/MatrixUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/BroBotApplicationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1300" selection-end="1300" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/datastructures/Point2Space.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="45" selection-start="701" selection-end="701" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/datastructures/Point3Space.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="23" selection-start="823" selection-end="823" vertical-scroll-proportion="0.5825603">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="344" column="10" selection-start="14881" selection-end="14881" vertical-scroll-proportion="0.96007603">
+        <state line="126" column="26" selection-start="3661" selection-end="3661" vertical-scroll-proportion="0.19502617">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

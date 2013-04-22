@@ -8,12 +8,13 @@ public class BroBotFrame extends JFrame {
     // args
     private JButton     startGameButton;
     private JButton     endGameButton;
+    private JButton     chooseCameraSourceButton;
     private JButton     displayOffButton;
     private JButton     displayBallDetectionButton;
     private JButton     displayRingDetectionButton;
-    private JButton     displayStereoVisionButton;
-    
-    
+
+
+    private JButton [] allButtons;
     
     // CONSTRUCTOR METHOD
     public BroBotFrame() {
@@ -35,16 +36,34 @@ public class BroBotFrame extends JFrame {
         displayOffButton = new JButton("Displays Off");
         displayBallDetectionButton = new JButton("Display Ball Detection");
         displayRingDetectionButton = new JButton("Display Ring Detection Button");
-        displayStereoVisionButton = new JButton("Display Stereo Vision Button");
-        
+        chooseCameraSourceButton = new JButton("Select Camera Sources");
+
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new FlowLayout());
         this.add(southPanel, BorderLayout.SOUTH);
-        southPanel.add(displayStereoVisionButton);
         southPanel.add(displayBallDetectionButton);
         southPanel.add(displayRingDetectionButton);
         southPanel.add(displayOffButton);
-        
+        southPanel.add(chooseCameraSourceButton);
+
+
+        this.allButtons = new JButton[]{
+                startGameButton,
+                endGameButton,
+                displayOffButton,
+                displayBallDetectionButton,
+                displayRingDetectionButton,
+                chooseCameraSourceButton};
+    }
+
+    public JButton getChooseCameraSourceButton() {
+        return chooseCameraSourceButton;
+    }
+
+    public void disableAllButtons() {
+        for (JButton button : this.allButtons) {
+            button.setEnabled(false);
+        }
     }
     
 
@@ -68,13 +87,5 @@ public class BroBotFrame extends JFrame {
     public JButton getDisplayRingDetectionButton() {
         return displayRingDetectionButton;
     }
-    
-    public JButton getDisplayStereoVisionButton() {
-        return displayStereoVisionButton;
-    }
-    
-    
-    
-    
 
 }

@@ -1,7 +1,8 @@
 package main;
 
 
-public interface BroBotControllerDelegate {
+import java.awt.image.BufferedImage;
 
+public interface BroBotControllerDelegate {
     
 }

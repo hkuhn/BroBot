@@ -14,10 +14,15 @@ public class BroBotMain {
         // start GUI
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+
                 // create app frame
                 BroBotFrame frame = new BroBotFrame();
+                StereoVisionFrame visionFrame = new StereoVisionFrame();
+                BroBotAppControllerDelegate delegate = new BroBotAppControllerDelegateImpl();
+
                 // build controller
-                BroBotApplicationController appController = new BroBotApplicationController(frame);
+                BroBotApplicationController appController =
+                        new BroBotApplicationController(frame, visionFrame, delegate);
                 
             }
         });
