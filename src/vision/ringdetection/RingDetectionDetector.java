@@ -29,7 +29,7 @@ public class RingDetectionDetector {
     
     // RANSAC Parameters
     private static final int k = 500;       // number of iterations in search of a circle
-    private static final int q = 3;        // number of total circles to be found
+    private static final int q = 6;        // number of total circles to be found
     private static final int n = 3;         // randomly selected n points
     private static final double inf = Double.POSITIVE_INFINITY;
     private static final int MIN_RADIUS = 10;   // min pixel radius
@@ -93,6 +93,10 @@ public class RingDetectionDetector {
 		}
         
 	}
+
+    private static int getRandomNumberInclusive(final int min, final int max) {
+        return min + (int)(Math.random() * ((max - min) + 1));
+    }
     
 	private void RANSAC_CIRCLES(int[][] edgesMatrix) {
         // RANSAC ALGORITHM
@@ -132,9 +136,10 @@ public class RingDetectionDetector {
             while (iterations < k) {
 				//System.out.println(iterations);
                 // coords
-				int i1 = (int)(Math.random()*(whiteHashMap.size()));
-				int i2 = (int)(Math.random()*(whiteHashMap.size()));
-				int i3 = (int)(Math.random()*(whiteHashMap.size()));
+                final int upperBound = whiteHashMap.size() - 1;
+				int i1 = getRandomNumberInclusive(0, upperBound);
+				int i2 = getRandomNumberInclusive(0, upperBound);
+				int i3 = getRandomNumberInclusive(0, upperBound);
 				//System.out.println("i1: " + i1 + " i2: " + i2 + " i3: " + i3);
 				Point p1 = whiteHashMap.get(i1);
 				Point p2 = whiteHashMap.get(i2);
@@ -149,9 +154,9 @@ public class RingDetectionDetector {
                 // test for dissimilar points
                 while ((p1 == p2 || p2 == p3 || p1 == p3)) {
                 	// coords
-					i1 = (int)(Math.random()*(whiteHashMap.size()));
-					i2 = (int)(Math.random()*(whiteHashMap.size()));
-					i3 = (int)(Math.random()*(whiteHashMap.size()));
+					i1 = getRandomNumberInclusive(0, upperBound);
+					i2 = getRandomNumberInclusive(0, upperBound);
+					i3 = getRandomNumberInclusive(0, upperBound);
 					p1 = whiteHashMap.get(i1);
 					p2 = whiteHashMap.get(i2);
 					p3 = whiteHashMap.get(i3);

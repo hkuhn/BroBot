@@ -49,8 +49,8 @@ public class BroBotFrame extends JFrame {
 
         this.allButtons = new JButton[]{
                 startGameButton,
-                endGameButton,
                 displayOffButton,
+                endGameButton,
                 displayBallDetectionButton,
                 displayRingDetectionButton,
                 chooseCameraSourceButton};

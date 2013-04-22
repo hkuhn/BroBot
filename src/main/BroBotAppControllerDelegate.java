@@ -11,5 +11,8 @@ public interface BroBotAppControllerDelegate {
      * @param rightImage
      */
     public BufferedImage[] processImages(BufferedImage leftImage, BufferedImage rightImage);
+
+    public void setAppController(BroBotApplicationController controller);
+    public void setBotController(BroBotController controller);
     
 }

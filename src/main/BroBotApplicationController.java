@@ -18,7 +18,7 @@ public class BroBotApplicationController implements BroBotControllerDelegate {
     // args
     protected BroBotFrame         frame;
     protected StereoVisionFrame   visionFrame;
-    protected Thread              mainThread;
+    protected Thread              botControllerThread;
     protected BroBotController    botController;
     protected Thread              visionThread;
 
@@ -34,12 +34,12 @@ public class BroBotApplicationController implements BroBotControllerDelegate {
         visionFrame.setVisible(true);
 
         this.frame = frame;
-        frame.setSize(1024, 768);
+        frame.setSize(800, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
         this.delegate = delegate;
-        
+        this.delegate.setAppController(this);
 
         this.frame.disableAllButtons();
         frame.getChooseCameraSourceButton().setEnabled(true);
@@ -63,14 +63,13 @@ public class BroBotApplicationController implements BroBotControllerDelegate {
                 startGame();
             }
         });
-        
+
         // END GAME BUTTON LISTENER
         frame.getEndGameButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // end game
-                System.out.println("End Game Button Pressed");
-                endGame();
+                System.exit(0);
             }
         });
     }
@@ -159,15 +158,19 @@ public class BroBotApplicationController implements BroBotControllerDelegate {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                            setLeftImage(leftImage);
-                            setRightImage(rightImage);
+                            if ( leftImage != null ) {
+                                setLeftImage(leftImage);
+                            }
+                            if ( rightImage != null ) {
+                                setRightImage(rightImage);
+                            }
                         }
                     });
                 }
             }
         });
-
         this.visionThread.start();
+        this.getFrame().getStartGameButton().setEnabled(true);
     }
 
     protected void setLeftImage(BufferedImage image) {
@@ -184,20 +187,17 @@ public class BroBotApplicationController implements BroBotControllerDelegate {
 
     // PROTECTED METHODS
     protected void startGame() {
-        if (this.mainThread != null) {
+
+        if (this.botControllerThread != null) {
             System.out.println("Game Already Running!");
             return;
         }
+
+        this.getFrame().getStartGameButton().setEnabled(false);
         this.botController = new BroBotController(this);
-        this.mainThread = new Thread(this.botController);
-        this.mainThread.start();
+        this.delegate.setBotController(this.botController);
+        this.botControllerThread = new Thread(this.botController);
+        this.botControllerThread.start();
     }
-    
-    protected void endGame() {
-        if (this.mainThread == null) {
-            System.out.println("Game has already stopped");
-            return;
-        }
-        
-    }
+
 }

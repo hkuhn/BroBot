@@ -1,4 +1,4 @@
-package Motion;
+package motion;
 
 import java.io.IOException;
 import lcmtypes.*;

@@ -23,7 +23,7 @@ import static java.lang.Math.*;
  * This follows the 'Optimal Triangulation Method' outlined on page 318 in:
  * R. Hartley and A. Zisserman. Multiple View Geometry in Computer Vision. Academic Press, 2002
  */
-public class OptimalTriangulationMethod implements TwoViewStructureReconstructor {
+public class OptimalTriangulationMethod {
 
     protected StereoCameraPair stereoCameraPair;
     protected RealMatrix fundamentalMatrix;
@@ -37,14 +37,16 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
     protected RealMatrix ep;
     protected RealMatrix xHat;
     protected RealMatrix xHatPrime;
+    protected double error;
 
     /**
      * THIS IS IN millimeters
      */
     protected Point3Space mleX;
 
-
-    protected void reset() {
+    public OptimalTriangulationMethod(StereoCameraPair stereoCameraPair,
+                                      Point2Space leftImagePoint,
+                                      Point2Space rightImagePoint) {
         this.leftImagePoint = null;
         this.rightImagePoint = null;
         this.stereoCameraPair = null;
@@ -58,6 +60,26 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         this.xHatPrime = null;
         this.mleX = null;
         this.fundamentalMatrix = null;
+
+
+        // set left and right image point ivars, also transform into homogeneous coordinates
+        this.leftImagePoint = leftImagePoint.getHomogeneousMatrixRepresentation();
+        this.rightImagePoint = rightImagePoint.getHomogeneousMatrixRepresentation();
+        this.stereoCameraPair = stereoCameraPair;
+        this.fundamentalMatrix = stereoCameraPair.getFundamentalMatrix().copy();
+
+        runAlgorithm();
+
+        this.error = getError(this.xHat.getColumnVector(0), this.leftImagePoint.getColumnVector(0));
+        this.error += getError(this.xHatPrime.getColumnVector(0), this.rightImagePoint.getColumnVector(0));
+    }
+
+    public Point3Space getMLEPointIn3Space() {
+        return convertMillimetersToMeters(this.mleX);
+    }
+
+    public double getError() {
+        return this.error;
     }
 
     protected void calculateInitialTransformationMatrices() {
@@ -248,7 +270,13 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         // X is the last column of V. where A = UDV^T (is SVD) [see page 593]
         RealMatrix v = singularValueDecomposition.getV();
         RealVector X = v.getColumnVector(v.getColumnDimension() - 1);
+
         this.mleX = Point3Space.getPointFromHomogeneousVector(X);
+        this.mleX = new Point3Space(
+                this.mleX.getX() / 2,
+                this.mleX.getY() / 2,
+                this.mleX.getZ() / 2
+        );
     }
 
     protected static RealVector[] makeVectorRowsInA(final RealMatrix cameraMatrix, RealMatrix imagePoint) {
@@ -311,30 +339,8 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         this.findXInThreeSpace();
     }
 
-    // RESULT IS IN METERS
-    @Override
-    public Point3Space getPointInThreeSpace(StereoCameraPair stereoCameraPair,
-                                            Point2Space leftImagePoint,
-                                            Point2Space rightImagePoint) {
-
-
-        // start be clearing state
-        this.reset();
-
-        // set left and right image point ivars, also transform into homogeneous coordinates
-        this.leftImagePoint = leftImagePoint.getHomogeneousMatrixRepresentation();
-        this.rightImagePoint = rightImagePoint.getHomogeneousMatrixRepresentation();
-        this.stereoCameraPair = stereoCameraPair;
-        this.fundamentalMatrix = stereoCameraPair.getFundamentalMatrix().copy();
-
-        runAlgorithm();
-
-        System.out.println("xHat:");
-        System.out.println(Point2Space.getPointFromHomogeneousVector(this.xHat.getColumnVector(0)));
-        System.out.println("xHatPrime:");
-        System.out.println(Point2Space.getPointFromHomogeneousVector(this.xHatPrime.getColumnVector(0)));
-
-        return convertMillimetersToMeters(this.mleX);
+    private static double getError(RealVector fixed, RealVector imagePoint) {
+        return fixed.getDistance(imagePoint);
     }
 
     private static Point3Space convertMillimetersToMeters(Point3Space point) {

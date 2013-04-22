@@ -1,14 +1,19 @@
-package Motion;
+package motion;
 
+import java.io.File;
 import java.lang.*;
 import java.util.*;
 import java.awt.*;
 
+import april.jmat.Matrix;
 import lcm.lcm.*;
 import lcmtypes.*;
 
 import april.jmat.MathUtil;
 import april.util.TimeUtil;
+import learning.LookupTable;
+import learning.util.DataReader;
+
 // controls commands to the arm
 public class ArmController {
 
@@ -17,7 +22,10 @@ public class ArmController {
     static final private double OPEN_CLAW_ANGLE = Math.toRadians(50);
     static final private double CLOSE_CLAW_ANGLE = Math.toRadians(119);
     static final private double CUP_HEIGHT = 0.1140;
-
+    static final private double DefaultOpenAngle = Math.toRadians(50);
+    static final private double DistanceAdjust = 0.35;
+    static final private double AngleAdjust = -0.15;
+    static final private long CockBackTime = 4000;
 
 
     private double rotateJoint;
@@ -27,12 +35,39 @@ public class ArmController {
     private double clawRotateJoint;
     private double claw;
     private double throwingAngle;
+    private static final LookupTable lookupTable;
 
-    protected AngleCalculator angleCalculator;
     protected StatusReceiver statusReceiver;
     private dynamixel_command_list_t cmdlist;
 
 
+    static {
+        File dataFile = new File("/home/slessans/BroBot/learning-data/data_table");
+        DataReader dataReader = new DataReader (dataFile);
+
+        LookupTable lt = null;
+        try {
+            dataReader.parse();
+            Matrix angles = dataReader.getParsedInput();
+            Matrix distance = dataReader.getParsedOutput();
+
+            ArrayList<double[]> anglesList = new ArrayList<double[]>();
+            ArrayList<Double> distanceList = new ArrayList<Double>();
+
+            for (int i=0; i < angles.getRowDimension(); i++) {
+                anglesList.add(angles.getRow(i).copyArray());
+                distanceList.add (distance.getRow(i).copyArray()[0]);
+            }
+
+            lt = new LookupTable (distanceList, anglesList);
+        } catch (Exception e) {
+            System.out.println("ERROR");
+            e.printStackTrace();
+        }
+
+        lookupTable = lt;
+
+    }
 
     public ArmController() {
 
@@ -50,7 +85,7 @@ public class ArmController {
             cmdlist.commands[i] = cmd;
         }
 
-        angleCalculator = new AngleCalculator();
+
         statusReceiver = new StatusReceiver();
         LCM.getSingleton().subscribe ("ARM_STATUS", statusReceiver);
 
@@ -106,28 +141,6 @@ public class ArmController {
 
     }
 
-    public void handMeBall() {
-        setOpenClaw();
-        for (int i=0; i < cmdlist.len; i++) {
-            dynamixel_command_t cmd = new dynamixel_command_t();
-            //cmd.position_radians = MathUtil.mod2pi(0);
-            cmd.utime = TimeUtil.utime();
-            cmd.speed = 0.3;
-            cmd.max_torque = 2.0;
-            cmdlist.commands[i] = cmd;
-        }
-
-        setCloseClaw();
-        // reset to old values
-        for (int i=0; i < cmdlist.len; i++) {
-            dynamixel_command_t cmd = new dynamixel_command_t();
-            cmd.position_radians = MathUtil.mod2pi(0);
-            cmd.utime = TimeUtil.utime();
-            cmd.speed = 1.0;
-            cmd.max_torque = 2.0;
-            cmdlist.commands[i] = cmd;
-        }
-    }
 
     protected void setCmd (int index, double angle) {
         cmdlist.commands[index].position_radians = MathUtil.mod2pi(angle);
@@ -143,28 +156,45 @@ public class ArmController {
             openClawAtAngle(this.throwingAngle);
     }
 
-    public void executeThrow () {
+    public void executeThrow(final double angle, final double distance) {
 
-        double threshold = Math.PI/10;
-        setRotateJoint (0);
-        setFirstJoint (Math.PI/8);
-        setSecondJoint (Math.PI/6);
-        setWristJoint (Math.PI/6); // initial position of arm
+        setRotateJoint(angle + AngleAdjust);
+        setClaw(DefaultOpenAngle);
+        sendCommands(false);
+
+        double [] angles = lookupTable.getAngles(distance + DistanceAdjust);
+        setFirstJoint(angles[0]);
+        setSecondJoint(angles[1]);
+        setWristJoint(angles[2]); // initial position of arm
+
+
+        // slow the speed during cockback
+        for (int i=0; i < cmdlist.len; i++) {
+            cmdlist.commands[i].speed = 0.5;
+            cmdlist.commands[i].max_torque = 0.3;
+        }
 
         sendCommands(false);
+
+
         try {
-            Thread.sleep(2500);
+            Thread.sleep(CockBackTime);
         } catch (Exception e) {
             System.out.println(e);
         }
+
+
         //setWristJoint (-Math.PI/4);
-        setWristJoint (0);
-        setFirstJoint (0);
-        setSecondJoint (0);
-        //setWristJoint (this.throwingAngle - threshold);
-        sendCommands(true);
+        setWristJoint(0);
+        setFirstJoint(0);
+        setSecondJoint(0);
 
+        for (int i=0; i < cmdlist.len; i++) {
+            cmdlist.commands[i].speed = 1.0;
+            cmdlist.commands[i].max_torque = 1.0;
+        }
 
+        sendCommands(false);
 
     }
 
@@ -238,22 +268,6 @@ public class ArmController {
         setClawRotateJoint(0);
         setClaw (OPEN_CLAW_ANGLE);
         sendCommands(false);
-
-
-    }
-
-    public void pickUpCup (double x, double y) { // pick up at at this point
-
-        double angles[] = new double[6];
-        angles = angleCalculator.calcNextAngles(x, y, CUP_HEIGHT);
-        setRotateJoint (angles[0]);
-        setFirstJoint (angles[1]);
-        setSecondJoint (angles[2]);
-        setWristJoint (angles[3]);
-        setClawRotateJoint (angles[4]);
-        setClaw (CLOSE_CLAW_ANGLE);
-
-
     }
 
 

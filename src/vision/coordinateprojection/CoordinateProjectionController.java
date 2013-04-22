@@ -33,7 +33,6 @@ import vision.datastructures.Point2Space;
 import vision.datastructures.Point3Space;
 import vision.datastructures.StereoCameraPair;
 import vision.reconstruction.OptimalTriangulationMethod;
-import vision.reconstruction.TwoViewStructureReconstructor;
 
 
 public class CoordinateProjectionController {
@@ -120,8 +119,8 @@ public class CoordinateProjectionController {
                 Point2Space left2SpacePoint = new Point2Space(leftPoint.getX(), rightPoint.getY());
                 Point2Space right2SpacePoint = new Point2Space(rightPoint.getX(), rightPoint.getY());
 
-                TwoViewStructureReconstructor reconstructor = new OptimalTriangulationMethod();
-                Point3Space point = reconstructor.getPointInThreeSpace(stereoPairInfo, left2SpacePoint, right2SpacePoint);
+                OptimalTriangulationMethod reconstructor = new OptimalTriangulationMethod(stereoPairInfo, left2SpacePoint, right2SpacePoint);
+                Point3Space point = reconstructor.getMLEPointIn3Space();
                 System.out.println("Got point in 3 space: " + point);
             }
         });

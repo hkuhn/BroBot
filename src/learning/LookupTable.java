@@ -42,7 +42,14 @@ public class LookupTable {
         // search for key index
         double corrected_key = key + (double)cup_offset;
 		//System.out.println("key: " + corrected_key);
-        int index = -1*(Arrays.binarySearch(keys, corrected_key));
+
+        int index = Arrays.binarySearch(keys, corrected_key);
+
+        if ( index < 0 ) {
+            index += 1;
+            index *= -1;
+        }
+
 		//System.out.println(index);
         double hash_key = keys[index];
 		//System.out.println(hash_key);

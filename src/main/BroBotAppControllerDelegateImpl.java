@@ -7,7 +7,6 @@ import vision.datastructures.Point2Space;
 import vision.datastructures.Point3Space;
 import vision.datastructures.StereoCameraPair;
 import vision.reconstruction.OptimalTriangulationMethod;
-import vision.reconstruction.TwoViewStructureReconstructor;
 import vision.ringdetection.RingDetectionDetector;
 
 import java.awt.image.BufferedImage;
@@ -17,20 +16,31 @@ import java.util.Comparator;
 
 public class BroBotAppControllerDelegateImpl implements BroBotAppControllerDelegate {
 
-    private static final long RingDetectionInterval = 3000;
-    private static final int WhiteThreshold = 230;  // vary this parameter to detect rings
+    private static final long RingDetectionInterval = 10000;
+    private static final int WhiteThresholdRight = 218;  // vary this parameter to detect rings
+    private static final int WhiteThresholdLeft = 213;  // vary this parameter to detect rings
 
-
-    private RingDetectionDetector ringDetector;
-    private long lastRingDetectionTime;
-    private TwoViewStructureReconstructor structureReconstructor;
     private StereoCameraPair cameraPair;
+    private long lastRingDetectionTime;
+
+    private BroBotApplicationController appController;
+    private BroBotController botController;
 
     public BroBotAppControllerDelegateImpl() {
-        ringDetector = new RingDetectionDetector();
         lastRingDetectionTime = 0;
-        structureReconstructor = new OptimalTriangulationMethod();
         cameraPair = OurStereoCameraPairFactory.getOurStereoCameraPair();
+        appController = null;
+        botController = null;
+    }
+
+    @Override
+    public void setAppController(BroBotApplicationController controller) {
+        appController = controller;
+    }
+
+    @Override
+    public void setBotController(BroBotController controller) {
+        botController = controller;
     }
 
     @Override
@@ -38,17 +48,19 @@ public class BroBotAppControllerDelegateImpl implements BroBotAppControllerDeleg
 
         long currentTime = System.currentTimeMillis();
 
+
         if ( (currentTime - lastRingDetectionTime) >= RingDetectionInterval ) {
+
+            RingDetectionDetector ringDetectorLeft = new RingDetectionDetector();
             System.out.println("Running left image detection");
-            ringDetector.runDetection(leftImage, WhiteThreshold);
-            leftImage = ringDetector.getThinnedImage();
-            ArrayList<Circle> leftImageCircles = ringDetector.getCircles();
+            ringDetectorLeft.runDetection(leftImage, WhiteThresholdLeft);
+            ArrayList<Circle> leftImageCircles = ringDetectorLeft.getCircles();
             System.out.println("\tDone detection, found " + leftImageCircles.size() + " circles.");
 
+            RingDetectionDetector ringDetectorRight = new RingDetectionDetector();
             System.out.println("Running right image detection");
-            ringDetector.runDetection(rightImage, WhiteThreshold);
-            rightImage = ringDetector.getThinnedImage();
-            ArrayList<Circle> rightImageCircles = ringDetector.getCircles();
+            ringDetectorRight.runDetection(rightImage, WhiteThresholdRight);
+            ArrayList<Circle> rightImageCircles = ringDetectorRight.getCircles();
             System.out.println("\tDone detection, found " + rightImageCircles.size() + " circles.");
 
             Comparator<Circle> circleComparator = new Comparator<Circle>() {
@@ -70,10 +82,14 @@ public class BroBotAppControllerDelegateImpl implements BroBotAppControllerDeleg
             System.out.println("Finding 3d correspondences");
 
             final int len = Math.min(leftImageCircles.size(), rightImageCircles.size());
+
+            Point3Space minErrorPoint = null;
+            double minError = 0;
+
             for ( int i = 0; i < len; i++ ) {
 
-                Circle leftCircle = leftImageCircles.get(0);
-                Circle righCircle = rightImageCircles.get(0);
+                Circle leftCircle = leftImageCircles.get(i);
+                Circle righCircle = rightImageCircles.get(i);
 
                 final double leftX = leftCircle.getCenter().getX();
                 final double leftY = leftCircle.getCenter().getY();
@@ -89,14 +105,31 @@ public class BroBotAppControllerDelegateImpl implements BroBotAppControllerDeleg
                 Point2Space leftCenter = new Point2Space(leftX, leftY);
                 Point2Space rightCenter = new Point2Space(rightX, rightY);
 
-                Point3Space point = structureReconstructor.getPointInThreeSpace(this.cameraPair, leftCenter, rightCenter);
-                System.out.println("Cup " + i + ": " + point);
+                OptimalTriangulationMethod optimalTriangulationMethod = new OptimalTriangulationMethod(this.cameraPair, leftCenter, rightCenter);
+                Point3Space point = optimalTriangulationMethod.getMLEPointIn3Space();
+
+                final double error = optimalTriangulationMethod.getError();
+                if ( minErrorPoint == null || error < minError ) {
+                    minErrorPoint = point;
+                    minError = error;
+                }
+
             }
 
+            if ( botController != null && minErrorPoint != null ) {
+                botController.setTarget(minErrorPoint);
+            }
+
+
+            leftImage = ringDetectorLeft.getThinnedImage();
+            rightImage = ringDetectorRight.getThinnedImage();
+
             lastRingDetectionTime = System.currentTimeMillis();
+
+        } else {
+            leftImage = null;
+            rightImage = null;
         }
-
-
 
         return new BufferedImage[]{leftImage, rightImage};
 
