@@ -376,6 +376,10 @@ public class RingDetectionDetector {
         
 	}
     
+    public ArrayList<Circle> getCircles() {
+        return circles_list;
+    }
+    
     
     
 }
