@@ -67,7 +67,7 @@ public class RingDetectionDetector {
                 	int g = imageArray[index + 1];
                 	int b = imageArray[index + 2];
                 	int avg = (r + g + b) / 3;
-                	if (avg >= t) {
+                	if (avg >= t && y > height / 2) {
                     	binarizedImageArray[y][x] = 1;
                     	//im.setRGB(x,y, 0xff0000ff);   //fill blue
                 	}
@@ -84,7 +84,7 @@ public class RingDetectionDetector {
                 	int g = (rgb >> 8) & 0xff;
                 	int b = (rgb) & 0xff;
                 	int avg = (r + g + b) / 3;
-                	if (avg >= t) {
+                	if (avg >= t && y > height / 2) {
                     	binarizedImageArray[y][x] = 1;
                     	//im.setRGB(x,y, 0xff0000ff);   //fill blue
                 	}

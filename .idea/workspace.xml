@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9774c084-0c12-4d55-9093-e35eb2276a17" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/motion/ArmController.java" afterPath="$PROJECT_DIR$/src/motion/ArmController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/BoundingBoxChooser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/BroBotAppControllerDelegateImpl.java" afterPath="$PROJECT_DIR$/src/main/BroBotAppControllerDelegateImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/BroBotController.java" afterPath="$PROJECT_DIR$/src/main/BroBotController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/learning/LookupTable.java" afterPath="$PROJECT_DIR$/src/learning/LookupTable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/BroBotApplicationController.java" afterPath="$PROJECT_DIR$/src/main/BroBotApplicationController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector.java" afterPath="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BroBot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,16 +56,17 @@
     <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
     <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
     <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionDetector_Expand.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
-    <file path="/BroBotApplicationController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366627531460" ignored="false" />
+    <file path="/BroBotApplicationController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366635435509" ignored="false" />
     <file path="/StereoVisionFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366619385061" ignored="false" />
     <file path="/BroBotMain.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366620807162" ignored="false" />
     <file path="/BroBotFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366627578541" ignored="false" />
     <file path="/BroBotControllerDelegate.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366620676738" ignored="false" />
-    <file path="/BroBotAppControllerDelegateImpl.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366633844259" ignored="false" />
-    <file path="/RingDetectionDetector.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366623978010" ignored="false" />
+    <file path="/BroBotAppControllerDelegateImpl.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366635761097" ignored="false" />
+    <file path="/RingDetectionDetector.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366635785794" ignored="false" />
     <file path="/BroBotController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366634003063" ignored="false" />
     <file path="/BroBotAppControllerDelegate.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366627109410" ignored="false" />
     <file path="/ArmController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366634361041" ignored="false" />
+    <file path="/BoundingBoxChooser.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366635259740" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,24 +127,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BroBotController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/BroBotController.java">
+      <file leaf-file-name="BroBotAppControllerDelegateImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/BroBotAppControllerDelegateImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="144" column="39" selection-start="4686" selection-end="4686" vertical-scroll-proportion="0.0">
+            <state line="53" column="64" selection-start="1748" selection-end="1748" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2623#2631#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArmController.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/motion/ArmController.java">
+      <file leaf-file-name="RingDetectionDetector.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="174" column="28" selection-start="4866" selection-end="4866" vertical-scroll-proportion="0.8100358">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="85" column="49" selection-start="2897" selection-end="2897" vertical-scroll-proportion="0.8">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -166,7 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java" />
         <option value="$PROJECT_DIR$/src/vision/datastructures/Point2Space.java" />
         <option value="$PROJECT_DIR$/src/learning/visualization/VisualizationController.java" />
         <option value="$PROJECT_DIR$/src/main/StereoVisionFrame.java" />
@@ -175,13 +174,14 @@
         <option value="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" />
         <option value="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" />
         <option value="$PROJECT_DIR$/src/main/BroBotAppControllerDelegate.java" />
-        <option value="$PROJECT_DIR$/src/main/BroBotFrame.java" />
-        <option value="$PROJECT_DIR$/src/main/BroBotApplicationController.java" />
         <option value="$PROJECT_DIR$/src/learning/LookupTable.java" />
-        <option value="$PROJECT_DIR$/src/main/BroBotAppControllerDelegateImpl.java" />
-        <option value="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector.java" />
         <option value="$PROJECT_DIR$/src/main/BroBotController.java" />
         <option value="$PROJECT_DIR$/src/motion/ArmController.java" />
+        <option value="$PROJECT_DIR$/src/main/BroBotFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/BoundingBoxChooser.java" />
+        <option value="$PROJECT_DIR$/src/main/BroBotApplicationController.java" />
+        <option value="$PROJECT_DIR$/src/main/BroBotAppControllerDelegateImpl.java" />
+        <option value="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector.java" />
       </list>
     </option>
   </component>
@@ -256,6 +256,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vision" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -271,7 +275,65 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="motion" />
+              <option name="myItemId" value="vision" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reconstruction" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vision" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coordinateprojection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -677,13 +739,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/vision/ringdetection/RingDetectionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="13" selection-start="737" selection-end="737" vertical-scroll-proportion="-0.6651376">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vision/datastructures/Point3Space.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="13" selection-start="160" selection-end="160" vertical-scroll-proportion="0.10752688">
@@ -694,13 +749,6 @@
     <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="73" column="107" selection-start="2588" selection-end="2588" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/BroBotFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="30" selection-start="1750" selection-end="1750" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -716,15 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="63" selection-start="504" selection-end="523" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="18" selection-start="5504" selection-end="5504" vertical-scroll-proportion="1.6603054">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -756,33 +795,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="47" selection-start="708" selection-end="708" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/BroBotAppControllerDelegateImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="42" selection-start="885" selection-end="885" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2624#2632#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/BroBotApplicationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="44" selection-start="757" selection-end="757" vertical-scroll-proportion="0.027522936">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/BroBotController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="144" column="39" selection-start="4686" selection-end="4686" vertical-scroll-proportion="0.0">
+        <state line="144" column="39" selection-start="4686" selection-end="4686" vertical-scroll-proportion="1.155914">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -791,10 +806,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/motion/ArmController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="174" column="28" selection-start="4866" selection-end="4866" vertical-scroll-proportion="0.8100358">
+        <state line="173" column="19" selection-start="4824" selection-end="4824" vertical-scroll-proportion="0.78315413">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/BroBotFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="51" selection-start="387" selection-end="387" vertical-scroll-proportion="0.16129032">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/BoundingBoxChooser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="20" selection-start="1899" selection-end="1899" vertical-scroll-proportion="0.7580645">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1421#1897#0" expanded="true" />
+            <element signature="e#1886#1887#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/BroBotApplicationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="19" selection-start="2210" selection-end="2210" vertical-scroll-proportion="0.6972477">
+          <folding>
+            <element signature="e#2088#2325#0" expanded="true" />
+            <element signature="e#2314#2315#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="181" column="27" selection-start="6535" selection-end="6535" vertical-scroll-proportion="0.20183486">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/BroBotAppControllerDelegateImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="64" selection-start="1748" selection-end="1748" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2623#2631#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="49" selection-start="2897" selection-end="2897" vertical-scroll-proportion="0.8">
+          <folding />
         </state>
       </provider>
     </entry>

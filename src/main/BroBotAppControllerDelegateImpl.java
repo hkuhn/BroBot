@@ -50,7 +50,6 @@ public class BroBotAppControllerDelegateImpl implements BroBotAppControllerDeleg
 
         long currentTime = System.currentTimeMillis();
 
-
         if ( (currentTime - lastRingDetectionTime) >= RingDetectionInterval ) {
 
             RingDetectionDetector ringDetectorLeft = new RingDetectionDetector();

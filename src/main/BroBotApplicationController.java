@@ -26,7 +26,7 @@ public class BroBotApplicationController implements BroBotControllerDelegate {
 
     
     // CONSTRUCTOR METHOD
-    public BroBotApplicationController(BroBotFrame frame, StereoVisionFrame visionFrame, BroBotAppControllerDelegate delegate) {
+    public BroBotApplicationController(BroBotFrame frame, final StereoVisionFrame visionFrame, BroBotAppControllerDelegate delegate) {
 
         this.visionFrame = visionFrame;
         visionFrame.setSize(1024, 768);
@@ -68,10 +68,16 @@ public class BroBotApplicationController implements BroBotControllerDelegate {
         frame.getEndGameButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // end game
-                System.exit(0);
+
+                // BoundingBoxChooser chooser = new BoundingBoxChooser(visionFrame.getLeftImageView(), this);
+
             }
         });
+    }
+
+    public void boundingBoxChooserDidChoose(BoundingBoxChooser chooser) {
+        Rectangle r = chooser.getRectangle();
+        chooser.setVisible(false);
     }
 
 
@@ -171,6 +177,7 @@ public class BroBotApplicationController implements BroBotControllerDelegate {
         });
         this.visionThread.start();
         this.getFrame().getStartGameButton().setEnabled(true);
+        this.getFrame().getEndGameButton().setEnabled(true);
     }
 
     protected void setLeftImage(BufferedImage image) {
