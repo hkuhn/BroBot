@@ -117,12 +117,12 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         //      F =     ff'd    -f'c    f'd
         //              -fb     a       b
         //              -fd     c       d
-        double a = this.fundamentalMatrix.getEntry(2,2);
-        double b = this.fundamentalMatrix.getEntry(2,3);
-        double c = this.fundamentalMatrix.getEntry(3,2);
-        double d = this.fundamentalMatrix.getEntry(3,3);
-        double f = -1 * this.fundamentalMatrix.getEntry(1,3) / d;
-        double f_p = -1 * this.fundamentalMatrix.getEntry(1,2) / c;
+        double a = this.fundamentalMatrix.getEntry(1,1);
+        double b = this.fundamentalMatrix.getEntry(1,2);
+        double c = this.fundamentalMatrix.getEntry(2,1);
+        double d = this.fundamentalMatrix.getEntry(2,2);
+        double f = -1 * this.fundamentalMatrix.getEntry(0,2) / d;
+        double f_p = -1 * this.fundamentalMatrix.getEntry(0,1) / c;
         
         double six_coeff = pow(a,2)*c*d*pow(f,4) - a*b*pow(c,2)*pow(f,4);
         double five_coeff = pow(a,2)*pow(d,2)*pow(f,4) - 2*pow(a,2)*pow(c,2)*pow(f_p,2)
@@ -250,9 +250,9 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
 
     protected static RealVector[] makeVectorRowsInA(final RealMatrix cameraMatrix, RealMatrix imagePoint) {
 
-        final double s = imagePoint.getEntry(0,2);
+        final double s = imagePoint.getEntry(2,0);
         final double x = imagePoint.getEntry(0,0) / s;
-        final double y = imagePoint.getEntry(0,1) / s;
+        final double y = imagePoint.getEntry(1,0) / s;
 
         // x * p_3^T - p_1^T
         // y * p_3^T - p_2^T
@@ -319,6 +319,7 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
         // set left and right image point ivars, also transform into homogeneous coordinates
         this.leftImagePoint = leftImagePoint.getHomogeneousMatrixRepresentation();
         this.rightImagePoint = rightImagePoint.getHomogeneousMatrixRepresentation();
+        this.stereoCameraPair = stereoCameraPair;
         this.fundamentalMatrix = stereoCameraPair.getFundamentalMatrix().copy();
 
         runAlgorithm();

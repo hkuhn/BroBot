@@ -26,6 +26,9 @@ import april.jcam.ImageConvert;
 import april.jcam.ImageSourceFormat;
 import april.jcam.ImageSourceFile;
 import april.jmat.Matrix;
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.RealMatrix;
+import vision.datastructures.OurStereoCameraPairFactory;
 import vision.datastructures.Point2Space;
 import vision.datastructures.Point3Space;
 import vision.datastructures.StereoCameraPair;
@@ -48,7 +51,7 @@ public class CoordinateProjectionController {
 	protected Point2D					leftPoint;
 	protected Point2D					rightPoint;
 
-    protected StereoCameraPair stereoPairInfo;
+    protected static final StereoCameraPair stereoPairInfo = OurStereoCameraPairFactory.getOurStereoCameraPair();
     
     
     // CONSTRUCTOR

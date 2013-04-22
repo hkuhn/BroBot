@@ -13,6 +13,28 @@ public class MatrixUtils {
         return new DiagonalMatrix(diags, false);
     }
 
+    /**
+     *
+     * @param matrix 3 by 1 matrix
+     * @return
+     */
+    public static RealMatrix skewSymmetricMatrix(RealMatrix matrix) {
+        if ( matrix.getRowDimension() != 3 || matrix.getColumnDimension() != 1 ) {
+            throw new IllegalArgumentException("matrix must by 3 by 1, matrix is " + matrix.getRowDimension() + " by " + matrix.getColumnDimension());
+        }
+
+        final double a1 = matrix.getEntry(0,0);
+        final double a2 = matrix.getEntry(1,0);
+        final double a3 = matrix.getEntry(2,0);
+
+        double [][] data = {
+                {0, -a3, a2},
+                {a3, 0, -a1},
+                {-a2, a1, 0}
+        };
+        return new Array2DRowRealMatrix(data, false);
+    }
+
     public static RealMatrix calculateInverse(final RealMatrix matrix) {
 
         // the 2 by 2 ad 3 by 3 case MAY optimize algorithm in the case of those matrices
