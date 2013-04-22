@@ -1,4 +1,4 @@
-package src.datatypes;
+package datatypes;
 
 import java.awt.Point;
 

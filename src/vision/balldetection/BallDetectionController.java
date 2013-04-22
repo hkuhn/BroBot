@@ -1,6 +1,6 @@
-package src.vision.balldetection;
+package vision.balldetection;
 
-import src.vision.util.*;
+import vision.util.*;
 
 import java.io.*;
 

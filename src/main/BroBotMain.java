@@ -1,23 +1,27 @@
-package vision.ringdetection;
-
+package main;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.lang.*;
 
 
-public class RingDetectionMain {
-    
+
+public class BroBotMain {
+
     public static void main(String[] args) {
         
+        // initialize bot config to straight up
+        
+        // start GUI
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 // create app frame
-                RingDetectionFrame frame = new RingDetectionFrame();
+                BroBotFrame frame = new BroBotFrame();
                 // build controller
-                RingDetectionController appController = new RingDetectionController(frame);
+                BroBotApplicationController appController = new BroBotApplicationController(frame);
                 
             }
         });
+
     }
+
 }
