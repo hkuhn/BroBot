@@ -4,6 +4,8 @@ import learning.util.*;
 import java.io.*;
 import java.awt.*;
 import java.io.FileReader;
+import java.util.*;
+
 
 public class PutInData {
 
@@ -13,7 +15,18 @@ public class PutInData {
 		DataReader dataReader = new DataReader (dataFile);
 
 		dataReader.parse();
-		LookUpTable lookUpTable = new LookUpTable (dataReader.getParsedOutput(), dataReader.getParsedInput());
+		Matrix angles = new Matrix (dataReader.getParsedInput());
+		Matrix distance = new Matrix (dataReader.getParsedOutput());		
+
+		ArrayList<double[]> anglesList = new ArrayList<double>();
+		ArrayList<double> distanceList = new ArrayList<double>();
+
+		for (int i=0; i < angles.getRowDimension(); i++) {
+			anglesList.add(angles.getRow(i).copyArray());
+			distanceList.add (distance.getRow(i).copyArray());
+		}
+
+		LookUpTable lookUpTable = new LookUpTable (anglesList, distanceList);
 
 				
 
