@@ -52,7 +52,6 @@ public class BroBotController implements Runnable {
         //      c. wait until a ball is out of frame
         //      d. once ball leaves frame for at least "t2" seconds, goto bot state
         
-<<<<<<< HEAD
         while (true) {
             
             this.gotoBotState();
