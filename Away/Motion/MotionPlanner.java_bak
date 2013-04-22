@@ -1,0 +1,48 @@
+package Motion;
+
+import java.awt.*;
+import java.lang.*;
+import java.util.*;
+
+import javax.swing.SwingUtilties;
+
+public class MotionPlanner implements Runnable {
+
+    static final float g = -9.81F;
+    static final float cupHeight = 0.02F;
+    
+    Point3d currentCup;
+    
+    public MotionPlanner () {
+        currentCup = new Point();
+        
+        
+    }
+    // x is left-right
+    // y is depth
+    // z is height of cup
+    
+    public void setCupCoords (float x, float y) {
+        this.currentCup.x = x;
+        this.currentCup.y - y;
+        this.currentCup.z - cupHeight;
+        
+    }
+
+    // returns 1 on success, 0 on failure
+    // shoots at current cup
+    public boolean takeShot() {
+        rotate()
+        
+        
+    }
+
+    // rotates base joint to align with cup
+    private void rotate() {
+        double angle = atan2(currentCup.x, currentCup.y);
+        
+        
+    }
+
+
+}
