@@ -50,9 +50,17 @@ public class LookupTable {
             index *= -1;
         }
 
+        if ( index >= keys.length ) {
+            index = keys.length - 1;
+        }
+
+        if ( index < 0 ) {
+            index = 0;
+        }
+
 		//System.out.println(index);
         double hash_key = keys[index];
-		//System.out.println(hash_key);
+
         double[] angles = Map.get(hash_key);
         
         return angles;

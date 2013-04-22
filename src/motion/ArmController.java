@@ -26,7 +26,7 @@ public class ArmController {
     static final private double DistanceAdjust = 0.35;
     static final private double AngleAdjust = -0.15;
     static final private long CockBackTime = 4000;
-
+    static final private double AngleConstraints = 3 * (Math.PI / 8);
 
     private double rotateJoint;
     private double firstJoint;
@@ -158,7 +158,13 @@ public class ArmController {
 
     public void executeThrow(final double angle, final double distance) {
 
-        setRotateJoint(angle + AngleAdjust);
+        double ang = angle;
+        if ( angle > AngleConstraints || angle < AngleConstraints ) {
+            ang = 0;
+        }
+        ang += AngleAdjust;
+
+        setRotateJoint(ang);
         setClaw(DefaultOpenAngle);
         sendCommands(false);
 

@@ -29,7 +29,7 @@ public class RingDetectionDetector {
     
     // RANSAC Parameters
     private static final int k = 500;       // number of iterations in search of a circle
-    private static final int q = 6;        // number of total circles to be found
+    private static final int q = 4;        // number of total circles to be found
     private static final int n = 3;         // randomly selected n points
     private static final double inf = Double.POSITIVE_INFINITY;
     private static final int MIN_RADIUS = 10;   // min pixel radius

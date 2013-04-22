@@ -138,6 +138,7 @@ public class BroBotController implements Runnable {
         // first transform into bot coordinates
         Point3Space originalTarget = this.popTarget();
         if ( originalTarget == null ) {
+            System.out.println("ITS NULL");
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {

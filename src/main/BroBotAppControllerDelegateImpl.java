@@ -20,6 +20,8 @@ public class BroBotAppControllerDelegateImpl implements BroBotAppControllerDeleg
     private static final int WhiteThresholdRight = 218;  // vary this parameter to detect rings
     private static final int WhiteThresholdLeft = 213;  // vary this parameter to detect rings
 
+    private static final int DotDim = 2;
+
     private StereoCameraPair cameraPair;
     private long lastRingDetectionTime;
 
@@ -83,46 +85,60 @@ public class BroBotAppControllerDelegateImpl implements BroBotAppControllerDeleg
 
             final int len = Math.min(leftImageCircles.size(), rightImageCircles.size());
 
-            Point3Space minErrorPoint = null;
-            double minError = 0;
+            double rightAvgX = 0.0;
+            double rightAvgY = 0.0;
+            int numRight = 0;
+
+            double leftAvgX = 0.0;
+            double leftAvgY = 0.0;
+            int numLeft = 0;
 
             for ( int i = 0; i < len; i++ ) {
 
                 Circle leftCircle = leftImageCircles.get(i);
-                Circle righCircle = rightImageCircles.get(i);
+                Circle rightCircle = rightImageCircles.get(i);
 
                 final double leftX = leftCircle.getCenter().getX();
                 final double leftY = leftCircle.getCenter().getY();
-                final double rightX = righCircle.getCenter().getX();
-                final double rightY = righCircle.getCenter().getY();
+                final double rightX = rightCircle.getCenter().getX();
+                final double rightY = rightCircle.getCenter().getY();
 
-                if ( leftX == Double.POSITIVE_INFINITY || leftY == Double.POSITIVE_INFINITY ||
-                        rightX == Double.POSITIVE_INFINITY || rightY == Double.POSITIVE_INFINITY ) {
-                    System.out.println("Circles at index " + i + " aren't existent (positive inf)");
-                    continue;
+                if ( leftX != Double.POSITIVE_INFINITY && leftY != Double.POSITIVE_INFINITY ) {
+                    leftAvgX += leftX;
+                    leftAvgY += leftY;
+                    numLeft++;
                 }
 
-                Point2Space leftCenter = new Point2Space(leftX, leftY);
-                Point2Space rightCenter = new Point2Space(rightX, rightY);
-
-                OptimalTriangulationMethod optimalTriangulationMethod = new OptimalTriangulationMethod(this.cameraPair, leftCenter, rightCenter);
-                Point3Space point = optimalTriangulationMethod.getMLEPointIn3Space();
-
-                final double error = optimalTriangulationMethod.getError();
-                if ( minErrorPoint == null || error < minError ) {
-                    minErrorPoint = point;
-                    minError = error;
+                if ( rightX != Double.POSITIVE_INFINITY && rightY != Double.POSITIVE_INFINITY ) {
+                    rightAvgX += rightX;
+                    rightAvgY += rightY;
+                    numRight++;
                 }
-
             }
 
-            if ( botController != null && minErrorPoint != null ) {
-                botController.setTarget(minErrorPoint);
+            if ( numRight > 0 && numLeft > 0 ) {
+
+                System.out.println("RARARARA ----------------------------------------------------");
+                leftImage = ringDetectorLeft.getThinnedImage();
+                rightImage = ringDetectorRight.getThinnedImage();
+
+                Point2Space leftAvgPoint = new Point2Space(leftAvgX / numLeft, leftAvgY / numLeft);
+                Point2Space rightAvgPoint = new Point2Space(rightAvgX / numLeft, rightAvgY / numLeft);
+
+                System.out.println("\tleftPoint: " + leftAvgPoint);
+                System.out.println("\trightPoint: " + rightAvgPoint);
+
+                drawCircle(leftImage, leftAvgPoint);
+                drawCircle(rightImage, rightAvgPoint);
+
+                OptimalTriangulationMethod optimalTriangulationMethod = new OptimalTriangulationMethod(this.cameraPair, leftAvgPoint, rightAvgPoint);
+                if ( botController != null ) {
+                    botController.setTarget(optimalTriangulationMethod.getMLEPointIn3Space());
+                }
+            } else {
+                leftImage = null;
+                rightImage = null;
             }
-
-
-            leftImage = ringDetectorLeft.getThinnedImage();
-            rightImage = ringDetectorRight.getThinnedImage();
 
             lastRingDetectionTime = System.currentTimeMillis();
 
@@ -134,4 +150,23 @@ public class BroBotAppControllerDelegateImpl implements BroBotAppControllerDeleg
         return new BufferedImage[]{leftImage, rightImage};
 
     }
+
+    public static void drawCircle(BufferedImage image, Point2Space point) {
+
+        int x = (int)point.getX();
+        int y = (int)point.getY();
+
+        if ( (x-DotDim) < 0 ) x = DotDim;
+        if ( x + DotDim >= image.getWidth() ) x = image.getWidth() - DotDim -1;
+
+        if ( (y-DotDim) < 0 ) y = DotDim;
+        if ( y + DotDim >= image.getHeight() ) y = image.getHeight() - DotDim -1;
+
+        for ( int cx = (x - DotDim); cx < (x + DotDim); cx++ ) {
+            for ( int cy = (y - DotDim); cy < (y + DotDim); cy++ ) {
+                image.setRGB(cx, cy, 0xFF00FF00);
+            }
+        }
+    }
+
 }
