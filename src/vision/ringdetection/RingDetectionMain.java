@@ -1,4 +1,4 @@
-package src.vision.ringdetection;
+package vision.ringdetection;
 
 
 import javax.swing.*;
