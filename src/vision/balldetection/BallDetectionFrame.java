@@ -1,4 +1,4 @@
-package src.vision.balldetection;
+package vision.balldetection;
 
 
 import javax.swing.*;

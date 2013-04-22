@@ -1,4 +1,4 @@
-package src.vision.util;
+package vision.util;
 
 import java.awt.image.BufferedImage;
 import java.util.Arrays;

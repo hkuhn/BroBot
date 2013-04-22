@@ -1,7 +1,7 @@
-package src.vision.ringdetection;
+package vision.ringdetection;
 
-import src.vision.util.*;
-import src.datatypes.*;
+import vision.util.*;
+import datatypes.*;
 
 import java.awt.image.*;
 import java.awt.Point;
