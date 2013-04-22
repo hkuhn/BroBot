@@ -16,7 +16,7 @@ public class BroBotApplicationController {
     
     
     // CONSTRUCTOR METHOD
-    public BroBotController(BroBotFrame frame) {
+    public BroBotApplicationController(BroBotFrame frame) {
         
         this.frame = frame;
         frame.setSize(1024, 768);
@@ -45,25 +45,22 @@ public class BroBotApplicationController {
                 endGame();
             }
         });
-        
-        
-        
-        // PROTECTED METHODS
-        protected void startGame() {
-            if (this.mainThread != null) {
-                System.out.println("Game Already Running!");
-                return;
-            }
-            //this.botController = new BroBotController();
-            //this.mainThread = new Thread(this.botController);
-            //this.mainThread.start();
+    }
+    
+    
+    
+    // PROTECTED METHODS
+    protected void startGame() {
+        if (this.mainThread != null) {
+            System.out.println("Game Already Running!");
+            return;
         }
-        
-        protected void endGame() {
-            
-            
-            
-        }
+        //this.botController = new BroBotController();
+        //this.mainThread = new Thread(this.botController);
+        //this.mainThread.start();
+    }
+    
+    protected void endGame() {
         
         
         
