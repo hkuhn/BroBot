@@ -8,6 +8,11 @@ public class BroBotFrame extends JFrame {
     // args
     private JButton     startGameButton;
     private JButton     endGameButton;
+    private JButton     displayOffButton;
+    private JButton     displayBallDetectionButton;
+    private JButton     displayRingDetectionButton;
+    private JButton     displayStereoVisionButton;
+    
     
     
     // CONSTRUCTOR METHOD
@@ -26,6 +31,20 @@ public class BroBotFrame extends JFrame {
         northPanel.add(startGameButton);
         northPanel.add(endGameButton);
         
+        // add view buttons
+        displayOffButton = new JButton("Displays Off");
+        displayBallDetectionButton = new JButton("Display Ball Detection");
+        displayRingDetectionButton = new JButton("Display Ring Detection Button");
+        displayStereoVisionButton = new JButton("Display Stereo Vision Button");
+        
+        JPanel southPanel = new JPanel();
+        southPanel.setLayout(new FlowLayout());
+        this.add(southPanel, BorderLayout.SOUTH);
+        southPanel.add(displayStereoVisionButton);
+        southPanel.add(displayBallDetectionButton);
+        southPanel.add(displayRingDetectionButton);
+        southPanel.add(displayOffButton);
+        
     }
     
 
@@ -37,6 +56,24 @@ public class BroBotFrame extends JFrame {
     public JButton getEndGameButton() {
         return endGameButton;
     }
+    
+    public JButton getDisplayOffButton() {
+        return displayOffButton;
+    }
+    
+    public JButton getDisplayBallDetectionButton() {
+        return displayBallDetectionButton;
+    }
+    
+    public JButton getDisplayRingDetectionButton() {
+        return displayRingDetectionButton;
+    }
+    
+    public JButton getDisplayStereoVisionButton() {
+        return displayStereoVisionButton;
+    }
+    
+    
     
     
 

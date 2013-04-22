@@ -8,15 +8,20 @@ import java.lang.*;
 public class BroBotMain {
 
     public static void main(String[] args) {
-        public void run() {
+        
+        // initialize bot config to straight up
+        
+        // start GUI
+        SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 // create app frame
                 BroBotFrame frame = new BroBotFrame();
                 // build controller
-                BroBotController appController = new BroBotController(frame);
+                BroBotApplicationController appController = new BroBotApplicationController(frame);
                 
             }
         });
+
     }
 
 }
