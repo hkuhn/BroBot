@@ -7,6 +7,8 @@ public class BroBotController implements Runnable {
     
     // args
     final protected BroBotControllerDelegate        delegate;
+    protected Thread                                ballDetectionThread;
+    protected Thread                                ringDetectionThread;
     
     protected boolean                               isExecuting;
     protected boolean                               endOfGame;
