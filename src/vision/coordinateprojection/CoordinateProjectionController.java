@@ -62,8 +62,8 @@ public class CoordinateProjectionController {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        leftPoint = new Point2D.Double(521.6250, 888.5000);
-        rightPoint = new Point2D.Double(607.5000, 880.8750);
+        this.leftPoint = new Point2D.Double(528.3125, 848.5);
+        this.rightPoint = new Point2D.Double(618.28125, 874.515625);
         
         // add action event listeners
         // LEFT IMAGE BUTTON
@@ -71,8 +71,7 @@ public class CoordinateProjectionController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser chooser = new JFileChooser();
-			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                                                                             "Images", "jpg", "gif", "png");
+			    FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "gif", "png");
 			    chooser.setFileFilter(filter);
 			    int returnVal = chooser.showOpenDialog(CoordinateProjectionController.this.frame);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {

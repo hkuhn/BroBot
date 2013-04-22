@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9774c084-0c12-4d55-9093-e35eb2276a17" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/BroBotController.java" afterPath="$PROJECT_DIR$/src/main/BroBotController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" afterPath="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" afterPath="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java" afterPath="$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/datastructures/Point2Space.java" afterPath="$PROJECT_DIR$/src/vision/datastructures/Point2Space.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BroBot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +30,7 @@
     <file path="/CoordinateProjectionMain.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366255116166" ignored="false" />
     <file path="/CoordinateProjection.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366257737646" ignored="false" />
     <file path="/TwoViewStructureReconstructor.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603916690" ignored="false" />
-    <file path="/OptimalTriangulationMethod.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603890960" ignored="false" />
+    <file path="/OptimalTriangulationMethod.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366605575379" ignored="false" />
     <file path="/3d reconstruction equations" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366271612380" ignored="false" />
     <file path="/CoeffTest.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366495720525" ignored="false" />
     <file path="/OptimalTriangulationCostFunction.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366496979425" ignored="false" />
@@ -37,7 +38,7 @@
     <file path="/StereoCameraPair.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366595394288" ignored="false" />
     <file path="/Point.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366576964106" ignored="false" />
     <file path="/a.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366574050054" ignored="false" />
-    <file path="/Point2Space.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366589369638" ignored="false" />
+    <file path="/Point2Space.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366605541199" ignored="false" />
     <file path="/Point3Space.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366589393105" ignored="false" />
     <file path="/File Header.txt.ft" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366574220908" ignored="false" />
     <file path="/MatrixUtils.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366600902633" ignored="false" />
@@ -46,7 +47,7 @@
     <file path="/QuadraticVisualizationFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366581880407" ignored="false" />
     <file path="/QuadraticVisualizationController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366583358976" ignored="false" />
     <file path="/Quadratic3DEquation.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366582924944" ignored="false" />
-    <file path="/CoordinateProjectionController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366601014656" ignored="false" />
+    <file path="/CoordinateProjectionController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366605345424" ignored="false" />
     <file path="/OurStereoCameraPair.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366595596629" ignored="false" />
     <file path="/OurStereoCameraPairFactory.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366595502024" ignored="false" />
     <file path="/LookupTable.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366599497824" ignored="false" />
@@ -167,10 +168,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="OptimalTriangulationMethod.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java">
+      <file leaf-file-name="CoordinateProjectionController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="338" column="47" selection-start="14583" selection-end="14583" vertical-scroll-proportion="1.2281369">
+            <state line="65" column="68" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MatrixUtils.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vision/util/MatrixUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="0" selection-start="1300" selection-end="1300" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -178,10 +188,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoordinateProjectionController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
+      <file leaf-file-name="OptimalTriangulationMethod.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="44" selection-start="2172" selection-end="2172" vertical-scroll-proportion="0.0">
+            <state line="344" column="10" selection-start="14881" selection-end="14881" vertical-scroll-proportion="0.96007603">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Point2Space.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vision/datastructures/Point2Space.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="45" selection-start="701" selection-end="701" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -210,17 +231,17 @@
         <option value="$PROJECT_DIR$/src/vision/app/StereoVisionController.java" />
         <option value="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionFrame.java" />
         <option value="$PROJECT_DIR$/src/vision/datastructures/Point.java" />
-        <option value="$PROJECT_DIR$/src/vision/datastructures/Point2Space.java" />
         <option value="$PROJECT_DIR$/src/vision/datastructures/Point3Space.java" />
         <option value="$PROJECT_DIR$/src/vision/datastructures/OurStereoCameraPair.java" />
         <option value="$PROJECT_DIR$/src/vision/datastructures/OurStereoCameraPairFactory.java" />
         <option value="$PROJECT_DIR$/src/vision/datastructures/StereoCameraPair.java" />
         <option value="$PROJECT_DIR$/src/learning/LookupTable.java" />
         <option value="$PROJECT_DIR$/src/vision/util/MatrixUtils.java" />
-        <option value="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" />
         <option value="$PROJECT_DIR$/src/main/BroBotController.java" />
-        <option value="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" />
         <option value="$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java" />
+        <option value="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" />
+        <option value="$PROJECT_DIR$/src/vision/datastructures/Point2Space.java" />
+        <option value="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" />
       </list>
     </option>
   </component>
@@ -399,6 +420,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -789,20 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/datastructures/Point2Space.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="5" selection-start="392" selection-end="516" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/datastructures/Point3Space.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="7" selection-start="1011" selection-end="1011" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/doc/CameraCalibration/stereo/stationary/Calib_Results_stereo.out">
       <provider selected="true" editor-type-id="text-editor">
         <state line="56" column="34" selection-start="2755" selection-end="2755" vertical-scroll-proportion="0.7100372">
@@ -856,22 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/util/MatrixUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="39" selection-start="1712" selection-end="1712" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="44" selection-start="2172" selection-end="2172" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/BroBotController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="5" selection-start="1385" selection-end="1385" vertical-scroll-proportion="1.4749537">
@@ -888,9 +919,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="68" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/util/MatrixUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="1300" selection-end="1300" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/datastructures/Point2Space.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="45" selection-start="701" selection-end="701" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/datastructures/Point3Space.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="23" selection-start="823" selection-end="823" vertical-scroll-proportion="0.5825603">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="338" column="47" selection-start="14583" selection-end="14583" vertical-scroll-proportion="1.2281369">
+        <state line="344" column="10" selection-start="14881" selection-end="14881" vertical-scroll-proportion="0.96007603">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

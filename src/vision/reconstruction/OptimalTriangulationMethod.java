@@ -329,6 +329,11 @@ public class OptimalTriangulationMethod implements TwoViewStructureReconstructor
 
         runAlgorithm();
 
+        System.out.println("xHat:");
+        System.out.println(Point2Space.getPointFromHomogeneousVector(this.xHat.getColumnVector(0)));
+        System.out.println("xHatPrime:");
+        System.out.println(Point2Space.getPointFromHomogeneousVector(this.xHatPrime.getColumnVector(0)));
+
         return convertMillimetersToMeters(this.mleX);
     }
 
