@@ -35,6 +35,20 @@ public class MatrixUtils {
         return new Array2DRowRealMatrix(data, false);
     }
 
+    public static void printMatrix(final RealMatrix matrix) {
+        final int numRows = matrix.getRowDimension();
+        final int numCols = matrix.getColumnDimension();
+
+        System.out.println("Real matrix (" + numRows + "x" + numCols + "):");
+        for (int row = 0; row < numRows; row++) {
+            System.out.print("[\t");
+            for (int col = 0; col < numCols; col++) {
+                System.out.print(matrix.getEntry(row, col) + "\t");
+            }
+            System.out.println("]");
+        }
+    }
+
     public static RealMatrix calculateInverse(final RealMatrix matrix) {
 
         // the 2 by 2 ad 3 by 3 case MAY optimize algorithm in the case of those matrices

@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9774c084-0c12-4d55-9093-e35eb2276a17" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/vision/datastructures/OurStereoCameraPairFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" afterPath="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/util/MatrixUtils.java" afterPath="$PROJECT_DIR$/src/vision/util/MatrixUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/BroBotController.java" afterPath="$PROJECT_DIR$/src/main/BroBotController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" afterPath="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/datastructures/StereoCameraPair.java" afterPath="$PROJECT_DIR$/src/vision/datastructures/StereoCameraPair.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java" afterPath="$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java" />
     </list>
     <ignored path="BroBot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +28,8 @@
     <file path="/CoordinateProjectionFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366588769279" ignored="false" />
     <file path="/CoordinateProjectionMain.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366255116166" ignored="false" />
     <file path="/CoordinateProjection.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366257737646" ignored="false" />
-    <file path="/TwoViewStructureReconstructor.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366574255247" ignored="false" />
-    <file path="/OptimalTriangulationMethod.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366596006340" ignored="false" />
+    <file path="/TwoViewStructureReconstructor.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603916690" ignored="false" />
+    <file path="/OptimalTriangulationMethod.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603890960" ignored="false" />
     <file path="/3d reconstruction equations" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366271612380" ignored="false" />
     <file path="/CoeffTest.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366495720525" ignored="false" />
     <file path="/OptimalTriangulationCostFunction.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366496979425" ignored="false" />
@@ -43,15 +40,26 @@
     <file path="/Point2Space.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366589369638" ignored="false" />
     <file path="/Point3Space.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366589393105" ignored="false" />
     <file path="/File Header.txt.ft" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366574220908" ignored="false" />
-    <file path="/MatrixUtils.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366595752947" ignored="false" />
+    <file path="/MatrixUtils.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366600902633" ignored="false" />
     <file path="/QuadraticEquation.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366583313012" ignored="false" />
     <file path="/Quadratic3DEquationErrorGradientFunction.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366581445692" ignored="false" />
     <file path="/QuadraticVisualizationFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366581880407" ignored="false" />
     <file path="/QuadraticVisualizationController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366583358976" ignored="false" />
     <file path="/Quadratic3DEquation.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366582924944" ignored="false" />
-    <file path="/CoordinateProjectionController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366595627282" ignored="false" />
+    <file path="/CoordinateProjectionController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366601014656" ignored="false" />
     <file path="/OurStereoCameraPair.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366595596629" ignored="false" />
     <file path="/OurStereoCameraPairFactory.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366595502024" ignored="false" />
+    <file path="/LookupTable.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366599497824" ignored="false" />
+    <file path="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector_full_scan.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
+    <file path="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionMain.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
+    <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionDetector_Union.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
+    <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionMain.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
+    <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
+    <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
+    <file path="$PROJECT_DIR$/src/vision/balldetection/BallDetectionDetector_Expand.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
+    <file path="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionController.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
+    <file path="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionDetector.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
+    <file path="$PROJECT_DIR$/src/vision/ringdetection/RingDetectionFrame.java" changelist="9774c084-0c12-4d55-9093-e35eb2276a17" time="1366603432244" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,57 +167,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CoordinateProjectionController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="0" selection-start="4564" selection-end="4564" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MatrixUtils.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/lib/commons-math3-3.2.jar!/org/apache/commons/math3/linear/MatrixUtils.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="0" selection-start="9453" selection-end="9453" vertical-scroll-proportion="-4.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Array2DRowRealMatrix.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/lib/commons-math3-3.2.jar!/org/apache/commons/math3/linear/Array2DRowRealMatrix.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="0" selection-start="5638" selection-end="5638" vertical-scroll-proportion="-5.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoordinateProjectionMain.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OurStereoCameraPairFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vision/datastructures/OurStereoCameraPairFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="21" selection-start="619" selection-end="619" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="OptimalTriangulationMethod.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="256" column="48" selection-start="11516" selection-end="11516" vertical-scroll-proportion="-3.249292">
+            <state line="338" column="47" selection-start="14583" selection-end="14583" vertical-scroll-proportion="1.2281369">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -217,24 +178,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StereoCameraPair.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vision/datastructures/StereoCameraPair.java">
+      <file leaf-file-name="CoordinateProjectionController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="39" selection-start="3563" selection-end="3563" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MatrixUtils.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vision/util/MatrixUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="61" selection-start="998" selection-end="998" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="66" column="44" selection-start="2172" selection-end="2172" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -257,9 +205,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/learning/math/LinearEquation.java" />
-        <option value="$PROJECT_DIR$/src/learning/visualization/linear/VisualizationController.java" />
-        <option value="$PROJECT_DIR$/src/learning/math/Quadratic3DEquation.java" />
         <option value="$PROJECT_DIR$/src/learning/visualization/quadratic/QuadraticVisualizationController.java" />
         <option value="$PROJECT_DIR$/src/vision/app/MainWindow.java" />
         <option value="$PROJECT_DIR$/src/vision/app/StereoVisionController.java" />
@@ -269,10 +214,13 @@
         <option value="$PROJECT_DIR$/src/vision/datastructures/Point3Space.java" />
         <option value="$PROJECT_DIR$/src/vision/datastructures/OurStereoCameraPair.java" />
         <option value="$PROJECT_DIR$/src/vision/datastructures/OurStereoCameraPairFactory.java" />
-        <option value="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" />
         <option value="$PROJECT_DIR$/src/vision/datastructures/StereoCameraPair.java" />
+        <option value="$PROJECT_DIR$/src/learning/LookupTable.java" />
         <option value="$PROJECT_DIR$/src/vision/util/MatrixUtils.java" />
+        <option value="$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java" />
+        <option value="$PROJECT_DIR$/src/main/BroBotController.java" />
         <option value="$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java" />
+        <option value="$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java" />
       </list>
     </option>
   </component>
@@ -331,6 +279,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BroBot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vision" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -654,7 +624,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="BroBot" />
       <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -703,7 +679,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-4" width="1377" height="905" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -711,7 +687,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3989432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21928665" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -724,8 +700,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19714071" sideWeight="0.54557467" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45442536" sideWeight="0.9532374" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19714071" sideWeight="0.7463672" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25363275" sideWeight="0.9532374" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -797,31 +773,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/learning/math/optimization/LinearEquationErrorGradientFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/math/optimization/Quadratic3DEquationErrorGradientFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="32" selection-start="1563" selection-end="1563" vertical-scroll-proportion="0.75524473">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/learning/math/Quadratic3DEquation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1634" selection-end="1634" vertical-scroll-proportion="-2.3149037">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="39" selection-start="1870" selection-end="1870" vertical-scroll-proportion="0.0">
@@ -861,7 +812,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vision/datastructures/OurStereoCameraPairFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="21" selection-start="619" selection-end="619" vertical-scroll-proportion="0.0">
+        <state line="22" column="21" selection-start="619" selection-end="619" vertical-scroll-proportion="0.503876">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -870,7 +821,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
+        <state line="16" column="0" selection-start="448" selection-end="448" vertical-scroll-proportion="0.5327869">
           <folding />
         </state>
       </provider>
@@ -878,13 +829,6 @@
     <entry file="jar://$PROJECT_DIR$/lib/commons-math3-3.2.jar!/org/apache/commons/math3/linear/MatrixUtils.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="103" column="0" selection-start="9453" selection-end="9453" vertical-scroll-proportion="-4.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/commons-math3-3.2.jar!/org/apache/commons/math3/linear/Array2DRowRealMatrix.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="5638" selection-end="5638" vertical-scroll-proportion="-5.0">
           <folding />
         </state>
       </provider>
@@ -898,9 +842,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/learning/LookupTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="51" selection-start="918" selection-end="918" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/commons-math3-3.2.jar!/org/apache/commons/math3/linear/Array2DRowRealMatrix.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="0" selection-start="5638" selection-end="5638" vertical-scroll-proportion="0.7256098">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/vision/util/MatrixUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="61" selection-start="998" selection-end="998" vertical-scroll-proportion="0.0">
+        <state line="46" column="39" selection-start="1712" selection-end="1712" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -909,14 +867,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vision/coordinateprojection/CoordinateProjectionController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="0" selection-start="4564" selection-end="4564" vertical-scroll-proportion="0.0">
+        <state line="66" column="44" selection-start="2172" selection-end="2172" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/BroBotController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="5" selection-start="1385" selection-end="1385" vertical-scroll-proportion="1.4749537">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/TwoViewStructureReconstructor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="46" selection-start="567" selection-end="567" vertical-scroll-proportion="0.5009276">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vision/reconstruction/OptimalTriangulationMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="256" column="48" selection-start="11516" selection-end="11516" vertical-scroll-proportion="-3.249292">
+        <state line="338" column="47" selection-start="14583" selection-end="14583" vertical-scroll-proportion="1.2281369">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

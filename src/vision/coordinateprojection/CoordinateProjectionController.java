@@ -61,6 +61,9 @@ public class CoordinateProjectionController {
         frame.setSize(1024, 768);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
+        leftPoint = new Point2D.Double(521.6250, 888.5000);
+        rightPoint = new Point2D.Double(607.5000, 880.8750);
         
         // add action event listeners
         // LEFT IMAGE BUTTON

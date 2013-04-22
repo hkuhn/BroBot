@@ -6,15 +6,19 @@ public class BroBotController implements Runnable {
     // const
     
     // args
-    final protected BroBotControllerDelegate delegate;
+    final protected BroBotControllerDelegate        delegate;
+    protected Thread                                ballDetectionThread;
+    protected Thread                                ringDetectionThread;
     
-    protected boolean isExecuting;
+    protected boolean                               isExecuting;
+    protected boolean                               endOfGame;
 
 
     // CONSTRUCTOR METHOD
     public BroBotController(BroBotControllerDelegate delegate) {
         
         this.delegate = delegate;
+        this.endOfGame = false;
         
     }
     
@@ -47,11 +51,57 @@ public class BroBotController implements Runnable {
         //  2. Intermediate State
         //      a. wait until a ball is detected in frame
         //      b. once ball is detected for at least "t1" seconds, goto opponent state
-        //  3. Opponent State (possession)
-        //      a. wait until a ball is out of frame
-        //      b. once ball leaves frame for at least "t2" seconds, goto bot state
+        //      c. wait until a ball is out of frame
+        //      d. once ball leaves frame for at least "t2" seconds, goto bot state
+        
+        // start threads
         
         
+        while (true) {
+            
+            this.gotoBotState();
+            
+            if (endOfGame) {
+                System.out.println("no more cups in view. Game has ended");
+                this.gotoEndState();
+                break;
+            }
+            else {
+                this.gotoIntermediateState();
+            }
+        }
+        
+        synchronized (this) {
+            this.isExecuting = false;
+        }
+        
+    }
+    
+    
+    
+    // STATE METHODS
+    protected void gotoBotState() {
+        // find circles
+        // send centers to stereo reconstruction
+        // find correspondences with minimum error
+        // retrieve angles from lookup table
+        // send angles to servos
+        
+    }
+    
+    protected void gotoIntermediateState() {
+        // run ball detection
+        // wait until ball is detected
+        // wait until ball leaves screen
+        // set timer and wait for it to expire
+        
+    }
+    
+    protected void gotoEndState() {
+        // turn everything off
+        // reset bot to initial configuration (erect)
+        
+    }
 
 
 }
